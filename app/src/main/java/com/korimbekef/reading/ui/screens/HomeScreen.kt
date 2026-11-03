@@ -64,6 +64,9 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.withTimeoutOrNull
+import com.korimbekef.reading.speech.EngineStatus
 import kotlinx.coroutines.launch
 import java.time.LocalTime
 
@@ -118,7 +121,10 @@ class HomeViewModel(private val c: AppContainer) : ViewModel() {
         greeted = true
         viewModelScope.launch {
             if (!c.settings.current().voicePrompts) return@launch
-            delay(600)
+            // The speech engine may still be starting right after launch.
+            val ready = withTimeoutOrNull(5000) { c.speech.state.first { it.status != EngineStatus.INITIALIZING } }
+            if (ready?.status != EngineStatus.READY) return@launch
+            delay(400)
             c.speech.speakMessage("${T.hello(child.name)} ${T.WHAT_TODAY}", 0.95f)
         }
     }

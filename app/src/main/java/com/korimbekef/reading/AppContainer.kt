@@ -7,7 +7,7 @@ import com.korimbekef.reading.data.ProgressRepository
 import com.korimbekef.reading.data.content.ContentRepository
 import com.korimbekef.reading.data.db.AppDatabase
 import com.korimbekef.reading.data.prefs.SettingsRepository
-import com.korimbekef.reading.data.prefs.settingsDataStore
+import com.korimbekef.reading.data.prefs.createSettingsDataStore
 import com.korimbekef.reading.speech.SpeechController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,7 +21,7 @@ class AppContainer(
     val appContext: Context = context.applicationContext
     val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     val db: AppDatabase by lazy { AppDatabase.build(appContext) }
-    val settings: SettingsRepository by lazy { SettingsRepository(appContext.settingsDataStore) }
+    val settings: SettingsRepository by lazy { SettingsRepository(createSettingsDataStore(appContext)) }
     val content: ContentRepository by lazy { ContentRepository(appContext, db.customPassageDao(), settings) }
     val progress: ProgressRepository by lazy { ProgressRepository(db) }
     val children: ChildrenRepository by lazy { ChildrenRepository(db, settings, progress) }

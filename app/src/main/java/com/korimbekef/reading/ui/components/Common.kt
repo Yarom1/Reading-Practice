@@ -28,6 +28,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -127,7 +128,7 @@ fun BigButton(
                 .height(height)
                 .offset(y = (6 * press).dp)
                 .background(base, shape)
-                .padding(horizontal = 18.dp),
+                .padding(horizontal = 12.dp),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically,
         ) {
@@ -267,8 +268,8 @@ fun LabeledIconButton(
     tint: Color = KColors.Ink,
     enabled: Boolean = true,
 ) {
-    Column(modifier.width(76.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-        RoundIconButton(icon, label, onClick, color = color, tint = tint, enabled = enabled)
+    Column(modifier.widthIn(max = 84.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+        RoundIconButton(icon, label, onClick, color = color, tint = tint, enabled = enabled, size = 48.dp)
         Spacer(Modifier.height(4.dp))
         Text(label, style = MaterialTheme.typography.labelSmall, color = KColors.InkSoft, textAlign = TextAlign.Center, maxLines = 2)
     }

@@ -55,6 +55,7 @@ import com.korimbekef.reading.ui.components.PinPad
 import com.korimbekef.reading.ui.components.readingTextStyle
 import com.korimbekef.reading.ui.theme.KColors
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flatMapLatest
@@ -251,7 +252,7 @@ fun ChangePinScreen(onBack: () -> Unit) {
         }
         when (step) {
             0 -> PinPad(title = "הקישו את הקוד הנוכחי", error = error, errorKey = errorKey, resetKey = "current", onComplete = { pin ->
-                scope.launch {
+                scope.launch(Dispatchers.Main.immediate) {
                     if (vm.pinMatches(pin)) {
                         step = 1
                         error = null
@@ -268,7 +269,7 @@ fun ChangePinScreen(onBack: () -> Unit) {
             })
             else -> PinPad(title = "הקישו שוב את הקוד החדש", error = error, errorKey = errorKey, resetKey = "confirm", onComplete = { pin ->
                 if (pin == first) {
-                    scope.launch {
+                    scope.launch(Dispatchers.Main.immediate) {
                         vm.savePin(pin)
                         done = true
                     }

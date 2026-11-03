@@ -10,13 +10,16 @@ import androidx.datastore.preferences.core.floatPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.stringSetPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
+import androidx.datastore.preferences.core.PreferenceDataStoreFactory
+import androidx.datastore.preferences.preferencesDataStoreFile
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
-val Context.settingsDataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+/** One DataStore per process (created by the app container). */
+fun createSettingsDataStore(context: Context): DataStore<Preferences> =
+    PreferenceDataStoreFactory.create(produceFile = { context.applicationContext.preferencesDataStoreFile("settings") })
 
 /** How word highlighting is kept in sync with the voice. */
 enum class SyncMode {

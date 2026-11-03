@@ -91,8 +91,16 @@ class AppFlowTest {
 
     private fun content(raw: String): String = DualText.parse(raw).nikud
 
+    private var timeoutShots = 0
+
     private fun waitText(text: String, timeout: Long = 10_000) {
-        rule.waitUntil(timeout) { rule.onAllNodesWithText(text, substring = true).fetchSemanticsNodes().isNotEmpty() }
+        try {
+            rule.waitUntil(timeout) { rule.onAllNodesWithText(text, substring = true).fetchSemanticsNodes().isNotEmpty() }
+        } catch (e: Throwable) {
+            // keep a picture of the screen at the moment we gave up, for debugging in CI
+            shot("TIMEOUT_${javaClass.simpleName}_${++timeoutShots}")
+            throw AssertionError("Text not found on screen: $text", e)
+        }
     }
 
     private fun node(text: String): SemanticsNodeInteraction {
@@ -151,6 +159,7 @@ class AppFlowTest {
         listOf("1", "2", "3", "4").forEach { click(it) }
         // a girl is addressed in the feminine form
         waitText(T.START_STORY.f)
+        waitText(T.hello("נועה"))
         shot("05_home_girl")
         val child = runBlocking { app.container.children.active() }
         assertEquals("נועה", child?.name)
@@ -161,7 +170,7 @@ class AppFlowTest {
     fun readingLineHighlightsWordsAndWaitsForChild() {
         seed()
         launch()
-        waitText(T.START_STORY.m)
+        waitText(T.hello("דני"))
         shot("10_home")
         click(T.MY_LIBRARY)
         waitText(content("אַבָּא בָּא"))
@@ -325,7 +334,7 @@ class AppFlowTest {
     fun tabletLayout() {
         seed(level = 3)
         launch()
-        waitText(T.START_STORY.m)
+        waitText(T.hello("דני"))
         shot("60_tablet_home")
         openStory("הַטִּיּוּל שֶׁל דָּנִי")
         click(content("דָּנִי יָצָא {לְטַיֵּל|לטייל} {בַּגִּנָּה|בגינה}."))

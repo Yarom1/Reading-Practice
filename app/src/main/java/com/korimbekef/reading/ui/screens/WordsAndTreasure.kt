@@ -199,7 +199,7 @@ fun TreasureScreen(onBack: () -> Unit) {
                                 Spacer(Modifier.height(6.dp))
                                 LinearProgressIndicator(
                                     progress = { ((stars - stage.minStars).toFloat() / (next.minStars - stage.minStars)).coerceIn(0f, 1f) },
-                                    modifier = Modifier.fillMaxWidth().widthIn(max = 420.dp).height(12.dp).clip(RoundedCornerShape(6.dp)),
+                                    modifier = Modifier.widthIn(max = 420.dp).fillMaxWidth().height(12.dp).clip(RoundedCornerShape(6.dp)),
                                     color = KColors.Orange,
                                     trackColor = KColors.OrangeLight,
                                 )

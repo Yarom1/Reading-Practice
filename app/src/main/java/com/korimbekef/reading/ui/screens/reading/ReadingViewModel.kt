@@ -360,29 +360,36 @@ class ReadingViewModel(
         if (line !in p.lines.indices) return
         touch()
         c.speech.stop()
+        // Update the screen right away; the database write follows. Nothing below may undo a
+        // newer action (e.g. the child already tapped the next line).
+        val before = _ui.value.linesRead
+        val read = before + line
+        val isNew = line !in before
+        val next = (line + 1 until p.lineCount).firstOrNull { it !in read } ?: p.lines.indices.firstOrNull { it !in read }
+        val praise = T.pick(T.PRAISE).of(ch.isGirl)
+        if (isNew) c.sounds.play(if (ch.gamification) Sfx.STAR else Sfx.CORRECT)
+        _ui.update {
+            it.copy(
+                linesRead = read,
+                turnLine = if (it.turnLine == line) -1 else it.turnLine,
+                praise = praise,
+                praiseKey = it.praiseKey + 1,
+                starKey = if (isNew && ch.gamification) it.starKey + 1 else it.starKey,
+                focusLine = next ?: line,
+            )
+        }
+        val requestAtTap = requestId
         viewModelScope.launch {
-            val (updated, stars) = c.progress.recordLineRead(s, line, p.lines[line].wordCount, ch.gamification)
+            val (updated, _) = c.progress.recordLineRead(s, line, p.lines[line].wordCount, ch.gamification)
             session = updated
-            val read = updated.readSet.filter { it in p.lines.indices }.toSet()
-            val next = (line + 1 until p.lineCount).firstOrNull { it !in read } ?: p.lines.indices.firstOrNull { it !in read }
-            val praise = T.pick(T.PRAISE).of(ch.isGirl)
-            c.sounds.play(if (stars > 0) Sfx.STAR else Sfx.CORRECT)
-            _ui.update {
-                it.copy(
-                    linesRead = read,
-                    turnLine = -1,
-                    praise = praise,
-                    praiseKey = it.praiseKey + 1,
-                    starKey = if (stars > 0) it.starKey + 1 else it.starKey,
-                    focusLine = next ?: line,
-                    sessionStars = updated.starsEarned,
-                )
-            }
+            _ui.update { it.copy(sessionStars = updated.starsEarned) }
             sessionMedals += c.progress.awardMedals(ch)
             if (read.size >= p.lineCount) {
                 complete()
-            } else if (c.settings.current().voicePrompts && _ui.value.speechAvailable) {
-                requestId = -1
+            } else if (
+                c.settings.current().voicePrompts && _ui.value.speechAvailable &&
+                requestId == requestAtTap && _ui.value.playStatus != PlayStatus.SPEAKING
+            ) {
                 c.speech.speakMessage(praise, 0.95f)
             }
         }
@@ -428,7 +435,6 @@ class ReadingViewModel(
             )
         }
         if (c.settings.current().voicePrompts && _ui.value.speechAvailable) {
-            requestId = -1
             c.speech.speakMessage(T.COMPLETED.of(ch.isGirl), 0.95f)
         }
     }

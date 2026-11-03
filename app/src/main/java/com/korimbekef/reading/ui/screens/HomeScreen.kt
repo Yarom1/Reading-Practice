@@ -169,7 +169,7 @@ fun HomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             // greeting row
-            Row(Modifier.fillMaxWidth().widthIn(max = 640.dp), verticalAlignment = Alignment.CenterVertically) {
+            Row(Modifier.widthIn(max = 640.dp).fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 Box(
                     Modifier.size(54.dp).background(Color.White, CircleShape),
                     contentAlignment = Alignment.Center,
@@ -200,7 +200,7 @@ fun HomeScreen(
             val todayMinutes = ui.summary.todaySeconds / 60
             val goalReached = todayMinutes >= goalMinutes
             Row(
-                Modifier.fillMaxWidth().widthIn(max = 640.dp),
+                Modifier.widthIn(max = 640.dp).fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center,
             ) {
@@ -220,7 +220,7 @@ fun HomeScreen(
                 color = KColors.Orange,
                 height = 84.dp,
                 textStyle = MaterialTheme.typography.headlineMedium,
-                modifier = Modifier.fillMaxWidth().widthIn(max = 640.dp),
+                modifier = Modifier.widthIn(max = 640.dp).fillMaxWidth(),
             )
             if (recommended != null) {
                 Spacer(Modifier.height(4.dp))
@@ -242,7 +242,7 @@ fun HomeScreen(
                     color = KColors.Teal,
                     height = 66.dp,
                     textStyle = MaterialTheme.typography.titleLarge,
-                    modifier = Modifier.fillMaxWidth().widthIn(max = 640.dp),
+                    modifier = Modifier.widthIn(max = 640.dp).fillMaxWidth(),
                 )
                 Spacer(Modifier.height(4.dp))
                 Text(
@@ -260,7 +260,7 @@ fun HomeScreen(
                     EmojiTile("🎮", T.MY_GAMES, KColors.PinkLight, onGames, Modifier.weight(1f))
                 }
                 Row(horizontalArrangement = Arrangement.spacedBy(14.dp)) {
-                    EmojiTile("🔤", T.MY_WORDS, KColors.GreenLight, onWords, Modifier.weight(1f))
+                    EmojiTile("📝", T.MY_WORDS, KColors.GreenLight, onWords, Modifier.weight(1f))
                     EmojiTile(
                         if (child?.gamification != false) "🏆" else "🦉",
                         T.MY_TREASURE,
@@ -272,7 +272,7 @@ fun HomeScreen(
             }
             if (child != null) {
                 Spacer(Modifier.height(16.dp))
-                SoftCard(Modifier.fillMaxWidth().widthIn(max = 640.dp)) {
+                SoftCard(Modifier.widthIn(max = 640.dp).fillMaxWidth()) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         GoalRing(todayMinutes.toFloat() / goalMinutes.coerceAtLeast(1)) {
                             Text(if (goalReached) "🎯" else "⏱️", fontSize = 24.sp)

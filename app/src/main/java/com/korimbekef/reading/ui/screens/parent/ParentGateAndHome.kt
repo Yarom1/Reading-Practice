@@ -71,6 +71,7 @@ import com.korimbekef.reading.ui.components.OwlMood
 import com.korimbekef.reading.ui.components.PinPad
 import com.korimbekef.reading.ui.theme.KColors
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
@@ -124,7 +125,7 @@ fun ParentGateScreen(onBack: () -> Unit, onUnlocked: () -> Unit) {
                     error = error,
                     errorKey = errorKey,
                     onComplete = { pin ->
-                        scope.launch {
+                        scope.launch(Dispatchers.Main.immediate) {
                             if (vm.pinMatches(pin)) {
                                 onUnlocked()
                             } else {
@@ -181,7 +182,7 @@ fun ParentGateScreen(onBack: () -> Unit, onUnlocked: () -> Unit) {
                 resetKey = "confirm",
                 onComplete = { pin ->
                     if (pin == newPin) {
-                        scope.launch {
+                        scope.launch(Dispatchers.Main.immediate) {
                             vm.savePin(pin)
                             onUnlocked()
                         }

@@ -253,8 +253,8 @@ private fun ProgressHeader(read: Int, total: Int, focus: Int) {
 private fun StoryHeader(emoji: String, title: DualText, level: Int, colorIndex: Int, withNikud: Boolean, custom: Boolean) {
     Column(
         Modifier
-            .fillMaxWidth()
             .widthIn(max = 720.dp)
+            .fillMaxWidth()
             .shadow(4.dp, RoundedCornerShape(28.dp))
             .clip(RoundedCornerShape(28.dp))
             .background(KColors.cardBrush(colorIndex))
@@ -299,7 +299,7 @@ private fun LineCard(
     }
     Card(
         onClick = onTap,
-        modifier = Modifier.fillMaxWidth().widthIn(max = 720.dp),
+        modifier = Modifier.widthIn(max = 720.dp).fillMaxWidth(),
         shape = RoundedCornerShape(22.dp),
         colors = CardDefaults.cardColors(containerColor = if (playing) Color(0xFFFFFCEB) else Color.White),
         border = border,
@@ -386,12 +386,12 @@ private fun Controls(ui: ReadingUi, vm: ReadingViewModel) {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Row(
-            Modifier.fillMaxWidth().widthIn(max = 640.dp),
+            Modifier.widthIn(max = 640.dp).fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            LabeledIconButton(Icons.Rounded.KeyboardArrowUp, T.PREV_LINE, vm::onPrevLine, enabled = ui.focusLine > 0)
-            LabeledIconButton(Icons.Rounded.Replay, T.AGAIN, vm::onReplay, enabled = ui.speechAvailable)
+            LabeledIconButton(Icons.Rounded.KeyboardArrowUp, T.PREV_LINE, vm::onPrevLine, enabled = ui.focusLine > 0, modifier = Modifier.weight(1f))
+            LabeledIconButton(Icons.Rounded.Replay, T.AGAIN, vm::onReplay, enabled = ui.speechAvailable, modifier = Modifier.weight(1f))
             BigButton(
                 text = when {
                     speaking -> T.PAUSE
@@ -402,12 +402,12 @@ private fun Controls(ui: ReadingUi, vm: ReadingViewModel) {
                 icon = if (speaking) Icons.Rounded.Pause else Icons.Rounded.PlayArrow,
                 color = if (speaking) KColors.Orange else KColors.Violet,
                 height = 64.dp,
-                textStyle = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.width(150.dp),
+                textStyle = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.weight(1.9f).padding(horizontal = 4.dp),
                 enabled = ui.speechAvailable || ui.mode == ReadingMode.TOGETHER,
             )
-            LabeledIconButton(Icons.Rounded.AutoStories, T.READ_ALL, vm::readAll, enabled = ui.speechAvailable)
-            LabeledIconButton(Icons.Rounded.KeyboardArrowDown, T.NEXT_LINE, vm::onNextLine, enabled = ui.focusLine < ui.lineCount - 1)
+            LabeledIconButton(Icons.Rounded.AutoStories, T.READ_ALL, vm::readAll, enabled = ui.speechAvailable, modifier = Modifier.weight(1f))
+            LabeledIconButton(Icons.Rounded.KeyboardArrowDown, T.NEXT_LINE, vm::onNextLine, enabled = ui.focusLine < ui.lineCount - 1, modifier = Modifier.weight(1f))
         }
     }
 }
@@ -433,11 +433,11 @@ private fun TurnPanel(text: String, onDone: () -> Unit, onListenAgain: () -> Uni
             emoji = "✅",
             color = KColors.Green,
             height = 66.dp,
-            modifier = Modifier.fillMaxWidth().widthIn(max = 640.dp),
+            modifier = Modifier.widthIn(max = 640.dp).fillMaxWidth(),
         )
         if (speechAvailable) {
             Spacer(Modifier.height(10.dp))
-            Row(Modifier.fillMaxWidth().widthIn(max = 640.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            Row(Modifier.widthIn(max = 640.dp).fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 BigButton(
                     T.LISTEN_AGAIN,
                     onListenAgain,
@@ -478,7 +478,7 @@ private fun WholeStoryPanel(girl: Boolean, onDone: () -> Unit, onListenAgain: ()
             SpeechBubble(T.READ_ALL_DONE.of(girl), Modifier.weight(1f))
         }
         Spacer(Modifier.height(10.dp))
-        BigButton(T.READ_ALL_DONE_BUTTON, onDone, emoji = "🏁", color = KColors.Green, height = 64.dp, modifier = Modifier.fillMaxWidth().widthIn(max = 640.dp))
+        BigButton(T.READ_ALL_DONE_BUTTON, onDone, emoji = "🏁", color = KColors.Green, height = 64.dp, modifier = Modifier.widthIn(max = 640.dp).fillMaxWidth())
         Spacer(Modifier.height(8.dp))
         BigButton(
             T.LISTEN_AGAIN,
@@ -488,7 +488,7 @@ private fun WholeStoryPanel(girl: Boolean, onDone: () -> Unit, onListenAgain: ()
             contentColor = KColors.Ink,
             height = 52.dp,
             textStyle = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.fillMaxWidth().widthIn(max = 640.dp),
+            modifier = Modifier.widthIn(max = 640.dp).fillMaxWidth(),
         )
     }
 }

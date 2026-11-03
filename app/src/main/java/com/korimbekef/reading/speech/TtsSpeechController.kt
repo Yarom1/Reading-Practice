@@ -66,6 +66,9 @@ class TtsSpeechController(
     private var probeCounter = 0
     private var probeAttempts = 0
 
+    /** Engines already tried in automatic mode (e.g. a default engine without Hebrew). */
+    private val triedEngines = mutableSetOf<String>()
+
     private class Active(
         val id: Long,
         val gen: Int,
@@ -93,6 +96,7 @@ class TtsSpeechController(
         val old = settings
         settings = s
         if (!engineInitialized || s.enginePackage != old.enginePackage) {
+            triedEngines.clear()
             initEngine(s.enginePackage)
             return
         }
@@ -128,6 +132,7 @@ class TtsSpeechController(
         val t = tts ?: return
         if (status != TextToSpeech.SUCCESS) {
             if (pkg != null) {
+                triedEngines += pkg
                 initEngine(null)
             } else {
                 _state.value = SpeechState(status = EngineStatus.NO_ENGINE)
@@ -190,6 +195,19 @@ class TtsSpeechController(
             ok = listOf("he-IL", "iw-IL").any { tag ->
                 val r = runCatching { t.setLanguage(Locale.forLanguageTag(tag)) }.getOrDefault(TextToSpeech.LANG_NOT_SUPPORTED)
                 r >= TextToSpeech.LANG_AVAILABLE
+            }
+        }
+        if (!ok && settings.enginePackage == null) {
+            // Automatic mode: the default engine has no Hebrew (common on Samsung phones),
+            // so try the other installed engines, Google's first.
+            _state.value.enginePackage?.let { triedEngines += it }
+            val next = _state.value.engines.map { it.packageName }
+                .filter { it !in triedEngines }
+                .sortedByDescending { it == GOOGLE_TTS }
+                .firstOrNull()
+            if (next != null) {
+                initEngine(next)
+                return
             }
         }
         _state.value = _state.value.copy(
@@ -613,6 +631,8 @@ class TtsSpeechController(
     }
 
     companion object {
+        private const val GOOGLE_TTS = "com.google.android.tts"
+
         /** Short vocalized sentence used to check whether a voice reports word positions. */
         const val PROBE_TEXT = "שָׁלוֹם לְכֻלָּם, הַיּוֹם נִקְרָא סִפּוּר יָפֶה וְנִשְׂמַח."
     }

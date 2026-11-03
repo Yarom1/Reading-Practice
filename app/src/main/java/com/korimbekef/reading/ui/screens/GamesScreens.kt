@@ -87,8 +87,8 @@ private data class GameInfo(val type: GameType, val emoji: String, val title: St
 
 private val GAMES = listOf(
     GameInfo(GameType.WORD_TO_PICTURE, "🖼️", T.GAME_WORD_PICTURE, KColors.BlueLight),
-    GameInfo(GameType.PICTURE_TO_WORD, "🔤", T.GAME_PICTURE_WORD, KColors.PinkLight),
-    GameInfo(GameType.FIRST_LETTER, "🅰️", T.GAME_FIRST_LETTER, KColors.YellowLight),
+    GameInfo(GameType.PICTURE_TO_WORD, "📝", T.GAME_PICTURE_WORD, KColors.PinkLight),
+    GameInfo(GameType.FIRST_LETTER, "אָ", T.GAME_FIRST_LETTER, KColors.YellowLight),
     GameInfo(GameType.LISTEN_AND_CHOOSE, "👂", T.GAME_LISTEN, KColors.GreenLight),
     GameInfo(GameType.MISSING_WORD, "🧩", T.GAME_MISSING, KColors.OrangeLight),
     GameInfo(GameType.MEMORY, "🃏", T.GAME_MEMORY, KColors.VioletLight),
@@ -331,7 +331,7 @@ private fun QuestionView(q: QuizQuestion, ui: QuizUi, onSpeak: () -> Unit, onAns
         // options
         val isPicture = q.options.firstOrNull()?.emoji != null
         Row(
-            Modifier.fillMaxWidth().widthIn(max = 600.dp),
+            Modifier.widthIn(max = 600.dp).fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             q.options.forEachIndexed { i, opt ->
@@ -397,9 +397,9 @@ private fun GameFinished(stars: Int, onAgain: () -> Unit, onBack: () -> Unit) {
         Text(T.GAME_DONE, style = MaterialTheme.typography.headlineMedium, color = KColors.Ink, textAlign = TextAlign.Center)
         if (stars > 0) Text("+$stars ⭐", style = MaterialTheme.typography.headlineMedium, color = KColors.Orange)
         Spacer(Modifier.height(20.dp))
-        BigButton(T.PLAY_AGAIN, onAgain, emoji = "🔁", color = KColors.Teal, modifier = Modifier.fillMaxWidth().widthIn(max = 480.dp))
+        BigButton(T.PLAY_AGAIN, onAgain, emoji = "🔁", color = KColors.Teal, modifier = Modifier.widthIn(max = 480.dp).fillMaxWidth())
         Spacer(Modifier.height(12.dp))
-        BigButton(T.BACK, onBack, color = KColors.Violet, height = 58.dp, modifier = Modifier.fillMaxWidth().widthIn(max = 480.dp))
+        BigButton(T.BACK, onBack, color = KColors.Violet, height = 58.dp, modifier = Modifier.widthIn(max = 480.dp).fillMaxWidth())
     }
 }
 
@@ -496,7 +496,7 @@ fun MemoryGameScreen(onBack: () -> Unit) {
                     contentPadding = PaddingValues(16.dp),
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                     verticalArrangement = Arrangement.spacedBy(12.dp),
-                    modifier = Modifier.fillMaxWidth().widthIn(max = 640.dp).align(Alignment.CenterHorizontally),
+                    modifier = Modifier.widthIn(max = 640.dp).fillMaxWidth().align(Alignment.CenterHorizontally),
                 ) {
                     itemsIndexed(ui.cards, key = { _, card -> "${ui.round}-${card.id}" }) { i, card ->
                         val open = i in ui.faceUp || card.pairId in ui.matched

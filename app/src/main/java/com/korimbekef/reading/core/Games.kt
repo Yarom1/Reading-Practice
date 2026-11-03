@@ -141,25 +141,30 @@ class GameGenerator(
     }
 
     private fun missingWord(passages: List<Passage>, count: Int): List<QuizQuestion> {
+        fun words(line: DualText) = (0 until line.wordCount).map { i -> DualText(line.nikudTokens.speechWord(i), line.plainTokens.speechWord(i)) }
+        fun key(w: DualText) = HebrewText.lettersOnly(w.plain)
         val candidates = passages.flatMap { p -> p.lines.map { p to it } }
             .filter { (_, line) -> line.wordCount in 3..9 }
             .shuffled(random)
         val result = ArrayList<QuizQuestion>()
         for ((passage, line) in candidates) {
             if (result.size >= count) break
-            val tokens = line.nikudTokens
-            val plainTokens = line.plainTokens
-            val blankable = (0 until tokens.wordCount).filter { i ->
-                HebrewText.lettersOnly(plainTokens.speechWord(i)).length >= 2
-            }
+            val lineWords = words(line)
+            // blank a content word (3+ letters) when possible, otherwise any 2+ letter word
+            val blankable = lineWords.indices.filter { key(lineWords[it]).length >= 3 }
+                .ifEmpty { lineWords.indices.filter { key(lineWords[it]).length >= 2 } }
             if (blankable.isEmpty()) continue
             val blank = blankable.random(random)
-            val answerPlain = HebrewText.lettersOnly(plainTokens.speechWord(blank))
-            val answer = DualText(tokens.speechWord(blank), plainTokens.speechWord(blank))
-            val distractors = passage.lines.flatMap { l ->
-                (0 until l.wordCount).map { i -> DualText(l.nikudTokens.speechWord(i), l.plainTokens.speechWord(i)) }
-            }.filter { HebrewText.lettersOnly(it.plain).let { s -> s.length >= 2 && s != answerPlain } }
-                .distinctBy { HebrewText.lettersOnly(it.plain) }
+            val answer = lineWords[blank]
+            // Distractors come from other passages, so they rarely fit this sentence as well.
+            val ownWords = passage.lines.flatMap { words(it) }.map { key(it) }.toSet()
+            val distractors = passages.asSequence()
+                .filter { it.id != passage.id }
+                .flatMap { it.lines.asSequence() }
+                .flatMap { words(it).asSequence() }
+                .filter { key(it).length >= 2 && key(it) !in ownWords }
+                .distinctBy { key(it) }
+                .toList()
                 .shuffled(random)
                 .take(2)
             if (distractors.size < 2) continue

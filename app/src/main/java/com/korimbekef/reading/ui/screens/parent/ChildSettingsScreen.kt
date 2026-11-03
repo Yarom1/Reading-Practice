@@ -102,9 +102,10 @@ fun ChildSettingsScreen(childId: Long, onBack: () -> Unit) {
                 modifier = Modifier.fillMaxWidth(),
             )
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                FilterChip(selected = !d.isGirl, onClick = { draft = d.copy(gender = ChildEntity.GENDER_BOY) }, label = { Text("בן (פנייה בלשון זכר)") })
-                FilterChip(selected = d.isGirl, onClick = { draft = d.copy(gender = ChildEntity.GENDER_GIRL) }, label = { Text("בת (פנייה בלשון נקבה)") })
+                FilterChip(selected = !d.isGirl, onClick = { draft = d.copy(gender = ChildEntity.GENDER_BOY) }, label = { Text("בן 👦") })
+                FilterChip(selected = d.isGirl, onClick = { draft = d.copy(gender = ChildEntity.GENDER_GIRL) }, label = { Text("בת 👧") })
             }
+            InfoText("כך יַנְשׁוּפִי פונה לילד/ה בהודעות (״בוא״ או ״בואי״).")
             FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 AVATARS.forEach { a ->
                     Box(

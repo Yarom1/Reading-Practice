@@ -395,7 +395,7 @@ private fun GameFinished(stars: Int, onAgain: () -> Unit, onBack: () -> Unit) {
     ) {
         Owl(mood = OwlMood.CHEER, size = 170.dp)
         Text(T.GAME_DONE, style = MaterialTheme.typography.headlineMedium, color = KColors.Ink, textAlign = TextAlign.Center)
-        if (stars > 0) Text("+$stars ⭐", style = MaterialTheme.typography.headlineMedium, color = KColors.Orange)
+        if (stars > 0) Text("\u2066+$stars\u2069 ⭐", style = MaterialTheme.typography.headlineMedium, color = KColors.Orange)
         Spacer(Modifier.height(20.dp))
         BigButton(T.PLAY_AGAIN, onAgain, emoji = "🔁", color = KColors.Teal, modifier = Modifier.widthIn(max = 480.dp).fillMaxWidth())
         Spacer(Modifier.height(12.dp))
@@ -492,7 +492,7 @@ fun MemoryGameScreen(onBack: () -> Unit) {
             } else {
                 Text(T.Q_MEMORY, style = MaterialTheme.typography.titleMedium, color = KColors.InkSoft, modifier = Modifier.padding(horizontal = 18.dp))
                 LazyVerticalGrid(
-                    columns = GridCells.Fixed(if (ui.cards.size <= 8) 2 else 3),
+                    columns = GridCells.Fixed(3),
                     contentPadding = PaddingValues(16.dp),
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                     verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -503,7 +503,7 @@ fun MemoryGameScreen(onBack: () -> Unit) {
                         val rotation by animateFloatAsState(if (open) 180f else 0f, tween(320), label = "flip")
                         Box(
                             Modifier
-                                .aspectRatio(0.9f)
+                                .aspectRatio(0.8f)
                                 .graphicsLayer {
                                     rotationY = rotation
                                     cameraDistance = 12f * density

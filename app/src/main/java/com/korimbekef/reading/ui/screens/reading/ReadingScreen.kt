@@ -15,6 +15,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -566,7 +567,7 @@ private fun CompletionDialog(
                         StarsRow(completion.passageStars, size = 34.dp)
                         if (completion.starsAdded > 0) {
                             Spacer(Modifier.height(6.dp))
-                            Text("+${completion.starsAdded} ⭐", style = MaterialTheme.typography.headlineMedium, color = KColors.Orange)
+                            Text("\u2066+${completion.starsAdded}\u2069 ⭐", style = MaterialTheme.typography.headlineMedium, color = KColors.Orange)
                         }
                         completion.newOwlStage?.let { stage ->
                             Spacer(Modifier.height(10.dp))
@@ -636,7 +637,13 @@ private fun WordSheetView(sheet: WordSheet, withNikud: Boolean, speechAvailable:
 @Composable
 private fun ReadingSettingsSheet(ui: ReadingUi, vm: ReadingViewModel, onDismiss: () -> Unit) {
     ModalBottomSheet(onDismissRequest = onDismiss, containerColor = Color.White) {
-        Column(Modifier.fillMaxWidth().padding(horizontal = 20.dp).padding(bottom = 28.dp)) {
+        Column(
+            Modifier
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = 20.dp)
+                .padding(bottom = 28.dp),
+        ) {
             Text(T.READ_SETTINGS, style = MaterialTheme.typography.headlineSmall, color = KColors.Ink)
             Spacer(Modifier.height(14.dp))
             Text(T.FONT_SIZE, style = MaterialTheme.typography.titleMedium, color = KColors.Ink)
@@ -659,14 +666,14 @@ private fun ReadingSettingsSheet(ui: ReadingUi, vm: ReadingViewModel, onDismiss:
             Spacer(Modifier.height(18.dp))
             Text(T.SPEED, style = MaterialTheme.typography.titleMedium, color = KColors.Ink)
             Spacer(Modifier.height(8.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 val icons = listOf("🐌", "🐢", "🚶", "🐇")
                 Speeds.rates.indices.forEach { i ->
                     SelectableChip("${icons[i]} ${T.SPEED_NAMES[i]}", i == ui.speedIndex, { vm.setSpeed(i) }, color = KColors.Teal)
                 }
             }
             Spacer(Modifier.height(18.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(10.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 SelectableChip("👂 ${T.MODE_TOGETHER}", ui.mode == ReadingMode.TOGETHER, { vm.setMode(ReadingMode.TOGETHER) })
                 SelectableChip("📖 ${T.MODE_ALONE}", ui.mode == ReadingMode.ALONE, { vm.setMode(ReadingMode.ALONE) })
             }

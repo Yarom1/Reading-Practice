@@ -1,0 +1,140 @@
+name: Build APK
+
+on:
+  push:
+    branches: ["**"]
+    paths-ignore:
+      - "**.md"
+      - "docs/**"
+  workflow_dispatch:
+    inputs:
+      release:
+        description: "Publish a GitHub Release with the APK"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      VERSION_NAME: 1.0.${{ github.run_number }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Use private signing key (if configured)
+        env:
+          KEYSTORE_B64: ${{ secrets.SIGNING_KEYSTORE_BASE64 }}
+          STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+        run: |
+          if [ -n "$KEYSTORE_B64" ]; then
+            echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/release.jks"
+            {
+              echo "SIGNING_KEYSTORE_PATH=$RUNNER_TEMP/release.jks"
+              echo "SIGNING_STORE_PASSWORD=$STORE_PASSWORD"
+              echo "SIGNING_KEY_ALIAS=$KEY_ALIAS"
+              echo "SIGNING_KEY_PASSWORD=$KEY_PASSWORD"
+            } >> "$GITHUB_ENV"
+            echo "Using private signing key from repository secrets."
+          else
+            echo "Using the shared signing key committed in app/signing."
+          fi
+
+      - name: Build APKs
+        id: build
+        run: |
+          set -o pipefail
+          mkdir -p ci-output
+          ./gradlew --no-daemon --stacktrace assembleRelease assembleDebug 2>&1 | tee ci-output/build.log
+
+      - name: Unit + UI tests (Robolectric)
+        id: tests
+        if: always() && steps.build.outcome == 'success'
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          ./gradlew --no-daemon testDebugUnitTest 2>&1 | tee ci-output/test.log
+
+      - name: Collect outputs
+        if: always()
+        run: |
+          mkdir -p ci-output/apk ci-output/screenshots ci-output/test-results
+          cp app/build/outputs/apk/release/app-release.apk "ci-output/apk/korim-bekef-${VERSION_NAME}.apk" 2>/dev/null || true
+          cp app/build/outputs/apk/debug/app-debug.apk "ci-output/apk/korim-bekef-${VERSION_NAME}-debug.apk" 2>/dev/null || true
+          cp -r build/screenshots/. ci-output/screenshots/ 2>/dev/null || true
+          cp -r app/build/test-results/testDebugUnitTest/. ci-output/test-results/ 2>/dev/null || true
+          echo "build=${{ steps.build.outcome }} tests=${{ steps.tests.outcome }} sha=${GITHUB_SHA} run=${GITHUB_RUN_NUMBER}" > ci-output/STATUS.txt
+          ls -la ci-output ci-output/apk
+
+      - name: Upload APK artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: korim-bekef-apk-${{ env.VERSION_NAME }}
+          path: ci-output/apk/*.apk
+          if-no-files-found: ignore
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports-${{ env.VERSION_NAME }}
+          path: |
+            ci-output/*.log
+            ci-output/screenshots
+            ci-output/test-results
+          if-no-files-found: ignore
+
+      - name: Publish build output branch
+        if: always()
+        run: |
+          BRANCH="build-output/${GITHUB_REF_NAME}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -rf /tmp/out && mkdir -p /tmp/out && cp -r ci-output/. /tmp/out/
+          cd /tmp/out
+          git init -q -b main
+          git add -A
+          git commit -q -m "Build ${GITHUB_RUN_NUMBER} of ${GITHUB_SHA}"
+          git push -q --force "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:refs/heads/${BRANCH}"
+
+      - name: Publish GitHub Release
+        if: >-
+          steps.build.outcome == 'success' &&
+          (github.ref == 'refs/heads/main' ||
+           contains(github.event.head_commit.message, '[release]') ||
+           (github.event_name == 'workflow_dispatch' && inputs.release))
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env.VERSION_NAME }}
+          target_commitish: ${{ github.sha }}
+          name: קוראים בכיף ${{ env.VERSION_NAME }}
+          body: |
+            גרסה ${{ env.VERSION_NAME }} של "קוראים בכיף".
+            להתקנה: הורידו את הקובץ korim-bekef-${{ env.VERSION_NAME }}.apk למכשיר האנדרואיד ופתחו אותו.
+          files: ci-output/apk/korim-bekef-${{ env.VERSION_NAME }}.apk
+
+      - name: Fail if tests failed
+        if: steps.tests.outcome == 'failure'
+        run: |
+          echo "Unit/UI tests failed - see test.log"
+          exit 1

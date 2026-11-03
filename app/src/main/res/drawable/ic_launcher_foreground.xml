@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- "Yanshufi" the reading owl holding an open book. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:pivotX="54"
+        android:pivotY="56"
+        android:scaleX="0.76"
+        android:scaleY="0.76">
+        <!-- ear tufts -->
+        <path
+            android:fillColor="#FFF08A24"
+            android:pathData="M35,42 L39,22 L51,36 Z" />
+        <path
+            android:fillColor="#FFF08A24"
+            android:pathData="M73,42 L69,22 L57,36 Z" />
+        <!-- body -->
+        <path
+            android:fillColor="#FFFFA53D"
+            android:pathData="M29,60 a25,27 0 1,0 50,0 a25,27 0 1,0 -50,0" />
+        <!-- belly -->
+        <path
+            android:fillColor="#FFFFE3BD"
+            android:pathData="M39,71 a15,14 0 1,0 30,0 a15,14 0 1,0 -30,0" />
+        <!-- wings -->
+        <path
+            android:fillColor="#FFF08A24"
+            android:pathData="M31,55 C24,64 25,76 34,83 C33,72 34,63 31,55 Z" />
+        <path
+            android:fillColor="#FFF08A24"
+            android:pathData="M77,55 C84,64 83,76 74,83 C75,72 74,63 77,55 Z" />
+        <!-- eyes -->
+        <path
+            android:fillColor="#FFFFFFFF"
+            android:pathData="M34,52 a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0" />
+        <path
+            android:fillColor="#FFFFFFFF"
+            android:pathData="M54,52 a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0" />
+        <path
+            android:fillColor="#FF2D1B69"
+            android:pathData="M40.5,53 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0" />
+        <path
+            android:fillColor="#FF2D1B69"
+            android:pathData="M57.5,53 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0" />
+        <path
+            android:fillColor="#FFFFFFFF"
+            android:pathData="M45.4,51 a1.6,1.6 0 1,0 3.2,0 a1.6,1.6 0 1,0 -3.2,0" />
+        <path
+            android:fillColor="#FFFFFFFF"
+            android:pathData="M62.4,51 a1.6,1.6 0 1,0 3.2,0 a1.6,1.6 0 1,0 -3.2,0" />
+        <!-- beak -->
+        <path
+            android:fillColor="#FFE8590C"
+            android:pathData="M50.5,60 L57.5,60 L54,66 Z" />
+        <!-- open book: cover -->
+        <path
+            android:fillColor="#FF19B6A3"
+            android:pathData="M31,79 L54,84 L77,79 L77,90 L54,95 L31,90 Z" />
+        <!-- pages -->
+        <path
+            android:fillColor="#FFFFFFFF"
+            android:pathData="M33,77 L54,81.5 L54,92 L33,87.5 Z" />
+        <path
+            android:fillColor="#FFFFFFFF"
+            android:pathData="M54,81.5 L75,77 L75,87.5 L54,92 Z" />
+        <path
+            android:strokeColor="#FF2D1B69"
+            android:strokeWidth="1.4"
+            android:strokeLineJoin="round"
+            android:pathData="M33,77 L54,81.5 L75,77 L75,87.5 L54,92 L33,87.5 Z M54,81.5 L54,92" />
+        <!-- text lines -->
+        <path
+            android:strokeColor="#FFB9A8FF"
+            android:strokeWidth="1.2"
+            android:strokeLineCap="round"
+            android:pathData="M37,81.5 L50,84.3 M37,85 L50,87.8 M58,84.3 L71,81.5 M58,87.8 L71,85" />
+    </group>
+</vector>

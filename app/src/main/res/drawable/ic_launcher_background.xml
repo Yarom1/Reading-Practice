@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FF6C4BF4"
+        android:pathData="M0,0h108v108h-108z" />
+    <!-- soft light circle behind the owl -->
+    <path
+        android:fillColor="#FF8466FF"
+        android:pathData="M54,54m-40,0a40,40 0,1 1,80 0a40,40 0,1 1,-80 0" />
+    <!-- little stars -->
+    <path
+        android:fillColor="#FFFFD23F"
+        android:pathData="M22,26l1.6,3.6l3.9,0.4l-2.9,2.6l0.8,3.8l-3.4,-2l-3.4,2l0.8,-3.8l-2.9,-2.6l3.9,-0.4z" />
+    <path
+        android:fillColor="#FFFFD23F"
+        android:pathData="M86,22l1.2,2.7l2.9,0.3l-2.2,2l0.6,2.9l-2.5,-1.5l-2.5,1.5l0.6,-2.9l-2.2,-2l2.9,-0.3z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:fillAlpha="0.6"
+        android:pathData="M84,80m-2,0a2,2 0,1 1,4 0a2,2 0,1 1,-4 0" />
+</vector>

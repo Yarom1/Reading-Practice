@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Single-color silhouette for Android 13+ themed icons (eyes and book are cut out). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:pivotX="54"
+        android:pivotY="56"
+        android:scaleX="0.76"
+        android:scaleY="0.76">
+        <path
+            android:fillColor="#FF000000"
+            android:pathData="M35,42 L39,22 L51,36 Z M73,42 L69,22 L57,36 Z" />
+        <path
+            android:fillColor="#FF000000"
+            android:fillType="evenOdd"
+            android:pathData="M29,60 a25,27 0 1,0 50,0 a25,27 0 1,0 -50,0 Z M34,52 a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 Z M54,52 a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0 Z" />
+        <path
+            android:fillColor="#FF000000"
+            android:pathData="M40.5,53 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 Z M57.5,53 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 Z" />
+        <path
+            android:fillColor="#FF000000"
+            android:pathData="M31,79 L54,84 L77,79 L77,90 L54,95 L31,90 Z" />
+    </group>
+</vector>

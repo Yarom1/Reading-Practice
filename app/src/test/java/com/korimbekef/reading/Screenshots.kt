@@ -1,33 +1,39 @@
 package com.korimbekef.reading
 
+import android.app.Activity
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.view.View
 import androidx.compose.ui.graphics.asAndroidBitmap
-import androidx.compose.ui.test.junit4.ComposeTestRule
-import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.captureToImage
+import androidx.compose.ui.test.isRoot
+import androidx.compose.ui.test.junit4.ComposeTestRule
 import java.io.File
 import java.io.FileOutputStream
 
 /**
  * Saves PNG screenshots from Robolectric (native graphics) tests into build/screenshots,
- * so CI can publish them for visual review.
+ * so CI can publish them for visual review. Dialog windows are saved as extra files.
  */
 object Screenshots {
     private val dir: File by lazy {
         File(System.getProperty("screenshot.dir") ?: "build/screenshots").apply { mkdirs() }
     }
 
-    fun capture(rule: ComposeTestRule, name: String) {
+    fun capture(rule: ComposeTestRule, name: String, activity: Activity? = null) {
         rule.waitForIdle()
-        val bitmap = try {
-            rule.onRoot().captureToImage().asAndroidBitmap()
-        } catch (t: Throwable) {
-            System.err.println("captureToImage failed for $name: $t")
-            null
+        val roots = runCatching { rule.onAllNodes(isRoot()).fetchSemanticsNodes().size }.getOrDefault(0)
+        var saved = false
+        for (i in 0 until roots) {
+            val suffix = if (i == 0) "" else "_window$i"
+            runCatching { rule.onAllNodes(isRoot())[i].captureToImage().asAndroidBitmap() }
+                .onSuccess {
+                    save(it, name + suffix)
+                    saved = true
+                }
+                .onFailure { System.err.println("captureToImage failed for $name$suffix: $it") }
         }
-        if (bitmap != null) save(bitmap, name)
+        if (!saved && activity != null) captureView(activity.window.decorView, name)
     }
 
     fun captureView(view: View, name: String) {

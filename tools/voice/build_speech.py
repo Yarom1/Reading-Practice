@@ -332,7 +332,7 @@ class Voice:
     each word the stressed vowel is then made clearly the longest, and the audio is rendered with
     exactly those durations. ('noa' marks final stress only weakly on its own.)"""
 
-    def __init__(self, model_path, config_path, speaker=0, length_scale=0.9, enforce_stress=True):
+    def __init__(self, model_path, config_path, speaker=0, length_scale=0.9, enforce_stress=True, pitch_accent=0.0):
         import numpy as np
         import onnx
         import onnxruntime as ort
@@ -347,6 +347,7 @@ class Voice:
         self.length_scale = length_scale
         self.speaker = speaker
         self.enforce_stress = enforce_stress
+        self.pitch_accent = pitch_accent
         model = onnx.load(model_path)
         ceil = next(n for n in model.graph.node if n.op_type == "Ceil")
         self.w_name, frames_name = ceil.input[0], ceil.output[0]
@@ -397,7 +398,52 @@ class Voice:
             self.stress_durations(w[0, 0], phon, owner, ranges)
         feeds["w_override"] = w
         audio, frames = self.sess2.run(None, feeds)
-        return np.asarray(audio, dtype=np.float32).reshape(-1), np.asarray(frames, dtype=np.float64).reshape(-1), owner
+        audio = np.asarray(audio, dtype=np.float32).reshape(-1)
+        frames = np.asarray(frames, dtype=np.float64).reshape(-1)
+        if self.pitch_accent:
+            audio = self.accent(audio, frames, phon, owner, ranges)
+        return audio, frames, owner
+
+    def accent(self, audio, frames, phon, owner, ranges):
+        """Raise the pitch of every stressed vowel a little (PSOLA, durations unchanged) and lower the
+        vowels after it in the same word, so the stress is heard on the right syllable."""
+        np = self.np
+        import parselmouth
+        from parselmouth.praat import call
+
+        hop = len(audio) / frames.sum()
+        ends = np.cumsum(frames) * hop / self.sr
+        starts = ends - frames * hop / self.sr
+        span = {}
+        for i, ci in enumerate(owner):
+            if ci >= 0:
+                a, b = span.get(ci, (starts[i], ends[i]))
+                span[ci] = (min(a, starts[i]), max(b, ends[i]))
+        snd = parselmouth.Sound(audio.astype(np.float64), sampling_frequency=self.sr)
+        manip = call(snd, "To Manipulation", 0.01, 75, 600)
+        tier = call(manip, "Extract pitch tier")
+        changed = False
+        for a, b in ranges:
+            marks = [k for k in range(a, b) if phon[k] == "ˈ"]
+            vowels = [k for k in range(a, b) if phon[k] in "aeiou"]
+            if not marks or len(vowels) < 2:
+                continue
+            v = next((k for k in vowels if k > marks[0]), None)
+            if v is None or marks[0] not in span or v not in span:
+                continue
+            final = b < len(phon) and phon[b] in ".!?"
+            up = 1 + self.pitch_accent * (0.5 if final else 1.0)
+            call(tier, "Multiply frequencies", span[marks[0]][0], span[v][1], up)
+            for k in vowels:
+                if k > v and k in span:
+                    call(tier, "Multiply frequencies", span[k][0], span[k][1], 1 - self.pitch_accent / 3)
+            changed = True
+        if not changed:
+            return audio
+        call([tier, manip], "Replace pitch tier")
+        out = call(manip, "Get resynthesis (overlap-add)")
+        res = np.asarray(out.values[0], dtype=np.float32)
+        return res[: len(audio)] if len(res) >= len(audio) else np.pad(res, (0, len(audio) - len(res)))
 
     @staticmethod
     def stress_durations(w, phon, owner, ranges):
@@ -490,6 +536,7 @@ def main():
     ap.add_argument("--length-scale", type=float, default=0.9)
     ap.add_argument("--bitrate", default="48k")
     ap.add_argument("--raw-stress", action="store_true", help="do not enforce the stressed vowel's length")
+    ap.add_argument("--pitch-accent", type=float, default=0.0, help="raise stressed vowels' pitch by this fraction")
     args = ap.parse_args()
 
     out = Path(args.out)
@@ -548,7 +595,8 @@ def main():
     import soundfile as sf
     from huggingface_hub import hf_hub_download
     voice = Voice(hf_hub_download(VOICE_REPO, VOICE_FILE), hf_hub_download(VOICE_REPO, VOICE_CONFIG),
-                  speaker=0, length_scale=args.length_scale, enforce_stress=not args.raw_stress)
+                  speaker=0, length_scale=args.length_scale, enforce_stress=not args.raw_stress,
+                  pitch_accent=args.pitch_accent)
     sr = voice.sr
 
     ffmpeg = shutil.which("ffmpeg")

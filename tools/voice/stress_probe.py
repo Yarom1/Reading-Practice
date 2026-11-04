@@ -29,10 +29,11 @@ WORDS = [
     "מַהֵר", "אֲבָל", "קָדִימָה", "שׁוּרָה", "יְלָדִים", "פְּרָחִים", "חָבֵר", "תָּמִיד", "מָתוֹק",
 ]
 CARRIER = ("ʔanˈi ʔomˈeʁ ", " ʔaχʃˈav.")
-MODES = [
-    ("thewh1teagle/piper-he-noa", "he_IL-noa-medium.onnx", "he_IL-noa-medium.onnx.json", "noa_raw", False),
-    ("thewh1teagle/piper-he-noa", "he_IL-noa-medium.onnx", "he_IL-noa-medium.onnx.json", "noa_fixed", True),
-    ("thewh1teagle/phonikud-tts-checkpoints", "model.onnx", "model.config.json", "male_raw", False),
+MODES = [  # repo, model, config, name, enforce stressed vowel length, pitch accent
+    ("thewh1teagle/piper-he-noa", "he_IL-noa-medium.onnx", "he_IL-noa-medium.onnx.json", "A_noa_now", False, 0.0),
+    ("thewh1teagle/piper-he-noa", "he_IL-noa-medium.onnx", "he_IL-noa-medium.onnx.json", "B_noa_length", True, 0.0),
+    ("thewh1teagle/piper-he-noa", "he_IL-noa-medium.onnx", "he_IL-noa-medium.onnx.json", "C_noa_length_pitch", True, 0.12),
+    ("thewh1teagle/phonikud-tts-checkpoints", "model.onnx", "model.config.json", "D_male", False, 0.0),
 ]
 LISTEN_LINES = 6
 
@@ -95,9 +96,9 @@ def main():
             lines.append((e["text"], " ".join(parts), ranges))
 
     results = {}
-    for repo, model_file, cfg_file, name, enforce in MODES:
+    for repo, model_file, cfg_file, name, enforce, pitch in MODES:
         voice = bs.Voice(hf_hub_download(repo, model_file), hf_hub_download(repo, cfg_file), length_scale=0.9,
-                         enforce_stress=enforce)
+                         enforce_stress=enforce, pitch_accent=pitch)
         rows = []
         for w in WORDS:
             per = {}

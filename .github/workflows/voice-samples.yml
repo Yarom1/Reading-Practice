@@ -1,0 +1,79 @@
+name: Voice samples
+
+# Generates Hebrew voice samples (Phonikud stress + Piper voices) for comparison. Does not touch the app.
+on:
+  push:
+    paths:
+      - "tools/voice/**"
+      - ".github/workflows/voice-samples.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: voice-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  samples:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install "phonikud==0.4.1" "phonikud-onnx==1.0.6" "piper-onnx==1.0.6" soundfile onnx huggingface_hub numpy
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+
+      - name: Generate samples
+        id: gen
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          mkdir -p voice-out
+          python tools/voice/make_samples.py --out voice-out 2>&1 | tee voice-out/run.log
+
+      - name: Encode MP3 (one file per voice + single files)
+        if: always()
+        run: |
+          cd voice-out
+          mkdir -p mp3
+          for f in *.wav; do
+            [ -e "$f" ] || continue
+            ffmpeg -loglevel error -y -i "$f" -ac 1 -b:a 64k "mp3/${f%.wav}.mp3"
+          done
+          ffmpeg -loglevel error -y -f lavfi -i anullsrc=r=22050:cl=mono -t 1.2 silence.wav
+          for tag in $(ls *__01_encouragement.wav 2>/dev/null | sed 's/__01_encouragement.wav//'); do
+            : > list.txt
+            for f in "$tag"__0[1-6]_*.wav; do
+              case "$f" in *_timed.wav) continue;; esac
+              echo "file '$f'" >> list.txt
+              echo "file 'silence.wav'" >> list.txt
+            done
+            ffmpeg -loglevel error -y -f concat -safe 0 -i list.txt -ac 1 -b:a 64k "mp3/ALL_${tag}.mp3"
+          done
+          rm -f list.txt silence.wav *.wav
+          echo "gen=${{ steps.gen.outcome }} sha=${GITHUB_SHA} run=${GITHUB_RUN_NUMBER}" > STATUS.txt
+          ls -la . mp3
+
+      - name: Publish output branch
+        if: always()
+        run: |
+          BRANCH="build-output/${GITHUB_REF_NAME}-voice"
+          rm -rf /tmp/out && mkdir -p /tmp/out && cp -r voice-out/. /tmp/out/
+          cd /tmp/out
+          git init -q -b main
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Voice samples ${GITHUB_RUN_NUMBER} of ${GITHUB_SHA}"
+          git push -q --force "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:refs/heads/${BRANCH}"

@@ -49,6 +49,9 @@ def main():
     assets = Path(args.assets)
 
     import unicodedata
+
+    import miniaudio
+    import numpy as np
     from faster_whisper import WhisperModel
 
     manifest = json.loads((assets / "speech" / "manifest.json").read_text(encoding="utf-8"))["items"]
@@ -79,7 +82,9 @@ def main():
         if item is None:
             rows.append(f"{pid}\tNO RECORDING\t{plain}")
             continue
-        segs, _ = model.transcribe(str(assets / "speech" / item["f"]), language="he", beam_size=1,
+        decoded = miniaudio.decode_file(str(assets / "speech" / item["f"]), nchannels=1, sample_rate=16000)
+        audio = np.frombuffer(decoded.samples, dtype=np.int16).astype(np.float32) / 32768.0
+        segs, _ = model.transcribe(audio, language="he", beam_size=1,
                                    condition_on_previous_text=False, vad_filter=False)
         heard = " ".join(s.text for s in segs).strip()
         exp_words = plain.split()

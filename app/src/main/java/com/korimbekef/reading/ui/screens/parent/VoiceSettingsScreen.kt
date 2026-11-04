@@ -39,7 +39,9 @@ import com.korimbekef.reading.data.prefs.SyncMode
 import com.korimbekef.reading.speech.EffectiveSync
 import com.korimbekef.reading.speech.EngineStatus
 import com.korimbekef.reading.speech.RangeSupport
+import com.korimbekef.reading.speech.SpeechController
 import com.korimbekef.reading.speech.SpeechState
+import com.korimbekef.reading.ui.T
 import com.korimbekef.reading.ui.SystemIntents
 import com.korimbekef.reading.ui.appViewModel
 import com.korimbekef.reading.ui.theme.KColors
@@ -48,15 +50,14 @@ import kotlinx.coroutines.launch
 class VoiceSettingsViewModel(c: AppContainer) : ParentBaseViewModel(c) {
     val speech = c.speech.state
 
-    private val sample = "שָׁלוֹם! אֲנִי יַנְשׁוּפִי, וַאֲנִי אוֹהֵב לִקְרֹא סִפּוּרִים."
-
     fun preview(voice: String?) {
         viewModelScope.launch {
-            val rate = c.children.active()?.speechRate ?: 0.9f
-            c.speech.preview(voice, sample, rate)
+            val rate = c.children.active()?.speechRate ?: 0.85f
+            c.speech.preview(voice, T.VOICE_SAMPLE, rate)
         }
     }
 
+    fun useRecorded(on: Boolean) = viewModelScope.launch { c.settings.setUseRecordedVoice(on) }
     fun select(voice: String) = viewModelScope.launch { c.settings.setVoice(voice) }
     fun engine(pkg: String) = viewModelScope.launch { c.settings.setEngine(pkg) }
     fun pitch(p: Float) = viewModelScope.launch { c.settings.setPitch(p) }
@@ -64,7 +65,6 @@ class VoiceSettingsViewModel(c: AppContainer) : ParentBaseViewModel(c) {
     fun speakNikud(on: Boolean) = viewModelScope.launch { c.settings.setSpeakNikud(on) }
     fun prompts(on: Boolean) = viewModelScope.launch { c.settings.setVoicePrompts(on) }
     fun sounds(on: Boolean) = viewModelScope.launch { c.settings.setSoundEffects(on) }
-    fun gender(voice: String, g: String?) = viewModelScope.launch { c.settings.setVoiceGender(voice, g) }
     fun recheck() = c.speech.recheckSync()
 }
 
@@ -77,29 +77,60 @@ fun VoiceSettingsScreen(onBack: () -> Unit) {
     val context = LocalContext.current
 
     ParentScaffold(title = "קול והקראה", onBack = onBack) {
-        SectionCard(title = "מצב מנוע ההקראה") {
-            when (speech.status) {
+        SectionCard(title = "הקול של האפליקציה") {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Column(Modifier.weight(1f)) {
+                    Text("🎙️ נועה – קול מוקלט", style = MaterialTheme.typography.titleMedium, color = KColors.Ink)
+                    Text(
+                        "מקריאה את כל הסיפורים, ההודעות והמילים שבאפליקציה. ההטעמה (מלעיל / מלרע) של כל מילה נבדקה, וההדגשה צמודה בדיוק למילה שנשמעת.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = KColors.InkSoft,
+                    )
+                }
+                if (speech.recorded) {
+                    FilledTonalIconButton(onClick = { vm.preview(SpeechController.RECORDED_VOICE) }) {
+                        Icon(Icons.AutoMirrored.Rounded.VolumeUp, contentDescription = "השמעת דוגמה")
+                    }
+                }
+            }
+            SwitchRow(
+                "להקריא בקול המוקלט (מומלץ)",
+                "סיפורים ומילים שתוסיפו בעצמכם יוקראו בקול של המכשיר.",
+                settings.useRecordedVoice,
+                vm::useRecorded,
+            )
+            if (settings.useRecordedVoice && !speech.recorded) {
+                InfoText("בגרסה הזו אין הקלטות, ולכן משתמשים בקול של המכשיר.")
+            }
+        }
+
+        SectionCard(title = "קול המכשיר – לטקסטים שתוסיפו") {
+            when (speech.deviceStatus) {
                 EngineStatus.INITIALIZING -> Row(verticalAlignment = Alignment.CenterVertically) {
                     CircularProgressIndicator(Modifier.padding(end = 8.dp))
                     Text("טוען את מנוע ההקראה…")
                 }
                 EngineStatus.READY -> {
-                    Text("✅ נמצא קול עברי", style = MaterialTheme.typography.bodyLarge, color = KColors.Ink)
+                    Text("✅ נמצא קול עברי במכשיר", style = MaterialTheme.typography.bodyLarge, color = KColors.Ink)
                     Text(syncDescription(speech), style = MaterialTheme.typography.bodyMedium, color = KColors.InkSoft)
                 }
-                EngineStatus.NO_HEBREW -> Text("⚠️ במנוע ההקראה הנוכחי אין קול עברי מותקן.", color = KColors.Ink)
+                EngineStatus.NO_HEBREW -> Text("⚠️ במנוע ההקראה של המכשיר אין קול עברי מותקן.", color = KColors.Ink)
                 EngineStatus.NO_ENGINE -> Text("⚠️ לא נמצא מנוע הקראה במכשיר.", color = KColors.Ink)
             }
             speech.notice?.let { Text(it, color = KColors.Orange, style = MaterialTheme.typography.bodySmall) }
+            InfoText(
+                "קול המכשיר משמש רק לסיפורים ולמילים שהוספתם בעצמכם (או לכל הטקסטים, אם תכבו את הקול המוקלט). " +
+                    "מומלץ \"שירותי הדיבור של Google\" עם הקול העברי המורד למכשיר – כך ההקראה עובדת גם בלי אינטרנט. " +
+                    "קולות המכשיר לא תמיד מטעימים נכון.",
+            )
             FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedButton(onClick = { SystemIntents.installVoiceData(context) }) { Text("התקנת קולות") }
                 OutlinedButton(onClick = { SystemIntents.ttsSettings(context) }) { Text("הגדרות הקראה במכשיר") }
             }
-            InfoText("מומלץ \"שירותי הדיבור של Google\" עם הקול העברי המורד למכשיר – כך ההקראה עובדת גם בלי אינטרנט.")
         }
 
         if (speech.engines.size > 1) {
-            SectionCard(title = "מנוע הקראה") {
+            SectionCard(title = "מנוע הקראה במכשיר") {
                 speech.engines.forEach { e ->
                     Row(
                         Modifier.fillMaxWidth().clickable { vm.engine(e.packageName) },
@@ -112,78 +143,72 @@ fun VoiceSettingsScreen(onBack: () -> Unit) {
             }
         }
 
-        SectionCard(title = "בחירת קול") {
+        SectionCard(title = "בחירת קול במכשיר") {
             if (speech.voices.isEmpty()) {
                 InfoText(
-                    if (speech.status == EngineStatus.READY) "המנוע לא מציג רשימת קולות, ההקראה תשתמש בקול העברי ברירת המחדל." else "אין קולות עבריים זמינים כרגע.",
+                    if (speech.deviceStatus == EngineStatus.READY) "המנוע לא מציג רשימת קולות, ההקראה תשתמש בקול העברי ברירת המחדל." else "אין קולות עבריים זמינים כרגע.",
                 )
+            } else {
+                InfoText("האזינו לדוגמה של כל קול ובחרו את זה שנשמע לכם הכי טוב.")
             }
-            InfoText("המכשיר לא תמיד מדווח אם קול הוא נשי או גברי – האזינו לדוגמה וסמנו, כדי שיהיה קל לבחור.")
             speech.voices.forEach { v ->
                 val selected = v.name == speech.currentVoice
-                Column(
+                Row(
                     Modifier
                         .fillMaxWidth()
                         .background(if (selected) KColors.VioletLight else Color.White, RoundedCornerShape(16.dp))
                         .border(2.dp, if (selected) KColors.Violet else KColors.Line, RoundedCornerShape(16.dp))
                         .clickable { vm.select(v.name) }
                         .padding(10.dp),
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        RadioButton(selected = selected, onClick = { vm.select(v.name) })
-                        Column(Modifier.weight(1f)) {
-                            val genderText = when (v.gender) {
-                                "f" -> " · קול נשי"
-                                "m" -> " · קול גברי"
-                                else -> ""
-                            }
-                            Text("${v.label}$genderText", style = MaterialTheme.typography.titleMedium, color = KColors.Ink)
-                            Text(
-                                (if (v.isNetwork) "דורש אינטרנט" else "עובד בלי אינטרנט") + " · איכות ${qualityName(v.quality)}",
-                                style = MaterialTheme.typography.bodySmall,
-                                color = KColors.InkSoft,
-                            )
-                        }
-                        FilledTonalIconButton(onClick = { vm.preview(v.name) }) {
-                            Icon(Icons.AutoMirrored.Rounded.VolumeUp, contentDescription = "השמעת דוגמה")
-                        }
+                    RadioButton(selected = selected, onClick = { vm.select(v.name) })
+                    Column(Modifier.weight(1f)) {
+                        Text(v.label, style = MaterialTheme.typography.titleMedium, color = KColors.Ink)
+                        Text(
+                            (if (v.isNetwork) "דורש אינטרנט" else "עובד בלי אינטרנט") + " · איכות ${qualityName(v.quality)}",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = KColors.InkSoft,
+                        )
                     }
-                    Row(horizontalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.padding(start = 48.dp)) {
-                        FilterChip(selected = v.gender == "f", onClick = { vm.gender(v.name, if (v.gender == "f") null else "f") }, label = { Text("נשי") })
-                        FilterChip(selected = v.gender == "m", onClick = { vm.gender(v.name, if (v.gender == "m") null else "m") }, label = { Text("גברי") })
+                    FilledTonalIconButton(onClick = { vm.preview(v.name) }) {
+                        Icon(Icons.AutoMirrored.Rounded.VolumeUp, contentDescription = "השמעת דוגמה")
                     }
                 }
             }
-            if (speech.voices.isEmpty() && speech.status == EngineStatus.READY) {
+            if (speech.voices.isEmpty() && speech.deviceStatus == EngineStatus.READY) {
                 OutlinedButton(onClick = { vm.preview(null) }) { Text("🔊 השמעת דוגמה") }
             }
         }
 
-        SectionCard(title = "גובה הקול") {
+        SectionCard(title = "גובה קול המכשיר") {
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 listOf(0.85f to "נמוך", 1.0f to "רגיל", 1.15f to "גבוה").forEach { (p, name) ->
                     FilterChip(selected = kotlin.math.abs(settings.pitch - p) < 0.01f, onClick = { vm.pitch(p) }, label = { Text(name) })
                 }
             }
-            InfoText("מהירות ההקראה נקבעת לכל ילד בנפרד (הגדרות הילד/ה) ובמסך הקריאה.")
+            InfoText("מהירות ההקראה (גם של הקול המוקלט) נקבעת לכל ילד בנפרד – בהגדרות הילד/ה ובמסך הקריאה.")
         }
 
-        SectionCard(title = "סנכרון הדגשת מילים") {
+        SectionCard(title = "הדגשת מילים בקול המכשיר") {
+            InfoText("בקול המוקלט ההדגשה תמיד מדויקת. ההגדרות כאן חלות רק על קול המכשיר.")
             Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 SyncOption("אוטומטי (מומלץ)", "משתמש בדיווח המנוע על המילה הנשמעת אם הוא אמין, ואחרת מקריא מילה אחר מילה.", settings.syncMode == SyncMode.AUTO) { vm.sync(SyncMode.AUTO) }
                 SyncOption("לפי דיווחי המנוע", "שורה שלמה ברצף טבעי; מתאים רק למנועים שמדווחים על כל מילה.", settings.syncMode == SyncMode.ENGINE) { vm.sync(SyncMode.ENGINE) }
                 SyncOption("מילה אחר מילה", "כל מילה מוקראת בנפרד ומודגשת כשהיא מתחילה להישמע. תמיד מסונכרן, פחות זורם.", settings.syncMode == SyncMode.WORD_BY_WORD) { vm.sync(SyncMode.WORD_BY_WORD) }
             }
             TextButton(onClick = vm::recheck) { Text("בדיקה חוזרת של יכולת המנוע") }
-            InfoText("ההדגשה אף פעם לא מבוססת על טיימר: היא זזה רק לפי אירועים שמגיעים ממנוע ההקראה.")
         }
 
         SectionCard(title = "עוד") {
-            SwitchRow("הקראה לפי הטקסט המנוקד", "הגייה מדויקת יותר. כבו אם המנוע מתקשה בניקוד.", settings.speakNikud, vm::speakNikud)
-            SwitchRow("הודעות עידוד קוליות", "יַנְשׁוּפִי אומר ״עכשיו תורך!״ ו״כל הכבוד!״ בקול", settings.voicePrompts, vm::prompts)
+            SwitchRow("קול המכשיר קורא את הטקסט המנוקד", "הגייה מדויקת יותר. כבו אם המנוע מתקשה בניקוד.", settings.speakNikud, vm::speakNikud)
+            SwitchRow("הודעות עידוד קוליות", "״עכשיו תורך!״ ו״כל הכבוד!״ בקול", settings.voicePrompts, vm::prompts)
             SwitchRow("צלילי משחק", "צלילים קצרים ועדינים להצלחות", settings.soundEffects, vm::sounds)
         }
-        Button(onClick = { vm.preview(speech.currentVoice) }, modifier = Modifier.fillMaxWidth()) { Text("🔊 השמעת הקול הנבחר") }
+        Button(
+            onClick = { vm.preview(if (speech.recorded) SpeechController.RECORDED_VOICE else speech.currentVoice) },
+            modifier = Modifier.fillMaxWidth(),
+        ) { Text("🔊 השמעת הקול שמקריא את הסיפורים") }
     }
 }
 

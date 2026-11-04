@@ -1,6 +1,7 @@
 package com.korimbekef.reading
 
 import android.app.Application
+import com.korimbekef.reading.speech.HybridSpeechController
 import com.korimbekef.reading.speech.SpeechController
 import com.korimbekef.reading.speech.TtsSpeechController
 
@@ -15,7 +16,15 @@ open class ReadingApp : Application() {
         container.speech
     }
 
-    /** Tests replace the real engine with a scripted fake. */
+    /**
+     * The recorded voice for built-in texts, the device's text-to-speech for everything else.
+     * Tests replace it with a scripted fake.
+     */
     protected open fun createSpeechController(container: AppContainer): SpeechController =
-        TtsSpeechController(this, container.settings, container.scope)
+        HybridSpeechController(
+            this,
+            container.settings,
+            container.scope,
+            device = TtsSpeechController(this, container.settings, container.scope),
+        )
 }

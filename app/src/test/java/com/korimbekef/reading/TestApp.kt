@@ -38,6 +38,7 @@ class FakeSpeechController : SpeechController {
     private val _state = MutableStateFlow(
         SpeechState(
             status = EngineStatus.READY,
+            deviceStatus = EngineStatus.READY,
             engines = listOf(EngineInfo("com.google.android.tts", "Speech Services by Google")),
             enginePackage = "com.google.android.tts",
             voices = listOf(

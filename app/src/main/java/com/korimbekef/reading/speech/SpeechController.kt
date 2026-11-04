@@ -44,7 +44,12 @@ data class VoiceInfo(
 data class EngineInfo(val packageName: String, val label: String)
 
 data class SpeechState(
+    /** Whether the app can speak at all: READY when the recorded voice or a device voice works. */
     val status: EngineStatus = EngineStatus.INITIALIZING,
+    /** The app's own recorded voice is available and switched on (built-in texts use it). */
+    val recorded: Boolean = false,
+    /** The device text-to-speech engine, used for texts that have no recording (e.g. a parent's story). */
+    val deviceStatus: EngineStatus = status,
     val engines: List<EngineInfo> = emptyList(),
     val enginePackage: String? = null,
     val voices: List<VoiceInfo> = emptyList(),
@@ -109,4 +114,12 @@ interface SpeechController {
 
     /** Re-checks whether the current voice supports synced word positions. */
     fun recheckSync()
+
+    /** How long [text] takes to say at [rate], when that is known in advance (recorded texts). */
+    fun estimatedDurationMs(text: String, rate: Float): Long? = null
+
+    companion object {
+        /** Voice name for [preview] that plays the app's recorded voice instead of a device voice. */
+        const val RECORDED_VOICE = "app:noa"
+    }
 }

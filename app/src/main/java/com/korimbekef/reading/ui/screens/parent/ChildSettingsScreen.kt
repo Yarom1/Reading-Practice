@@ -40,6 +40,7 @@ import com.korimbekef.reading.ui.components.readingTextStyle
 import com.korimbekef.reading.ui.screens.AVATARS
 import com.korimbekef.reading.ui.screens.reading.FontSteps
 import com.korimbekef.reading.ui.screens.reading.Speeds
+import com.korimbekef.reading.ui.T
 import com.korimbekef.reading.ui.theme.KColors
 import kotlinx.coroutines.launch
 
@@ -75,7 +76,7 @@ class ChildSettingsViewModel(c: AppContainer, private val childId: Long) : Paren
     }
 
     fun previewSpeed(rate: Float) {
-        c.speech.speakMessage("זֶה קֶצֶב הַקְּרִיאָה שֶׁנִּבְחַר.", rate)
+        c.speech.speakMessage(T.SPEED_SAMPLE, rate)
     }
 }
 

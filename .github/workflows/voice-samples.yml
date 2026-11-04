@@ -4,7 +4,7 @@ name: Voice samples
 on:
   push:
     paths:
-      - "tools/voice/**"
+      - "tools/voice/make_samples.py"
       - ".github/workflows/voice-samples.yml"
   workflow_dispatch:
 

@@ -39,6 +39,7 @@ class FakeSpeechController : SpeechController {
         SpeechState(
             status = EngineStatus.READY,
             deviceStatus = EngineStatus.READY,
+            recorded = true,
             engines = listOf(EngineInfo("com.google.android.tts", "Speech Services by Google")),
             enginePackage = "com.google.android.tts",
             voices = listOf(

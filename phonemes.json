@@ -1,0 +1,317 @@
+{
+ "01_encouragement": {
+  "text": "עַכְשָׁיו אַתָּה! אֶצְבַּע מִתַּחַת לַמִּלִּים, וְקָדִימָה.",
+  "model_nikud": "עַכְשָׁיו אַתָּה! אֶצְבַּע מִתַּ֫חַת לַ|מִּלִּים, וּֽ|קָדִ֫ימָה.",
+  "merged": "עַכְשָׁ֫יו אַתָּ֫ה! אֶ֫צְבַּע מִתַּ֫חַת לַ|מִּלִּ֫ים, וְֽ|קָדִימָ֫ה.",
+  "phonemes": "ʔaχʃˈav ʔatˈa! ʔˈetsba mitˈaχat lamilˈim, vekadimˈa.",
+  "phonemes_model_stress": "ʔaχʃˈav ʔatˈa! ʔetsbˈa mitˈaχat lamilˈim, vekadˈima.",
+  "phonemes_model_only": "ʔaχʃˈav ʔatˈa! ʔetsbˈa mitˈaχat lamilˈim, ukadˈima.",
+  "model_disagrees": [
+   "וְֽ|קָדִ֫ימָה.: model other, review milra"
+  ],
+  "words": [
+   {
+    "word": "עַכְשָׁ֫יו",
+    "phonemes": "ʔaχʃˈav"
+   },
+   {
+    "word": "אַתָּ֫ה!",
+    "phonemes": "ʔatˈa!"
+   },
+   {
+    "word": "אֶ֫צְבַּע",
+    "phonemes": "ʔˈetsba"
+   },
+   {
+    "word": "מִתַּ֫חַת",
+    "phonemes": "mitˈaχat"
+   },
+   {
+    "word": "לַ|מִּלִּ֫ים,",
+    "phonemes": "lamilˈim,"
+   },
+   {
+    "word": "וְֽ|קָדִימָ֫ה.",
+    "phonemes": "vekadimˈa."
+   }
+  ]
+ },
+ "02_praise": {
+  "text": "אֵיזֶה יֹפִי! הִצְלַחְתָּ לִקְרֹא אֶת הַשּׁוּרָה! כָּל הַכָּבוֹד! מַמְשִׁיכִים לַשּׁוּרָה הַבָּאָה?",
+  "model_nikud": "אֵ֫יזֶה יָפִי! הִצְלַ֫חְתָּ לִקָרֵא אֶת הַ|שּׁוּרָה! כׇּל הַ|כָּבוֹד! מַמְשִׁיכִים לַ|שּׁוּרָה הַ|בָּאָה?",
+  "merged": "אֵ֫יזֶה יֹ֫פִי! הִצְלַ֫חְתָּ לִקְרֹ֫א אֶ֫ת הַ|שּׁוּרָ֫ה! כׇּ֫ל הַ|כָּבוֹ֫ד! מַמְשִׁיכִ֫ים לַ|שּׁוּרָ֫ה הַ|בָּאָ֫ה?",
+  "phonemes": "ʔˈejze jˈofi! hitslˈaχta likʁˈo ʔˈet haʃuʁˈa! kˈol hakavˈod! mamʃiχˈim laʃuʁˈa habaʔˈa?",
+  "phonemes_model_stress": "ʔˈejze jofˈi! hitslˈaχta likʁˈo ʔˈet haʃuʁˈa! kˈol hakavˈod! mamʃiχˈim laʃuʁˈa habaʔˈa?",
+  "phonemes_model_only": "ʔˈejze jafˈi! hitslˈaχta likaʁˈe ʔˈet haʃuʁˈa! kˈol hakavˈod! mamʃiχˈim laʃuʁˈa habaʔˈa?",
+  "model_disagrees": [],
+  "words": [
+   {
+    "word": "אֵ֫יזֶה",
+    "phonemes": "ʔˈejze"
+   },
+   {
+    "word": "יֹ֫פִי!",
+    "phonemes": "jˈofi!"
+   },
+   {
+    "word": "הִצְלַ֫חְתָּ",
+    "phonemes": "hitslˈaχta"
+   },
+   {
+    "word": "לִקְרֹ֫א",
+    "phonemes": "likʁˈo"
+   },
+   {
+    "word": "אֶ֫ת",
+    "phonemes": "ʔˈet"
+   },
+   {
+    "word": "הַ|שּׁוּרָ֫ה!",
+    "phonemes": "haʃuʁˈa!"
+   },
+   {
+    "word": "כׇּ֫ל",
+    "phonemes": "kˈol"
+   },
+   {
+    "word": "הַ|כָּבוֹ֫ד!",
+    "phonemes": "hakavˈod!"
+   },
+   {
+    "word": "מַמְשִׁיכִ֫ים",
+    "phonemes": "mamʃiχˈim"
+   },
+   {
+    "word": "לַ|שּׁוּרָ֫ה",
+    "phonemes": "laʃuʁˈa"
+   },
+   {
+    "word": "הַ|בָּאָ֫ה?",
+    "phonemes": "habaʔˈa?"
+   }
+  ]
+ },
+ "03_girl": {
+  "text": "בּוֹאִי נִקְרָא סִפּוּר! עַכְשָׁיו תּוֹרֵךְ! קִרְאִי אֶת הַשּׁוּרָה בְּקוֹל.",
+  "model_nikud": "בּוֹאִי נִקְרָא סִפּוּר! עַכְשָׁיו תּוֹרְךְ! קִרְאִי אֶת הַ|שּׁוּרָה בְּֽ|קוֹל.",
+  "merged": "בּוֹ֫אִי נִקְרָ֫א סִפּוּ֫ר! עַכְשָׁ֫יו תּוֹרֵ֫ךְ! קִרְאִ֫י אֶ֫ת הַ|שּׁוּרָ֫ה בְּֽ|קוֹ֫ל.",
+  "phonemes": "bˈoʔi nikʁˈa sipˈuʁ! ʔaχʃˈav toʁˈeχ! kiʁʔˈi ʔˈet haʃuʁˈa bekˈol.",
+  "phonemes_model_stress": "boʔˈi nikʁˈa sipˈuʁ! ʔaχʃˈav toʁˈeχ! kiʁʔˈi ʔˈet haʃuʁˈa bekˈol.",
+  "phonemes_model_only": "boʔˈi nikʁˈa sipˈuʁ! ʔaχʃˈav tˈoʁχ! kiʁʔˈi ʔˈet haʃuʁˈa bekˈol.",
+  "model_disagrees": [],
+  "words": [
+   {
+    "word": "בּוֹ֫אִי",
+    "phonemes": "bˈoʔi"
+   },
+   {
+    "word": "נִקְרָ֫א",
+    "phonemes": "nikʁˈa"
+   },
+   {
+    "word": "סִפּוּ֫ר!",
+    "phonemes": "sipˈuʁ!"
+   },
+   {
+    "word": "עַכְשָׁ֫יו",
+    "phonemes": "ʔaχʃˈav"
+   },
+   {
+    "word": "תּוֹרֵ֫ךְ!",
+    "phonemes": "toʁˈeχ!"
+   },
+   {
+    "word": "קִרְאִ֫י",
+    "phonemes": "kiʁʔˈi"
+   },
+   {
+    "word": "אֶ֫ת",
+    "phonemes": "ʔˈet"
+   },
+   {
+    "word": "הַ|שּׁוּרָ֫ה",
+    "phonemes": "haʃuʁˈa"
+   },
+   {
+    "word": "בְּֽ|קוֹ֫ל.",
+    "phonemes": "bekˈol."
+   }
+  ]
+ },
+ "04_level1": {
+  "text": "אַבָּא בָּא. אִמָּא בָּאָה. סַבָּא וְסַבְתָּא בָּאִים. כֻּלָּם בַּבַּיִת! אֵיזֶה כֵּיף!",
+  "model_nikud": "אַבָּא בָּא. אִמָּא בָּאָה. סַ֫בָּא וְֽ|סָבְתָא בָּאִים. כׇּ֫לָּם בַּ|בַּ֫יִת! אֵ֫יזֶה כֵּיף!",
+  "merged": "אַ֫בָּא בָּ֫א. אִ֫מָּא בָּאָ֫ה. סַ֫בָּא וְֽ|סַ֫בְתָּא בָּאִ֫ים. כֻּלָּ֫ם בַּ|בַּ֫יִת! אֵ֫יזֶה כֵּ֫יף!",
+  "phonemes": "ʔˈaba bˈa. ʔˈima baʔˈa. sˈaba vesˈavta baʔˈim. kulˈam babˈajit! ʔˈejze kˈef!",
+  "phonemes_model_stress": "ʔabˈa bˈa. ʔimˈa baʔˈa. sˈaba vesavtˈa baʔˈim. kˈulam babˈajit! ʔˈejze kˈef!",
+  "phonemes_model_only": "ʔabˈa bˈa. ʔimˈa baʔˈa. sˈaba vesavtˈa baʔˈim. kˈolam babˈajit! ʔˈejze kˈef!",
+  "model_disagrees": [
+   "כֻּ֫לָּם: model other, review milra"
+  ],
+  "words": [
+   {
+    "word": "אַ֫בָּא",
+    "phonemes": "ʔˈaba"
+   },
+   {
+    "word": "בָּ֫א.",
+    "phonemes": "bˈa."
+   },
+   {
+    "word": "אִ֫מָּא",
+    "phonemes": "ʔˈima"
+   },
+   {
+    "word": "בָּאָ֫ה.",
+    "phonemes": "baʔˈa."
+   },
+   {
+    "word": "סַ֫בָּא",
+    "phonemes": "sˈaba"
+   },
+   {
+    "word": "וְֽ|סַ֫בְתָּא",
+    "phonemes": "vesˈavta"
+   },
+   {
+    "word": "בָּאִ֫ים.",
+    "phonemes": "baʔˈim."
+   },
+   {
+    "word": "כֻּלָּ֫ם",
+    "phonemes": "kulˈam"
+   },
+   {
+    "word": "בַּ|בַּ֫יִת!",
+    "phonemes": "babˈajit!"
+   },
+   {
+    "word": "אֵ֫יזֶה",
+    "phonemes": "ʔˈejze"
+   },
+   {
+    "word": "כֵּ֫יף!",
+    "phonemes": "kˈef!"
+   }
+  ]
+ },
+ "05_level3": {
+  "text": "דָּנִי יָצָא לְטַיֵּל בַּגִּנָּה. הוּא רָאָה פְּרָחִים צִבְעוֹנִיִּים וְעֵצִים גְּבוֹהִים.",
+  "model_nikud": "דָּ֫נִי יָצָא לַֽ|טִיל בְּֽ|גְנָה. הוּא רָאָה פְּרָחִים צִבְעוֹנִיִּים וְֽ|עֵצִים גְּבוֹהִים.",
+  "merged": "דָּ֫נִי יָצָ֫א לְֽ|טַיֵּ֫ל בַּ|גִּנָּ֫ה. הוּ֫א רָאָ֫ה פְּרָחִ֫ים צִבְעוֹנִיִּ֫ים וְֽ|עֵצִ֫ים גְּבוֹהִ֫ים.",
+  "phonemes": "dˈani jatsˈa letajˈel baɡinˈa. hˈu ʁaʔˈa pʁaχˈim tsivʔonijˈim veʔetsˈim ɡvohˈim.",
+  "phonemes_model_stress": "dˈani jatsˈa letajˈel baɡinˈa. hˈu ʁaʔˈa pʁaχˈim tsivʔonijˈim veʔetsˈim ɡvohˈim.",
+  "phonemes_model_only": "dˈani jatsˈa laetˈil beɡnˈa. hˈu ʁaʔˈa pʁaχˈim tsivʔonijˈim veʔetsˈim ɡvohˈim.",
+  "model_disagrees": [],
+  "words": [
+   {
+    "word": "דָּ֫נִי",
+    "phonemes": "dˈani"
+   },
+   {
+    "word": "יָצָ֫א",
+    "phonemes": "jatsˈa"
+   },
+   {
+    "word": "לְֽ|טַיֵּ֫ל",
+    "phonemes": "letajˈel"
+   },
+   {
+    "word": "בַּ|גִּנָּ֫ה.",
+    "phonemes": "baɡinˈa."
+   },
+   {
+    "word": "הוּ֫א",
+    "phonemes": "hˈu"
+   },
+   {
+    "word": "רָאָ֫ה",
+    "phonemes": "ʁaʔˈa"
+   },
+   {
+    "word": "פְּרָחִ֫ים",
+    "phonemes": "pʁaχˈim"
+   },
+   {
+    "word": "צִבְעוֹנִיִּ֫ים",
+    "phonemes": "tsivʔonijˈim"
+   },
+   {
+    "word": "וְֽ|עֵצִ֫ים",
+    "phonemes": "veʔetsˈim"
+   },
+   {
+    "word": "גְּבוֹהִ֫ים.",
+    "phonemes": "ɡvohˈim."
+   }
+  ]
+ },
+ "06_level5": {
+  "text": "הַגָּמָל חַי בַּמִּדְבָּר, שָׁם חַם מְאוֹד וְיֵשׁ מְעַט מַיִם. עַל הַגַּב שֶׁלּוֹ יֵשׁ דַּבֶּשֶׁת.",
+  "model_nikud": "הַ|גָּמָל חַי בַּ|מִּדְבָּר, שָׁם חַם מְֽאוֹד וְֽ|יֵשׁ מְֽעַט מַיִם. עַל הַ|גַּב שֶׁ|לּוֹ יֵשׁ דַּבֶּ֫שֶׁת.",
+  "merged": "הַ|גָּמָ֫ל חַ֫י בַּ|מִּדְבָּ֫ר, שָׁ֫ם חַ֫ם מְֽאוֹ֫ד וְֽ|יֵ֫שׁ מְֽעַ֫ט מַ֫יִם. עַ֫ל הַ|גַּ֫ב שֶׁ|לּוֹ֫ יֵ֫שׁ דַּבֶּ֫שֶׁת.",
+  "phonemes": "haɡamˈal χˈaj bamidbˈaʁ, ʃˈam χˈam meʔˈod vejˈeʃ meʔˈat mˈajim. ʔˈal haɡˈav ʃelˈo jˈeʃ dabˈeʃet.",
+  "phonemes_model_stress": "haɡamˈal χˈaj bamidbˈaʁ, ʃˈam χˈam meʔˈod vejˈeʃ meʔˈat majˈim. ʔˈal haɡˈav ʃelˈo jˈeʃ dabˈeʃet.",
+  "phonemes_model_only": "haɡamˈal χˈaj bamidbˈaʁ, ʃˈam χˈam meʔˈod vejˈeʃ meʔˈat majˈim. ʔˈal haɡˈav ʃelˈo jˈeʃ dabˈeʃet.",
+  "model_disagrees": [],
+  "words": [
+   {
+    "word": "הַ|גָּמָ֫ל",
+    "phonemes": "haɡamˈal"
+   },
+   {
+    "word": "חַ֫י",
+    "phonemes": "χˈaj"
+   },
+   {
+    "word": "בַּ|מִּדְבָּ֫ר,",
+    "phonemes": "bamidbˈaʁ,"
+   },
+   {
+    "word": "שָׁ֫ם",
+    "phonemes": "ʃˈam"
+   },
+   {
+    "word": "חַ֫ם",
+    "phonemes": "χˈam"
+   },
+   {
+    "word": "מְֽאוֹ֫ד",
+    "phonemes": "meʔˈod"
+   },
+   {
+    "word": "וְֽ|יֵ֫שׁ",
+    "phonemes": "vejˈeʃ"
+   },
+   {
+    "word": "מְֽעַ֫ט",
+    "phonemes": "meʔˈat"
+   },
+   {
+    "word": "מַ֫יִם.",
+    "phonemes": "mˈajim."
+   },
+   {
+    "word": "עַ֫ל",
+    "phonemes": "ʔˈal"
+   },
+   {
+    "word": "הַ|גַּ֫ב",
+    "phonemes": "haɡˈav"
+   },
+   {
+    "word": "שֶׁ|לּוֹ֫",
+    "phonemes": "ʃelˈo"
+   },
+   {
+    "word": "יֵ֫שׁ",
+    "phonemes": "jˈeʃ"
+   },
+   {
+    "word": "דַּבֶּ֫שֶׁת.",
+    "phonemes": "dabˈeʃet."
+   }
+  ]
+ },
+ "_warnings": []
+}

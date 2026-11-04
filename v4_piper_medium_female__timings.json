@@ -1,0 +1,57 @@
+{
+ "hop": 256.0,
+ "pad_frames_mean": 2.49,
+ "phoneme_frames_mean": 2.99,
+ "words": [
+  {
+   "phonemes": "dˈani",
+   "start": 0.081,
+   "end": 0.418
+  },
+  {
+   "phonemes": "jatsˈa",
+   "start": 0.464,
+   "end": 0.929
+  },
+  {
+   "phonemes": "letajˈel",
+   "start": 0.975,
+   "end": 1.382
+  },
+  {
+   "phonemes": "baɡinˈa.",
+   "start": 1.416,
+   "end": 1.881
+  },
+  {
+   "phonemes": "hˈu",
+   "start": 2.252,
+   "end": 2.415
+  },
+  {
+   "phonemes": "ʁaʔˈa",
+   "start": 2.461,
+   "end": 2.833
+  },
+  {
+   "phonemes": "pʁaχˈim",
+   "start": 2.891,
+   "end": 3.309
+  },
+  {
+   "phonemes": "tsivʔonijˈim",
+   "start": 3.367,
+   "end": 4.075
+  },
+  {
+   "phonemes": "veʔetsˈim",
+   "start": 4.145,
+   "end": 4.528
+  },
+  {
+   "phonemes": "ɡvohˈim.",
+   "start": 4.574,
+   "end": 5.074
+  }
+ ]
+}

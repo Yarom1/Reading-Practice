@@ -41,18 +41,12 @@ SAMPLES = {
     "06_level5": "הַגָּמָל חַי בַּמִּדְבָּר, שָׁם חַם מְאוֹד וְיֵשׁ מְעַט מַיִם. עַל הַגַּב שֶׁלּוֹ יֵשׁ דַּבֶּשֶׁת.",
 }
 
-# Stress fixes: a word (any nikud, optional prefix letters before it) with the stress mark on the stressed letter.
-STRESS_FIXES = [
-    "קָדִימָ֫ה",  # forward! -> kadimá (milra), not the party name Kadíma
-    "אֶ֫צְבַּע",  # étsba
-    "יֹ֫פִי",  # yófi
-    "אַ֫בָּא",  # ába
-    "סַ֫בְתָּא",  # sávta
-    "כֻּלָּ֫ם",  # kulám
-    "גִּנָּ֫ה",  # giná
-    "גָּמָ֫ל",  # gamál
-    "מַ֫יִם",  # máyim
-]
+# Stress is decided by review, never by the model (its int8 stress output even differs between CPUs).
+# Every word is milra (stress on the last syllable) unless its letters are listed here as mil'el.
+MILEL = {
+    "אצבע", "מתחת", "איזה", "יפי", "הצלחת", "אבא", "אמא", "סבא", "סבתא", "וסבתא",
+    "בית", "בבית", "דני", "מים", "דבשת", "בואי",
+}
 
 
 def is_letter(c):
@@ -130,48 +124,44 @@ def initial_vocal_shva(text):
     return " ".join(words)
 
 
-def set_stress(word, letter_index):
-    out, idx = [], -1
-    for c, marks in split_letters(word):
-        if marks is None:
-            out.append(c)
-            continue
-        idx += 1
-        marks = marks.replace(STRESS, "")
-        if idx == letter_index:
-            bar = PREFIX if PREFIX in marks else ""
-            marks = marks.replace(PREFIX, "") + STRESS + bar
-        out.append(c + marks)
-    return "".join(out)
+HATAF = set("\u05b1\u05b2\u05b3")
+FULL_VOWELS = VOWELS - HATAF
 
 
-def stress_from_end(fix):
-    """(letters, position of the stressed letter counted from the end)."""
-    letters = letters_only(fix)
-    idx = -1
-    for c in fix:
-        if is_letter(c):
-            idx += 1
-        elif c == STRESS:
-            return letters, len(letters) - 1 - idx
-    raise ValueError(fix)
+def carriers(items):
+    """Indices (into split_letters items) of letters that carry a stressable vowel."""
+    letters = [i for i, (_, m) in enumerate(items) if m is not None]
+    out = []
+    for i in letters:
+        c, m = items[i]
+        if FULL_VOWELS & set(m) or (c == "ו" and "\u05bc" in m):  # vowel sign, or shuruk
+            out.append(i)
+    # furtive patah (רוּחַ, גָּבֹהַּ): a final ח/ע/הּ with patah is not a syllable of its own
+    if len(out) >= 2 and out[-1] == letters[-1]:
+        c, m = items[out[-1]]
+        if c in "חעה" and "\u05b7" in m and (c != "ה" or "\u05bc" in m):
+            out.pop()
+    return out
 
 
-FIXES = [stress_from_end(f) for f in STRESS_FIXES]
-
-
-def apply_fixes(text, applied=None):
+def explicit_stress(text, disagreements=None, predicted=None):
+    """Put the stress mark on the stressed vowel's letter: milra by default, mil'el for MILEL words."""
+    pred_words = predicted.split(" ") if predicted else []
     words = []
-    for w in text.split(" "):
-        lw = letters_only(w)
-        for letters, from_end in FIXES:
-            if lw.endswith(letters) and len(lw) - len(letters) <= 2:  # up to two prefix letters (ו, ה, ב, ל...)
-                fixed = set_stress(w, len(lw) - 1 - from_end)
-                if applied is not None and fixed != w:
-                    applied.append(f"{w} -> {fixed}")
-                w = fixed
-                break
-        words.append(w)
+    for wi, w in enumerate(text.split(" ")):
+        items = [(c, m.replace(STRESS, "") if m is not None else None) for c, m in split_letters(w)]
+        cs = carriers(items)
+        if cs:
+            k = cs[-2] if (letters_only(w) in MILEL and len(cs) >= 2) else cs[-1]
+            c, m = items[k]
+            bar = PREFIX if PREFIX in m else ""
+            items[k] = (c, m.replace(PREFIX, "") + STRESS + bar)
+            if disagreements is not None and wi < len(pred_words) and len(cs) >= 2 and STRESS in pred_words[wi]:
+                model_k = next(i for i, (c2, m2) in enumerate(split_letters(pred_words[wi])) if m2 and STRESS in m2)
+                if model_k != k:
+                    disagreements.append(f"{w}: model {'milra' if model_k == cs[-1] else 'other'}, review "
+                                         f"{'milel' if k == cs[-2] else 'milra'}")
+        words.append("".join(c + (m or "") for c, m in items))
     return " ".join(words)
 
 
@@ -281,22 +271,22 @@ def main():
     report = {}
     api = HfApi()
 
-    nakdan = Phonikud(hf_hub_download("thewh1teagle/phonikud-onnx", "phonikud-1.0.int8.onnx"))
+    nakdan = Phonikud(hf_hub_download("thewh1teagle/phonikud-onnx", "phonikud-1.0.onnx"))
 
     prepared = {}
     for key, text in SAMPLES.items():
         predicted = nakdan.add_diacritics(text)
         merged_raw = initial_vocal_shva(merge(text, predicted))
         applied = []
-        merged = apply_fixes(merged_raw, applied)
+        merged = explicit_stress(merged_raw, applied, predicted)
         prepared[key] = {
             "text": text,
             "model_nikud": predicted,
             "merged": merged,
             "phonemes": phonemize(merged),
-            "phonemes_before_fixes": phonemize(merged_raw),
+            "phonemes_model_stress": phonemize(merged_raw),
             "phonemes_model_only": phonemize(predicted),
-            "fixes_applied": applied,
+            "model_disagrees": applied,
             "words": [{"word": w, "phonemes": phonemize(w)} for w in merged.split(" ")],
         }
     prepared["_warnings"] = WARNINGS

@@ -320,6 +320,117 @@ def initial_vocal_shva(core):
     return join_items(items)
 
 
+
+# ----------------------------------------------------------------------------- voice with stress control
+
+STRESS_RATIO = 1.4  # the stressed vowel lasts at least this much longer than the longest other vowel of the word
+STRESS_MAX_STRETCH = 1.8
+
+
+class Voice:
+    """A Piper (VITS) voice run in two passes: the model first predicts how long every sound is; in
+    each word the stressed vowel is then made clearly the longest, and the audio is rendered with
+    exactly those durations. ('noa' marks final stress only weakly on its own.)"""
+
+    def __init__(self, model_path, config_path, speaker=0, length_scale=0.9, enforce_stress=True):
+        import numpy as np
+        import onnx
+        import onnxruntime as ort
+
+        self.np = np
+        cfg = json.loads(Path(config_path).read_text(encoding="utf-8"))
+        self.idmap = cfg["phoneme_id_map"]
+        self.sr = cfg["audio"]["sample_rate"]
+        inf = cfg.get("inference", {})
+        self.noise_scale = inf.get("noise_scale", 0.667)
+        self.noise_w = inf.get("noise_w", 0.8)
+        self.length_scale = length_scale
+        self.speaker = speaker
+        self.enforce_stress = enforce_stress
+        model = onnx.load(model_path)
+        ceil = next(n for n in model.graph.node if n.op_type == "Ceil")
+        self.w_name, frames_name = ceil.input[0], ceil.output[0]
+        # pass 1: the original model, also returning the predicted durations
+        m1 = onnx.ModelProto()
+        m1.CopyFrom(model)
+        m1.graph.output.append(onnx.helper.make_tensor_value_info(self.w_name, onnx.TensorProto.FLOAT, None))
+        # pass 2: durations come from an input
+        m2 = onnx.ModelProto()
+        m2.CopyFrom(model)
+        next(n for n in m2.graph.node if n.op_type == "Ceil").input[0] = "w_override"
+        m2.graph.input.append(onnx.helper.make_tensor_value_info("w_override", onnx.TensorProto.FLOAT, [1, 1, None]))
+        m2.graph.output.append(onnx.helper.make_tensor_value_info(frames_name, onnx.TensorProto.FLOAT, None))
+        opts = ort.SessionOptions()
+        self.sess1 = ort.InferenceSession(m1.SerializeToString(), opts, providers=["CPUExecutionProvider"])
+        self.sess2 = ort.InferenceSession(m2.SerializeToString(), opts, providers=["CPUExecutionProvider"])
+        self.has_sid = "sid" in [i.name for i in self.sess1.get_inputs()]
+
+    def _feeds(self, ids):
+        np = self.np
+        f = {
+            "input": np.array([ids], dtype=np.int64),
+            "input_lengths": np.array([len(ids)], dtype=np.int64),
+            "scales": np.array([self.noise_scale, self.length_scale, self.noise_w], dtype=np.float32),
+        }
+        if self.has_sid:
+            f["sid"] = np.array([self.speaker], dtype=np.int64)
+        return f
+
+    def synth(self, phon, ranges):
+        """Audio for `phon`; `ranges` are the [start, end) character ranges of the words in it.
+        Returns (audio, per-token frames, owner) where owner[i] is the character of token i (-1 = BOS/EOS)."""
+        np = self.np
+        chars = ["^"] + list(phon)
+        ids, owner = [], []
+        for ci, ch in enumerate(chars):
+            if ch in self.idmap:
+                for t in self.idmap[ch] + self.idmap["_"]:
+                    ids.append(t)
+                    owner.append(ci - 1)
+        for t in self.idmap["$"]:
+            ids.append(t)
+            owner.append(-1)
+        feeds = self._feeds(ids)
+        (w,) = self.sess1.run([self.w_name], feeds)
+        w = np.array(w, dtype=np.float32).reshape(1, 1, -1)
+        if self.enforce_stress:
+            self.stress_durations(w[0, 0], phon, owner, ranges)
+        feeds["w_override"] = w
+        audio, frames = self.sess2.run(None, feeds)
+        return np.asarray(audio, dtype=np.float32).reshape(-1), np.asarray(frames, dtype=np.float64).reshape(-1), owner
+
+    @staticmethod
+    def stress_durations(w, phon, owner, ranges):
+        """In every word, stretch the stressed vowel (with its stress-mark token) to at least
+        STRESS_RATIO times the longest other vowel."""
+        tokens_of = {}
+        for i, ci in enumerate(owner):
+            if ci >= 0:
+                tokens_of.setdefault(ci, []).append(i)
+
+        def dur(ci):
+            return float(sum(w[i] for i in tokens_of.get(ci, [])))
+
+        for a, b in ranges:
+            marks = [k for k in range(a, b) if phon[k] == "ˈ"]
+            if not marks:
+                continue
+            m = marks[0]
+            v = next((k for k in range(m + 1, b) if phon[k] in "aeiou"), None)
+            if v is None:
+                continue
+            others = [k for k in range(a, b) if phon[k] in "aeiou" and k != v]
+            if not others:
+                continue
+            stressed = dur(m) + dur(v)
+            longest = max(dur(k) for k in others)
+            if stressed <= 0 or stressed >= STRESS_RATIO * longest:
+                continue
+            f = min(STRESS_RATIO * longest / stressed, STRESS_MAX_STRETCH)
+            for ci in (m, v):
+                for i in tokens_of.get(ci, []):
+                    w[i] *= f
+
 # ----------------------------------------------------------------------------- main pipeline
 
 class Words:
@@ -378,6 +489,7 @@ def main():
     ap.add_argument("--dry", action="store_true", help="review lists only: no nakdan, no audio")
     ap.add_argument("--length-scale", type=float, default=0.9)
     ap.add_argument("--bitrate", default="48k")
+    ap.add_argument("--raw-stress", action="store_true", help="do not enforce the stressed vowel's length")
     args = ap.parse_args()
 
     out = Path(args.out)
@@ -435,20 +547,9 @@ def main():
     import numpy as np
     import soundfile as sf
     from huggingface_hub import hf_hub_download
-    from piper_onnx import Piper
-    import onnx
-    import onnxruntime as ort
-
-    model_path = hf_hub_download(VOICE_REPO, VOICE_FILE)
-    piper = Piper(model_path, hf_hub_download(VOICE_REPO, VOICE_CONFIG))
-    m = onnx.load(model_path)
-    ceil = next(n for n in m.graph.node if n.op_type == "Ceil")
-    m.graph.output.append(onnx.helper.make_tensor_value_info(ceil.output[0], onnx.TensorProto.FLOAT, None))
-    dur_path = model_path + ".dur.onnx"
-    onnx.save(m, dur_path)
-    sess = ort.InferenceSession(dur_path, providers=["CPUExecutionProvider"])
-    idmap, sr = piper.phoneme_id_map, piper.sample_rate
-    inf = piper.config["inference"]
+    voice = Voice(hf_hub_download(VOICE_REPO, VOICE_FILE), hf_hub_download(VOICE_REPO, VOICE_CONFIG),
+                  speaker=0, length_scale=args.length_scale, enforce_stress=not args.raw_stress)
+    sr = voice.sr
 
     ffmpeg = shutil.which("ffmpeg")
     if ffmpeg is None:
@@ -461,19 +562,7 @@ def main():
     for n, e in enumerate(catalog, 1):
         text, tokens = e["text"], e["tokens"]
         phon, ranges = utterance_phonemes(tokens, words)
-        chars = ["^"] + list(phon)
-        ids, owner = [], []
-        for ci, ch in enumerate(chars):
-            if ch in idmap:
-                for t in idmap[ch] + idmap["_"]:
-                    ids.append(t)
-                    owner.append(ci - 1)
-        for t in idmap["$"]:
-            ids.append(t)
-            owner.append(-1)
-        outs = sess.run(None, piper._create_input(ids, args.length_scale, inf["noise_w"], inf["noise_scale"], 0))
-        audio = np.asarray(outs[0], dtype=np.float32).reshape(-1)
-        frames = np.asarray(outs[-1], dtype=np.float64).reshape(-1)
+        audio, frames, owner = voice.synth(phon, ranges)
         hop = len(audio) / frames.sum()
         ends = np.cumsum(frames) * hop
         starts = ends - frames * hop

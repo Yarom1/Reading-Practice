@@ -3,19 +3,18 @@
 Diagnostic: does a voice actually follow the stress mark (ˈ) it is given?
 
 Every test word is synthesized twice inside the same carrier sentence - once marked milra, once
-mil'el - with the duration noise switched off. For the last two vowels of the word we measure
-duration (from the model's own duration predictor), pitch and loudness (from the audio). A voice
-that obeys the mark makes the marked vowel longer / higher; a voice that ignores it sounds the same
-in both versions.
+mil'el. For the last two vowels of the word we measure duration (from the model's own durations,
+counting the stress-mark token as part of its vowel), pitch and loudness (from the audio).
+Modes: the voice as is ("raw") and with the stressed vowel's length enforced ("fixed",
+build_speech.Voice). Also renders story lines in both modes for listening.
 """
 import argparse
 import json
+import math
 import sys
 from pathlib import Path
 
 import numpy as np
-import onnx
-import onnxruntime as ort
 import soundfile as sf
 from huggingface_hub import hf_hub_download
 from phonikud import phonemize
@@ -29,109 +28,107 @@ WORDS = [
     "שָׁלוֹם", "תּוֹדָה", "יָפֶה", "גָּדוֹל", "קָטָן", "חָתוּל", "סִפּוּר", "צִפּוֹר", "גִּנָּה", "גָּמָל", "כֻּלָּם",
     "מַהֵר", "אֲבָל", "קָדִימָה", "שׁוּרָה", "יְלָדִים", "פְּרָחִים", "חָבֵר", "תָּמִיד", "מָתוֹק",
 ]
-VOICES = [
-    ("thewh1teagle/piper-he-noa", "he_IL-noa-medium.onnx", "he_IL-noa-medium.onnx.json", "noa"),
-    ("thewh1teagle/phonikud-tts-checkpoints", "model.onnx", "model.config.json", "model"),
-    ("thewh1teagle/phonikud-tts-checkpoints", "michael.onnx", "model.config.json", "michael"),
-    ("thewh1teagle/phonikud-tts-checkpoints", "shaul.onnx", "model.config.json", "shaul"),
-]
-VOWELS = set("aeiou")
 CARRIER = ("ʔanˈi ʔomˈeʁ ", " ʔaχʃˈav.")
+MODES = [
+    ("thewh1teagle/piper-he-noa", "he_IL-noa-medium.onnx", "he_IL-noa-medium.onnx.json", "noa_raw", False),
+    ("thewh1teagle/piper-he-noa", "he_IL-noa-medium.onnx", "he_IL-noa-medium.onnx.json", "noa_fixed", True),
+    ("thewh1teagle/phonikud-tts-checkpoints", "model.onnx", "model.config.json", "male_raw", False),
+]
+LISTEN_LINES = 6
 
 
 def f0(seg, sr):
     if len(seg) < int(0.03 * sr):
-        return np.nan
+        return math.nan
     seg = seg - seg.mean()
     ac = np.correlate(seg, seg, "full")[len(seg) - 1:]
     lo, hi = int(sr / 400), min(len(ac) - 1, int(sr / 70))
     if hi <= lo or ac[0] <= 0:
-        return np.nan
+        return math.nan
     k = lo + int(np.argmax(ac[lo:hi]))
-    return sr / k if ac[k] > 0.3 * ac[0] else np.nan
+    return sr / k if ac[k] > 0.3 * ac[0] else math.nan
+
+
+def vowels_of(word_ph, base, audio, frames, owner, sr):
+    hop = len(audio) / frames.sum()
+    ends = np.cumsum(frames) * hop
+    starts = ends - frames * hop
+    out = []
+    for k, ch in enumerate(word_ph):
+        if ch not in "aeiou":
+            continue
+        own = {base + k, base + k - 1} if k > 0 and word_ph[k - 1] == "ˈ" else {base + k}
+        toks = [i for i, o in enumerate(owner) if o in own]
+        if not toks:
+            continue
+        a, b = int(starts[toks[0]]), int(ends[toks[-1]])
+        seg = audio[a:b]
+        out.append((float(frames[toks].sum()), f0(seg, sr), float(np.sqrt(np.mean(seg ** 2))) if len(seg) else 0.0))
+    return out
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", required=True)
+    ap.add_argument("--catalog", default="")
+    ap.add_argument("--words", default="")
     args = ap.parse_args()
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
+
+    lines = []
+    if args.catalog and args.words:
+        table = {}
+        for row in Path(args.words).read_text(encoding="utf-8").splitlines()[1:]:
+            c = row.split("\t")
+            table[c[0]] = c[1]
+        catalog = [e for e in json.loads(Path(args.catalog).read_text(encoding="utf-8")) if e["kind"] in ("line", "msg")]
+        picks = [catalog[i] for i in (4, 40, 75, 110, 150, 200) if i < len(catalog)][:LISTEN_LINES]
+        for e in picks:
+            parts, ranges, pos = [], [], 0
+            for tok, core in zip(e["tokens"], e["cores"]):
+                ph = table[core]
+                trail = "".join(ch for ch in tok[len(tok.rstrip(".,!?:;")):] if ch in ".,!?:;")
+                ranges.append((pos, pos + len(ph)))
+                parts.append(ph + trail)
+                pos += len(ph + trail) + 1
+            lines.append((e["text"], " ".join(parts), ranges))
+
     results = {}
-    for repo, model_file, cfg_file, name in VOICES:
-        model_path = hf_hub_download(repo, model_file)
-        m = onnx.load(model_path)
-        ceil = next(n for n in m.graph.node if n.op_type == "Ceil")
-        m.graph.output.append(onnx.helper.make_tensor_value_info(ceil.output[0], onnx.TensorProto.FLOAT, None))
-        path = model_path + ".probe.onnx"
-        onnx.save(m, path)
-        sess = ort.InferenceSession(path, providers=["CPUExecutionProvider"])
-        cfg = json.loads(Path(hf_hub_download(repo, cfg_file)).read_text())
-        idmap, sr = cfg["phoneme_id_map"], cfg["audio"]["sample_rate"]
-        has_sid = "sid" in [i.name for i in sess.get_inputs()]
+    for repo, model_file, cfg_file, name, enforce in MODES:
+        voice = bs.Voice(hf_hub_download(repo, model_file), hf_hub_download(repo, cfg_file), length_scale=0.9,
+                         enforce_stress=enforce)
         rows = []
         for w in WORDS:
-            per_variant = {}
+            per = {}
             for syl in (1, 2):
                 word_ph = phonemize(bs.place_stress(bs.initial_vocal_shva(w), syl))
-                ph = CARRIER[0] + word_ph + CARRIER[1]
-                chars = ["^"] + list(ph)
-                ids, owner = [], []
-                for ci, ch in enumerate(chars):
-                    if ch in idmap:
-                        for t in idmap[ch] + idmap["_"]:
-                            ids.append(t)
-                            owner.append(ci - 1)
-                ids += idmap["$"]
-                owner += [-1] * len(idmap["$"])
-                feeds = {"input": np.array([ids], dtype=np.int64), "input_lengths": np.array([len(ids)], dtype=np.int64),
-                         "scales": np.array([0.667, 1.0, 0.0], dtype=np.float32)}
-                if has_sid:
-                    feeds["sid"] = np.array([0], dtype=np.int64)
-                audio, frames = sess.run(None, feeds)
-                audio = np.asarray(audio, dtype=np.float32).reshape(-1)
-                frames = np.asarray(frames, dtype=np.float64).reshape(-1)
-                hop = len(audio) / frames.sum()
-                ends = np.cumsum(frames) * hop
-                starts = ends - frames * hop
+                phon = CARRIER[0] + word_ph + CARRIER[1]
                 base = len(CARRIER[0])
-                vowels = []  # (char index in phonemes, duration frames, f0, rms) for the word's vowels
-                for k, ch in enumerate(word_ph):
-                    if ch not in VOWELS:
-                        continue
-                    ci = base + k
-                    # the stress mark is its own token right before the vowel: its time is part of the vowel
-                    own = {ci, ci - 1} if k > 0 and word_ph[k - 1] == "ˈ" else {ci}
-                    toks = [i for i, o in enumerate(owner) if o in own]
-                    if not toks:
-                        continue
-                    a, b = int(starts[toks[0]]), int(ends[toks[-1]])
-                    seg = audio[a:b]
-                    vowels.append((float(frames[toks].sum()), f0(seg, sr), float(np.sqrt(np.mean(seg ** 2))) if len(seg) else 0.0))
-                per_variant[syl] = {"phonemes": word_ph, "vowels": vowels}
-                if w in ("אַבָּא", "גִּנָּה", "קָדִימָה", "כֶּלֶב", "שָׁלוֹם"):
-                    sf.write(out / f"{name}_{w}_{'milra' if syl == 1 else 'milel'}.wav", audio, sr)
-            rows.append({"word": w, **{f"v{k}": v for k, v in per_variant.items()}})
-        # stress obedience: (last/penult) in the milra version divided by the same in the mil'el version
-        dur_r, f0_r, rms_r = [], [], []
+                ranges = [(0, 5), (6, base - 1), (base, base + len(word_ph)), (base + len(word_ph) + 1, len(phon) - 1)]
+                audio, frames, owner = voice.synth(phon, ranges)
+                per[syl] = {"phonemes": word_ph, "vowels": vowels_of(word_ph, base, audio, frames, owner, voice.sr)}
+            rows.append({"word": w, "v1": per[1], "v2": per[2]})
+        n = mr_d = ml_d = mr_p = ml_p = n_p = 0
         for r in rows:
             a, b = r["v1"]["vowels"], r["v2"]["vowels"]
             if len(a) < 2 or len(b) < 2:
                 continue
-            dur_r.append((a[-1][0] / a[-2][0]) / (b[-1][0] / b[-2][0]))
-            if not any(np.isnan([a[-1][1], a[-2][1], b[-1][1], b[-2][1]])):
-                f0_r.append((a[-1][1] / a[-2][1]) / (b[-1][1] / b[-2][1]))
-            if min(a[-2][2], b[-1][2], b[-2][2]) > 0:
-                rms_r.append((a[-1][2] / a[-2][2]) / (b[-1][2] / b[-2][2]))
-        results[name] = {
-            "words": len(dur_r),
-            "duration_ratio_median": round(float(np.median(dur_r)), 2),
-            "duration_follows_mark_%": round(100 * float(np.mean(np.array(dur_r) > 1.15)), 0),
-            "pitch_ratio_median": round(float(np.median(f0_r)), 2) if f0_r else None,
-            "loudness_ratio_median": round(float(np.median(rms_r)), 2) if rms_r else None,
-            "rows": rows,
-        }
+            n += 1
+            mr_d += a[-1][0] > a[-2][0]
+            ml_d += b[-2][0] > b[-1][0]
+            if not any(math.isnan(x) for x in (a[-1][1], a[-2][1], b[-1][1], b[-2][1])):
+                n_p += 1
+                mr_p += a[-1][1] > a[-2][1]
+                ml_p += b[-2][1] > b[-1][1]
+        results[name] = {"milra_longer_%": round(100 * mr_d / n), "milel_longer_%": round(100 * ml_d / n),
+                         "milra_higher_%": round(100 * mr_p / max(1, n_p)), "milel_higher_%": round(100 * ml_p / max(1, n_p)),
+                         "rows": rows}
         print(name, {k: v for k, v in results[name].items() if k != "rows"}, flush=True)
+        for i, (text, phon, ranges) in enumerate(lines, 1):
+            audio, _, _ = voice.synth(phon, ranges)
+            sf.write(out / f"line{i}_{name}.wav", audio, voice.sr)
+    results["lines"] = [{"text": t, "phonemes": p} for t, p, _ in lines]
     (out / "stress_probe.json").write_text(json.dumps(results, ensure_ascii=False, indent=1), encoding="utf-8")
 
 

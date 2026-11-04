@@ -20,6 +20,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Inputs from the last recording run
+        run: |
+          mkdir -p g2p-in
+          git fetch -q origin "build-output/${GITHUB_REF_NAME}-speech"
+          git show FETCH_HEAD:utterances.json > g2p-in/utterances.json
+          git show FETCH_HEAD:review/words.tsv > g2p-in/words.tsv
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -36,7 +43,7 @@ jobs:
         run: |
           set -o pipefail
           mkdir -p g2p-out
-          python tools/voice/stress_probe.py --out g2p-out 2>&1 | tee g2p-out/run.log
+          python tools/voice/stress_probe.py --out g2p-out --catalog g2p-in/utterances.json --words g2p-in/words.tsv 2>&1 | tee g2p-out/run.log
 
       - name: Encode MP3
         if: always()

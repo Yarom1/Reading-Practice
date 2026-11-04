@@ -1,0 +1,76 @@
+name: Speech assets
+
+# Records the app's voice ("noa") for every fixed text: exports the speech catalog from the app's
+# own code, then tools/voice/build_speech.py writes assets/speech (MP3 + manifest with word timings)
+# and the stress review lists. The result is published to build-output/<branch>-speech.
+on:
+  push:
+    paths:
+      - "tools/voice/**"
+      - "app/src/main/assets/content/**"
+      - "app/src/main/java/com/korimbekef/reading/ui/Texts.kt"
+      - "app/src/main/java/com/korimbekef/reading/speech/SpeechCatalog.kt"
+      - ".github/workflows/speech-assets.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: speech-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  speech:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Export the speech catalog
+        run: |
+          mkdir -p speech-out
+          SPEECH_EXPORT="$PWD/speech-out/utterances.json" ./gradlew --no-daemon :app:testDebugUnitTest \
+            --tests "com.korimbekef.reading.speech.SpeechCatalogTest.exportForRecording"
+          test -s speech-out/utterances.json
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install "phonikud==0.4.1" "phonikud-onnx==1.0.6" "piper-onnx==1.0.6" soundfile onnx huggingface_hub numpy
+          ffmpeg -version | head -1 || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
+
+      - name: Record
+        id: record
+        run: |
+          set -o pipefail
+          python tools/voice/build_speech.py --catalog speech-out/utterances.json --out speech-out 2>&1 | tee speech-out/build.log
+
+      - name: Publish output branch
+        if: always()
+        run: |
+          echo "record=${{ steps.record.outcome }} sha=${GITHUB_SHA} run=${GITHUB_RUN_NUMBER}" > speech-out/STATUS.txt
+          BRANCH="build-output/${GITHUB_REF_NAME}-speech"
+          rm -rf /tmp/out && mkdir -p /tmp/out && cp -r speech-out/. /tmp/out/
+          cd /tmp/out
+          git init -q -b main
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Speech assets ${GITHUB_RUN_NUMBER} of ${GITHUB_SHA}"
+          git push -q --force "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:refs/heads/${BRANCH}"

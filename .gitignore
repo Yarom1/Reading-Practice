@@ -12,3 +12,5 @@
 *.apk
 *.aab
 !/app/signing/*.jks
+__pycache__/
+*.pyc

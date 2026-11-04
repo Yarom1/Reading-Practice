@@ -100,7 +100,9 @@ def main():
                     if ch not in VOWELS:
                         continue
                     ci = base + k
-                    toks = [i for i, o in enumerate(owner) if o == ci]
+                    # the stress mark is its own token right before the vowel: its time is part of the vowel
+                    own = {ci, ci - 1} if k > 0 and word_ph[k - 1] == "ˈ" else {ci}
+                    toks = [i for i, o in enumerate(owner) if o in own]
                     if not toks:
                         continue
                     a, b = int(starts[toks[0]]), int(ends[toks[-1]])

@@ -43,7 +43,15 @@ SAMPLES = {
 
 # Stress fixes: a word (any nikud, optional prefix letters before it) with the stress mark on the stressed letter.
 STRESS_FIXES = [
-    "קָדִימָ֫ה",  # forward! -> kadimá (milra)
+    "קָדִימָ֫ה",  # forward! -> kadimá (milra), not the party name Kadíma
+    "אֶ֫צְבַּע",  # étsba
+    "יֹ֫פִי",  # yófi
+    "אַ֫בָּא",  # ába
+    "סַ֫בְתָּא",  # sávta
+    "כֻּלָּ֫ם",  # kulám
+    "גִּנָּ֫ה",  # giná
+    "גָּמָ֫ל",  # gamál
+    "מַ֫יִם",  # máyim
 ]
 
 
@@ -167,19 +175,18 @@ def apply_fixes(text, applied=None):
     return " ".join(words)
 
 
+# Hebrew Piper voices to try: (repo, model files or None = every .onnx in the repo)
+VOICE_REPOS = [
+    ("thewh1teagle/phonikud-tts-checkpoints", ["model.onnx", "shaul.onnx", "michael.onnx"]),
+    ("thewh1teagle/piper-he-noa", None),
+    ("notmax123/piper-medium-heb", None),
+]
+
+
 def find_voices(api, report):
     voices = []
-    repos = ["thewh1teagle/phonikud-tts-checkpoints"]
-    for term in ("phonikud", "hebrew-tts", "piper-he", "he_IL"):
-        try:
-            for m in api.list_models(search=term, limit=100):
-                report.setdefault("search", {}).setdefault(term, []).append(m.id)
-                if "phonikud" in m.id.lower() and m.id not in repos:
-                    repos.append(m.id)
-        except Exception as e:  # noqa: BLE001
-            report.setdefault("search_errors", {})[term] = repr(e)
     report["repos"] = {}
-    for repo in repos:
+    for repo, wanted in VOICE_REPOS:
         try:
             info = api.model_info(repo, files_metadata=True)
         except Exception as e:  # noqa: BLE001
@@ -187,13 +194,27 @@ def find_voices(api, report):
             continue
         files = {s.rfilename: (s.size or 0) for s in info.siblings}
         card = getattr(info, "card_data", None)
-        report["repos"][repo] = {"files": files, "license": card.get("license") if card else None, "tags": info.tags}
-        for f, size in files.items():
-            if not f.endswith(".onnx") or "phonikud-1.0" in f or size > 300_000_000:
+        entry = {"files": files, "license": card.get("license") if card else None, "tags": info.tags}
+        if "README.md" in files:
+            try:
+                entry["readme"] = Path(hf_hub_download(repo, "README.md")).read_text(encoding="utf-8")[:4000]
+            except Exception as e:  # noqa: BLE001
+                entry["readme"] = f"error: {e!r}"
+        report["repos"][repo] = entry
+        configs = [f for f in files if f.endswith(".json") and ("config" in f or f.endswith(".onnx.json"))]
+        models = wanted or [f for f in files if f.endswith(".onnx") and files[f] < 300_000_000]
+        for f in models:
+            if f not in files:
                 continue
             cfg = next((c for c in (f + ".json", f[:-5] + ".config.json", f[:-5] + ".json") if c in files), None)
+            if cfg is None and "model.config.json" in files:
+                cfg = "model.config.json"
+            if cfg is None and len(configs) == 1:
+                cfg = configs[0]
             if cfg:
-                voices.append((repo, f, cfg, size))
+                voices.append((repo, f, cfg, files[f]))
+            else:
+                report.setdefault("no_config", []).append(f"{repo}/{f}")
     return voices
 
 
@@ -249,6 +270,7 @@ def word_timings(piper, sess, phonemes, speaker):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="voice-out")
+    ap.add_argument("--slower", type=float, default=1.2, help="length_scale multiplier (child-friendly pace)")
     args = ap.parse_args()
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -279,10 +301,21 @@ def main():
 
     voices = find_voices(api, report)
     report["voices"] = [f"{r}/{f} ({s // 1_000_000} MB)" for r, f, _, s in voices]
-    for vi, (repo, f, cfg, _) in enumerate(voices[:6]):
+    used = set()
+    for vi, (repo, f, cfg, _) in enumerate(voices[:8]):
         try:
             model_path = hf_hub_download(repo, f)
+            digest = Path(model_path).stat().st_size, Path(model_path).read_bytes()[-4096:]
+            if digest in used:
+                report.setdefault("duplicates", []).append(f"{repo}/{f}")
+                continue
+            used.add(digest)
             piper = Piper(model_path, hf_hub_download(repo, cfg))
+            inf = piper.config["inference"]
+            inf["length_scale"] = round(inf.get("length_scale", 1.0) * args.slower, 3)
+            idmap = piper.phoneme_id_map
+            missing = sorted({ch for p in prepared.values() for ch in p["phonemes"] if ch not in idmap})
+            report.setdefault("missing_phonemes", {})[f"{repo}/{f}"] = missing
             speakers = piper.get_voices() or {"default": 0}
             report.setdefault("speakers", {})[f"{repo}/{f}"] = speakers
             sess = None
@@ -292,9 +325,12 @@ def main():
                 report.setdefault("timing_errors", {})[f] = traceback.format_exc()
             for sname, sid in list(speakers.items())[:4]:
                 sid = sid if isinstance(sid, int) else 0
-                tag = f"v{vi}_{Path(f).stem}_{sname}".replace("/", "_")
+                name = Path(f).stem if Path(f).stem != "model" else repo.split("/")[-1]
+                tag = f"v{vi}_{name}" + ("" if sname == "default" else f"_{sname}")
+                tag = tag.replace("/", "_").replace(" ", "_")
                 for key, p in prepared.items():
-                    samples, sr = piper.create(p["phonemes"], speaker_id=sid, is_phonemes=True)
+                    samples, sr = piper.create(p["phonemes"], speaker_id=sid, is_phonemes=True,
+                                               length_scale=inf["length_scale"])
                     sf.write(out / f"{tag}__{key}.wav", samples, sr)
                 if sess is not None:
                     try:

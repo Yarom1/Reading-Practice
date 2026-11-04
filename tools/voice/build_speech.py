@@ -20,6 +20,7 @@ With --dry only the review lists are written (no models needed, runs anywhere).
 import argparse
 import hashlib
 import json
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -312,6 +313,10 @@ def initial_vocal_shva(core):
     for a, b in zip(idx, idx[1:]):
         if BASE.get(items[a][0], items[a][0]) == BASE.get(items[b][0], items[b][0]):
             add_vshva(items, a)
+    # two shvas in a row inside a word: the second is pronounced (נִכְנְסוּ, תַּרְנְגֹלֶת), unless it ends the word (הִצְלַחְתְּ)
+    for a, b in zip(idx, idx[1:]):
+        if SHVA in items[a][1] and SHVA in items[b][1] and b != idx[-1]:
+            add_vshva(items, b)
     return join_items(items)
 
 
@@ -445,6 +450,10 @@ def main():
     idmap, sr = piper.phoneme_id_map, piper.sample_rate
     inf = piper.config["inference"]
 
+    ffmpeg = shutil.which("ffmpeg")
+    if ffmpeg is None:
+        import imageio_ffmpeg
+        ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
     speech = out / "speech"
     speech.mkdir(parents=True, exist_ok=True)
     manifest = {"version": 1, "voice": "noa", "items": {}}
@@ -504,7 +513,7 @@ def main():
         name = hashlib.sha1(text.encode("utf-8")).hexdigest()[:16] + ".mp3"
         wav = tmp / "x.wav"
         sf.write(wav, audio, sr, subtype="PCM_16")
-        subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", str(wav), "-codec:a", "libmp3lame",
+        subprocess.run([ffmpeg, "-loglevel", "error", "-y", "-i", str(wav), "-codec:a", "libmp3lame",
                         "-b:a", args.bitrate, "-ac", "1", "-ar", str(sr), str(speech / name)], check=True)
         manifest["items"][text] = {"f": name, "d": int(round(len(audio) * 1000 / sr)), "w": words_ms}
         if n % 100 == 0:

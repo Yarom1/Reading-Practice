@@ -1,0 +1,63 @@
+name: Stress probe
+
+# Diagnostic: measures whether each Hebrew voice follows the stress mark it is given
+# (tools/voice/stress_probe.py). Does not change the app.
+on:
+  push:
+    paths:
+      - "tools/voice/stress_probe.py"
+      - ".github/workflows/stress-probe.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install "phonikud==0.4.1" onnx onnxruntime soundfile huggingface_hub numpy imageio-ffmpeg
+
+      - name: Compare
+        id: compare
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          mkdir -p g2p-out
+          python tools/voice/stress_probe.py --out g2p-out 2>&1 | tee g2p-out/run.log
+
+      - name: Encode MP3
+        if: always()
+        run: |
+          FF=$(python -c "import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())")
+          cd g2p-out
+          for f in *.wav; do
+            [ -e "$f" ] || continue
+            "$FF" -loglevel error -y -i "$f" -ac 1 -b:a 64k "${f%.wav}.mp3" && rm "$f"
+          done
+          echo "compare=${{ steps.compare.outcome }} sha=${GITHUB_SHA} run=${GITHUB_RUN_NUMBER}" > STATUS.txt
+
+      - name: Publish output branch
+        if: always()
+        run: |
+          BRANCH="build-output/${GITHUB_REF_NAME}-probe"
+          rm -rf /tmp/out && mkdir -p /tmp/out && cp -r g2p-out/. /tmp/out/
+          cd /tmp/out
+          git init -q -b main
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Stress probe ${GITHUB_RUN_NUMBER} of ${GITHUB_SHA}"
+          git push -q --force "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:refs/heads/${BRANCH}"

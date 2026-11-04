@@ -49,7 +49,7 @@ jobs:
           mkdir -p mp3
           for f in *.wav; do
             [ -e "$f" ] || continue
-            ffmpeg -loglevel error -y -i "$f" -ac 1 -b:a 64k "mp3/${f%.wav}.mp3"
+            ffmpeg -loglevel error -y -i "$f" -af loudnorm=I=-18:TP=-1.5:LRA=11 -ar 22050 -ac 1 -b:a 64k "mp3/${f%.wav}.mp3"
           done
           ffmpeg -loglevel error -y -f lavfi -i anullsrc=r=22050:cl=mono -t 1.2 silence.wav
           for tag in $(ls *__01_encouragement.wav 2>/dev/null | sed 's/__01_encouragement.wav//'); do
@@ -59,7 +59,7 @@ jobs:
               echo "file '$f'" >> list.txt
               echo "file 'silence.wav'" >> list.txt
             done
-            ffmpeg -loglevel error -y -f concat -safe 0 -i list.txt -ac 1 -b:a 64k "mp3/ALL_${tag}.mp3"
+            ffmpeg -loglevel error -y -f concat -safe 0 -i list.txt -af loudnorm=I=-18:TP=-1.5:LRA=11 -ar 22050 -ac 1 -b:a 64k "mp3/ALL_${tag}.mp3"
           done
           rm -f list.txt silence.wav *.wav
           echo "gen=${{ steps.gen.outcome }} sha=${GITHUB_SHA} run=${GITHUB_RUN_NUMBER}" > STATUS.txt

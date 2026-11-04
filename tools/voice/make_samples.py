@@ -258,19 +258,23 @@ def word_timings(piper, sess, phonemes, speaker):
         if ci >= 0:
             c_start.setdefault(ci, starts[i])
             c_end[ci] = ends[i]
+    pad = set(idmap["_"])
+    stats = {"pad_frames_mean": round(float(np.mean([fr for t, fr in zip(ids, frames) if t in pad])), 2),
+             "phoneme_frames_mean": round(float(np.mean([fr for t, fr in zip(ids, frames) if t not in pad])), 2)}
     words, pos = [], 0
     for w in phonemes.split(" "):
         idx = [pos + k for k, ch in enumerate(w) if ch not in PUNCT and (pos + k) in c_start]
         if idx:
             words.append({"phonemes": w, "start": round(float(c_start[idx[0]]), 3), "end": round(float(c_end[idx[-1]]), 3)})
         pos += len(w) + 1
-    return audio, words, hop
+    return audio, words, {"hop": hop, **stats}
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="voice-out")
-    ap.add_argument("--slower", type=float, default=1.2, help="length_scale multiplier (child-friendly pace)")
+    ap.add_argument("--target", type=float, default=4.6,
+                    help="seconds for the 10-word reference sentence (same, child-friendly pace for every voice)")
     args = ap.parse_args()
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -312,7 +316,17 @@ def main():
             used.add(digest)
             piper = Piper(model_path, hf_hub_download(repo, cfg))
             inf = piper.config["inference"]
-            inf["length_scale"] = round(inf.get("length_scale", 1.0) * args.slower, 3)
+            report.setdefault("configs", {})[f"{repo}/{f}"] = {
+                "audio": piper.config.get("audio"), "inference": dict(inf),
+                "phoneme_type": piper.config.get("phoneme_type"), "espeak": piper.config.get("espeak")}
+            # same pace for every voice: the reference sentence should last about --target seconds
+            ref, _ = piper.create(prepared["05_level3"]["phonemes"], speaker_id=0, is_phonemes=True,
+                                  length_scale=inf.get("length_scale", 1.0))
+            natural = len(ref) / piper.sample_rate
+            scale = min(2.0, max(0.3, args.target / natural))
+            inf["length_scale"] = round(inf.get("length_scale", 1.0) * scale, 3)
+            report.setdefault("pace", {})[f"{repo}/{f}"] = {"natural_s": round(natural, 2), "scale": round(scale, 2),
+                                                            "length_scale": inf["length_scale"]}
             idmap = piper.phoneme_id_map
             missing = sorted({ch for p in prepared.values() for ch in p["phonemes"] if ch not in idmap})
             report.setdefault("missing_phonemes", {})[f"{repo}/{f}"] = missing
@@ -324,6 +338,8 @@ def main():
             except Exception:  # noqa: BLE001
                 report.setdefault("timing_errors", {})[f] = traceback.format_exc()
             for sname, sid in list(speakers.items())[:4]:
+                if str(sname).lower() in ("ljspeech", "english", "en"):
+                    continue
                 sid = sid if isinstance(sid, int) else 0
                 name = Path(f).stem if Path(f).stem != "model" else repo.split("/")[-1]
                 tag = f"v{vi}_{name}" + ("" if sname == "default" else f"_{sname}")
@@ -334,10 +350,10 @@ def main():
                     sf.write(out / f"{tag}__{key}.wav", samples, sr)
                 if sess is not None:
                     try:
-                        audio, words, hop = word_timings(piper, sess, prepared["05_level3"]["phonemes"], sid)
+                        audio, words, info = word_timings(piper, sess, prepared["05_level3"]["phonemes"], sid)
                         sf.write(out / f"{tag}__05_level3_timed.wav", audio, piper.sample_rate)
                         (out / f"{tag}__timings.json").write_text(
-                            json.dumps({"hop": hop, "words": words}, ensure_ascii=False, indent=1), encoding="utf-8")
+                            json.dumps({**info, "words": words}, ensure_ascii=False, indent=1), encoding="utf-8")
                     except Exception:  # noqa: BLE001
                         report.setdefault("timing_errors", {})[tag] = traceback.format_exc()
         except Exception:  # noqa: BLE001

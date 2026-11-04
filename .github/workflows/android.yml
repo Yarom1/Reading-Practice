@@ -8,6 +8,8 @@ on:
       - "docs/**"
       - "tools/voice/**"
       - ".github/workflows/voice-samples.yml"
+      - ".github/workflows/g2p-compare.yml"
+      - ".github/workflows/speech-assets.yml"
   workflow_dispatch:
     inputs:
       release:

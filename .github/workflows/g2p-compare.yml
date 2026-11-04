@@ -1,0 +1,69 @@
+name: G2P comparison
+
+# Diagnostic: compares the phonemes of the recorded voice with the convention the voice was
+# trained on (renikud), and renders A/B samples. Does not change the app.
+on:
+  push:
+    paths:
+      - "tools/voice/compare_g2p.py"
+      - ".github/workflows/g2p-compare.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Inputs from the last recording run
+        run: |
+          mkdir -p g2p-in g2p-out
+          git fetch -q origin "build-output/${GITHUB_REF_NAME}-speech"
+          git show FETCH_HEAD:utterances.json > g2p-in/utterances.json
+          git show FETCH_HEAD:review/words.tsv > g2p-in/words.tsv
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install renikud-onnx "piper-onnx==1.0.6" soundfile huggingface_hub numpy imageio-ffmpeg
+
+      - name: Compare
+        id: compare
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          python tools/voice/compare_g2p.py --catalog g2p-in/utterances.json --words g2p-in/words.tsv --out g2p-out 2>&1 | tee g2p-out/run.log
+
+      - name: Encode MP3
+        if: always()
+        run: |
+          FF=$(python -c "import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())")
+          cd g2p-out
+          for f in *.wav; do
+            [ -e "$f" ] || continue
+            "$FF" -loglevel error -y -i "$f" -ac 1 -b:a 64k "${f%.wav}.mp3" && rm "$f"
+          done
+          echo "compare=${{ steps.compare.outcome }} sha=${GITHUB_SHA} run=${GITHUB_RUN_NUMBER}" > STATUS.txt
+
+      - name: Publish output branch
+        if: always()
+        run: |
+          BRANCH="build-output/${GITHUB_REF_NAME}-g2p"
+          rm -rf /tmp/out && mkdir -p /tmp/out && cp -r g2p-out/. /tmp/out/
+          cd /tmp/out
+          git init -q -b main
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "G2P comparison ${GITHUB_RUN_NUMBER} of ${GITHUB_SHA}"
+          git push -q --force "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:refs/heads/${BRANCH}"

@@ -6,7 +6,8 @@ name: Speech assets
 on:
   push:
     paths:
-      - "tools/voice/**"
+      - "tools/voice/build_speech.py"
+      - "tools/voice/stress.tsv"
       - "app/src/main/assets/content/**"
       - "app/src/main/java/com/korimbekef/reading/ui/Texts.kt"
       - "app/src/main/java/com/korimbekef/reading/speech/SpeechCatalog.kt"

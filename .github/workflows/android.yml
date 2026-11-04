@@ -10,6 +10,7 @@ on:
       - ".github/workflows/voice-samples.yml"
       - ".github/workflows/g2p-compare.yml"
       - ".github/workflows/stress-probe.yml"
+      - ".github/workflows/asr-check.yml"
       - ".github/workflows/speech-assets.yml"
   workflow_dispatch:
     inputs:

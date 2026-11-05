@@ -1,0 +1,1402 @@
+msg	עַכְשָׁיו תּוֹרְךָ! קְרָא אֶת הַשּׁוּרָה בְּקוֹל.	ʔaχʃˈav toʁχˈa! kʁˈa ʔˈet haʃuʁˈa bekˈol.
+msg	עַכְשָׁיו תּוֹרֵךְ! קִרְאִי אֶת הַשּׁוּרָה בְּקוֹל.	ʔaχʃˈav toʁˈeχ! kiʁʔˈi ʔˈet haʃuʁˈa bekˈol.
+msg	תּוֹרְךָ לִקְרֹא! לְאַט לְאַט, אֵין מָה לְמַהֵר.	toʁχˈa likʁˈo! leʔˈat leʔˈat, ʔˈejn mˈa lemahˈeʁ.
+msg	תּוֹרֵךְ לִקְרֹא! לְאַט לְאַט, אֵין מָה לְמַהֵר.	toʁˈeχ likʁˈo! leʔˈat leʔˈat, ʔˈejn mˈa lemahˈeʁ.
+msg	עַכְשָׁיו אַתָּה! אֶצְבַּע מִתַּחַת לַמִּלִּים, וְקָדִימָה.	ʔaχʃˈav ʔatˈa! ʔˈetsba mitˈaχat lamilˈim, vekadimˈa.
+msg	עַכְשָׁיו אַתְּ! אֶצְבַּע מִתַּחַת לַמִּלִּים, וְקָדִימָה.	ʔaχʃˈav ʔˈat! ʔˈetsba mitˈaχat lamilˈim, vekadimˈa.
+msg	נַסֵּה לִקְרֹא אֶת הַשּׁוּרָה לְבַד.	nasˈe likʁˈo ʔˈet haʃuʁˈa levˈad.
+msg	נַסִּי לִקְרֹא אֶת הַשּׁוּרָה לְבַד.	nasˈi likʁˈo ʔˈet haʃuʁˈa levˈad.
+msg	אֵיזֶה יֹפִי! הִצְלַחְתָּ לִקְרֹא אֶת הַשּׁוּרָה!	ʔˈejze jˈofi! hitslˈaχta likʁˈo ʔˈet haʃuʁˈa!
+msg	אֵיזֶה יֹפִי! הִצְלַחְתְּ לִקְרֹא אֶת הַשּׁוּרָה!	ʔˈejze jˈofi! hitslˈaχt likʁˈo ʔˈet haʃuʁˈa!
+msg	כָּל הַכָּבוֹד! מַמְשִׁיכִים לַשּׁוּרָה הַבָּאָה?	kˈol hakavˈod! mamʃiχˈim laʃuʁˈa habaʔˈa?
+msg	אַתָּה אַלּוּף! עוֹד שׁוּרָה!	ʔatˈa ʔalˈuf! ʔˈod ʃuʁˈa!
+msg	אַתְּ אַלּוּפָה! עוֹד שׁוּרָה!	ʔˈat ʔalufˈa! ʔˈod ʃuʁˈa!
+msg	מְצֻיָּן! קָרָאתָ בְּעַצְמְךָ.	metsujˈan! kaʁˈata beʔatsmeχˈa.
+msg	מְצֻיָּן! קָרָאת בְּעַצְמֵךְ.	metsujˈan! kaʁˈat beʔatsmˈeχ.
+msg	אֵיזוֹ הַתְמָדָה! כָּל הַכָּבוֹד.	ʔˈejzo hatmadˈa! kˈol hakavˈod.
+msg	יֹפִי שֶׁל מַאֲמָץ!	jˈofi ʃˈel maʔamˈats!
+msg	בּוֹא נְנַסֶּה שׁוּב בְּיַחַד. לְאַט לְאַט.	bˈo nenasˈe ʃˈuv bejˈaχad. leʔˈat leʔˈat.
+msg	בּוֹאִי נְנַסֶּה שׁוּב בְּיַחַד. לְאַט לְאַט.	bˈoʔi nenasˈe ʃˈuv bejˈaχad. leʔˈat leʔˈat.
+msg	עַכְשָׁיו קְרָא אַתָּה אֶת כָּל הַסִּפּוּר!	ʔaχʃˈav kʁˈa ʔatˈa ʔˈet kˈol hasipˈuʁ!
+msg	עַכְשָׁיו קִרְאִי אַתְּ אֶת כָּל הַסִּפּוּר!	ʔaχʃˈav kiʁʔˈi ʔˈat ʔˈet kˈol hasipˈuʁ!
+msg	כָּל הַכָּבוֹד! סִיַּמְתָּ אֶת הַסִּפּוּר!	kˈol hakavˈod! sijˈamta ʔˈet hasipˈuʁ!
+msg	כָּל הַכָּבוֹד! סִיַּמְתְּ אֶת הַסִּפּוּר!	kˈol hakavˈod! sijˈamt ʔˈet hasipˈuʁ!
+msg	שָׁלוֹם! בּוֹא נִקְרָא יַחַד.	ʃalˈom! bˈo nikʁˈa jˈaχad.
+msg	שָׁלוֹם! בּוֹאִי נִקְרָא יַחַד.	ʃalˈom! bˈoʔi nikʁˈa jˈaχad.
+msg	שָׁלוֹם! מָה נִקְרָא הַיּוֹם?	ʃalˈom! mˈa nikʁˈa hajˈom?
+msg	סִיַּמְנוּ אֶת הַמִּשְׂחָק!	sijˈamnu ʔˈet hamisχˈak!
+msg	זֶה קֶצֶב הַקְּרִיאָה שֶׁנִּבְחַר.	zˈe kˈetsev hakʁiʔˈa ʃenivχˈaʁ.
+msg	שָׁלוֹם! בּוֹאוּ נִקְרָא סִפּוּר יַחַד.	ʃalˈom! bˈoʔu nikʁˈa sipˈuʁ jˈaχad.
+line	אַבָּא. אִמָּא.	ʔˈaba. ʔˈima.
+line	בַּיִת. דָּג.	bˈajit. dˈaɡ.
+line	גַּן. עֵץ.	ɡˈan. ʔˈets.
+line	יָם. שֶׁמֶשׁ.	jˈam. ʃˈemeʃ.
+line	סוּס. פִּיל.	sˈus. pˈil.
+line	אַבָּא בָּא.	ʔˈaba bˈa.
+line	אִמָּא בָּאָה.	ʔˈima baʔˈa.
+line	סַבָּא וְסַבְתָּא בָּאִים.	sˈaba vesˈavta baʔˈim.
+line	כֻּלָּם בַּבַּיִת!	kulˈam babˈajit!
+line	אֵיזֶה כֵּיף!	ʔˈejze kˈef!
+line	זֶה דָּג.	zˈe dˈaɡ.
+line	הַדָּג קָטָן.	hadˈaɡ katˈan.
+line	הַדָּג שׂוֹחֶה בַּמַּיִם.	hadˈaɡ soχˈe bamˈajim.
+line	הַדָּג אוֹהֵב מַיִם.	hadˈaɡ ʔohˈev mˈajim.
+line	שָׁלוֹם, דָּג!	ʃalˈom, dˈaɡ!
+line	יֵשׁ לִי חָתוּל.	jˈeʃ lˈi χatˈul.
+line	הֶחָתוּל לָבָן.	heχatˈul lavˈan.
+line	הֶחָתוּל אוֹכֵל.	heχatˈul ʔoχˈel.
+line	הֶחָתוּל יָשֵׁן.	heχatˈul jaʃˈen.
+line	מְיָאוּ, מְיָאוּ!	mejaʔˈu, mejaʔˈu!
+line	יֵשׁ לִי כַּדּוּר.	jˈeʃ lˈi kadˈuʁ.
+line	הַכַּדּוּר גָּדוֹל.	hakadˈuʁ ɡadˈol.
+line	הַכַּדּוּר אָדֹם.	hakadˈuʁ ʔadˈom.
+line	אֲנִי זוֹרֵק.	ʔanˈi zoʁˈek.
+line	דָּנִי תּוֹפֵס!	dˈani tofˈes!
+line	זֶה הַגַּן.	zˈe haɡˈan.
+line	בַּגַּן יֵשׁ עֵץ.	baɡˈan jˈeʃ ʔˈets.
+line	עַל הָעֵץ יֵשׁ פֵּרוֹת.	ʔˈal haʔˈets jˈeʃ peʁˈot.
+line	דָּנָה קוֹטֶפֶת תַּפּוּחַ.	dˈana kotˈefet tapˈuaχ.
+line	אֵיזֶה טָעִים!	ʔˈejze taʔˈim!
+line	הִנֵּה הַשֶּׁמֶשׁ.	hˈine haʃˈemeʃ.
+line	הַשֶּׁמֶשׁ חַמָּה.	haʃˈemeʃ χamˈa.
+line	הַשָּׁמַיִם כְּחֻלִּים.	haʃamˈajim keχulˈim.
+line	נֵצֵא לְשַׂחֵק בַּחוּץ!	netsˈe lesaχˈek baχˈuts!
+line	פַּרְפַּר עָף.	paʁpˈaʁ ʔˈaf.
+line	הַפַּרְפַּר צִבְעוֹנִי.	hapaʁpˈaʁ tsivʔonˈi.
+line	הוּא עָף אֶל הַפֶּרַח.	hˈu ʔˈaf ʔˈel hapˈeʁaχ.
+line	הַפֶּרַח רֵיחָנִי.	hapˈeʁaχ ʁeχanˈi.
+line	שָׁלוֹם, פַּרְפַּר!	ʃalˈom, paʁpˈaʁ!
+line	לְתָמָר יֵשׁ כֶּלֶב.	letamˈaʁ jˈeʃ kˈelev.
+line	הַכֶּלֶב קוֹפֵץ.	hakˈelev kofˈets.
+line	הַכֶּלֶב רָץ.	hakˈelev ʁˈats.
+line	הַכֶּלֶב נוֹבֵחַ: הַב, הַב!	hakˈelev novˈeaχ: hˈav, hˈav!
+line	תָּמָר צוֹחֶקֶת.	tamˈaʁ tsoχˈeket.
+line	בַּבֹּקֶר נוֹעָה קָמָה.	babˈokeʁ nˈoʔa kamˈa.
+line	הִיא מְצַחְצַחַת שִׁנַּיִם.	hˈi metsaχtsˈaχat ʃinˈajim.
+line	אַחַר כָּךְ הִיא אוֹכֶלֶת אֲרוּחַת בֹּקֶר.	ʔaχˈaʁ kˈaχ hˈi ʔoχˈelet ʔaʁuχˈat bˈokeʁ.
+line	נוֹעָה לוֹבֶשֶׁת חֻלְצָה כְּחֻלָּה.	nˈoʔa lovˈeʃet χultsˈa keχulˈa.
+line	הִיא לוֹקַחַת אֶת הַתִּיק.	hˈi lokˈaχat ʔˈet hatˈik.
+line	לְהִתְרָאוֹת, אִמָּא!	lehitʁaʔˈot, ʔˈima!
+line	נוֹעָה הוֹלֶכֶת לַגַּן.	nˈoʔa holˈeχet laɡˈan.
+line	עַל הָעֵץ יוֹשֶׁבֶת צִפּוֹר קְטַנָּה.	ʔˈal haʔˈets joʃˈevet tsipˈoʁ ktanˈa.
+line	הַצִּפּוֹר שָׁרָה שִׁיר.	hatsipˈoʁ ʃaʁˈa ʃˈiʁ.
+line	הַשִּׁיר יָפֶה מְאוֹד.	haʃˈiʁ jafˈe meʔˈod.
+line	פִּתְאֹם נוֹשֶׁבֶת רוּחַ.	pitʔˈom noʃˈevet ʁˈuaχ.
+line	הַצִּפּוֹר פּוֹרֶשֶׂת כְּנָפַיִם וְעָפָה.	hatsipˈoʁ poʁˈeset knafˈajim veʔafˈa.
+line	לְאָן הִיא עָפָה? הַבַּיְתָה!	leʔˈan hˈi ʔafˈa? habˈajta!
+line	הַיּוֹם יֵשׁ לְאוֹרִי יוֹם הֻלֶּדֶת.	hajˈom jˈeʃ leʔˈoʁi jˈom hulˈedet.
+line	אוֹרִי בֶּן שֵׁשׁ.	ʔˈoʁi bˈen ʃˈeʃ.
+line	כָּל הַחֲבֵרִים בָּאוּ לַמְּסִבָּה.	kˈol haχaveʁˈim bˈaʔu lamsibˈa.
+line	יֵשׁ עוּגָה וּבָלוֹנִים.	jˈeʃ ʔuɡˈa uvalonˈim.
+line	כֻּלָּם שָׁרִים: הַיּוֹם יוֹם הֻלֶּדֶת!	kulˈam ʃaʁˈim: hajˈom jˈom hulˈedet!
+line	אוֹרִי מְכַבֶּה אֶת הַנֵּרוֹת.	ʔˈoʁi meχabˈe ʔˈet haneʁˈot.
+line	בַּחֹרֶף יוֹרֵד גֶּשֶׁם.	baχˈoʁef joʁˈed ɡˈeʃem.
+line	טִיף, טִיף, טִפּוֹת עַל הַחַלּוֹן.	tˈif, tˈif, tipˈot ʔˈal haχalˈon.
+line	יוֹאָב לוֹבֵשׁ מְעִיל וּמַגָּפַיִם.	joʔˈav lovˈeʃ meʔˈil umaɡafˈajim.
+line	הוּא קוֹפֵץ בַּשְּׁלוּלִית.	hˈu kofˈets baʃlulˈit.
+line	הַמַּיִם מַתִּיזִים לְכָל הַצְּדָדִים!	hamˈajim matizˈim leχˈol hatsdadˈim!
+line	אַחֲרֵי הַגֶּשֶׁם יֵשׁ קֶשֶׁת בַּשָּׁמַיִם.	ʔaχaʁˈej haɡˈeʃem jˈeʃ kˈeʃet baʃamˈajim.
+line	אַרְנָב קָטָן גָּר בַּיַּעַר.	ʔaʁnˈav katˈan ɡˈaʁ bajˈaʔaʁ.
+line	יוֹם אֶחָד הוּא פָּגַשׁ צָב.	jˈom ʔeχˈad hˈu paɡˈaʃ tsˈav.
+line	בּוֹא נִהְיֶה חֲבֵרִים, אָמַר הָאַרְנָב.	bˈo nihjˈe χaveʁˈim, ʔamˈaʁ haʔaʁnˈav.
+line	הַצָּב חִיֵּךְ וְאָמַר: כֵּן!	hatsˈav χijˈeχ veʔamˈaʁ: kˈen!
+line	מֵאָז הֵם מְשַׂחֲקִים בְּיַחַד.	meʔˈaz hˈem mesaχakˈim bejˈaχad.
+line	הָאַרְנָב רָץ מַהֵר, וְהַצָּב הוֹלֵךְ לְאַט.	haʔaʁnˈav ʁˈats mahˈeʁ, vehatsˈav holˈeχ leʔˈat.
+line	אֲבָל הֵם תָּמִיד מְחַכִּים זֶה לָזֶה.	ʔavˈal hˈem tamˈid meχakˈim zˈe lazˈe.
+line	בַּקַּיִץ הוֹלְכִים לַיָּם.	bakˈajits holχˈim lajˈam.
+line	הַחוֹל חַם וְרַךְ.	haχˈol χˈam veʁˈaχ.
+line	מִיכַל בּוֹנָה אַרְמוֹן מִחוֹל.	miχˈal bonˈa ʔaʁmˈon miχˈol.
+line	אָחִיהָ אוֹסֵף צְדָפִים.	ʔaχihˈa ʔosˈef tsdafˈim.
+line	גַּל גָּדוֹל מַגִּיעַ אֶל הַחוֹף.	ɡˈal ɡadˈol maɡˈia ʔˈel haχˈof.
+line	הָאַרְמוֹן נֶעֱלָם, וְכֻלָּם צוֹחֲקִים.	haʔaʁmˈon neʔelˈam, veχulˈam tsoχakˈim.
+line	לְסַבָּא יֵשׁ גִּנָּה גְּדוֹלָה.	lesˈaba jˈeʃ ɡinˈa ɡdolˈa.
+line	בַּגִּנָּה גְּדֵלִים עַגְבָנִיּוֹת וּמְלָפְפוֹנִים.	baɡinˈa ɡdelˈim ʔaɡvanijˈot umelafefonˈim.
+line	רוֹנִי עוֹזֵר לְסַבָּא לְהַשְׁקוֹת.	ʁˈoni ʔozˈeʁ lesˈaba lehaʃkˈot.
+line	הֵם שׁוֹלְפִים גֶּזֶר מִן הָאֲדָמָה.	hˈem ʃolfˈim ɡˈezeʁ mˈin haʔadamˈa.
+line	הַגֶּזֶר כָּתֹם וּמָתוֹק.	haɡˈezeʁ katˈom umatˈok.
+line	סַבָּא אוֹמֵר: מַה שֶּׁגָּדֵל בַּגִּנָּה הֲכִי טָעִים!	sˈaba ʔomˈeʁ: mˈa ʃeɡadˈel baɡinˈa haχˈi taʔˈim!
+line	בַּלַּיְלָה הַשָּׁמַיִם חֲשׁוּכִים.	balˈajla haʃamˈajim χaʃuχˈim.
+line	אֲבָל הַיָּרֵחַ מֵאִיר.	ʔavˈal hajaʁˈeaχ meʔˈiʁ.
+line	מִסָּבִיב יֵשׁ הַרְבֵּה כּוֹכָבִים.	misavˈiv jˈeʃ haʁbˈe koχavˈim.
+line	עֲנָנָה מְכַסָּה אֶת הַיָּרֵחַ.	ʔananˈa meχasˈa ʔˈet hajaʁˈeaχ.
+line	אֵיפֹה הַיָּרֵחַ? הִנֵּה הוּא!	ʔˈejfo hajaʁˈeaχ? hˈine hˈu!
+line	לַיְלָה טוֹב, יָרֵחַ!	lˈajla tˈov, jaʁˈeaχ!
+line	דָּנִי יָצָא לְטַיֵּל בַּגִּנָּה.	dˈani jatsˈa letajˈel baɡinˈa.
+line	הוּא רָאָה פְּרָחִים צִבְעוֹנִיִּים וְעֵצִים גְּבוֹהִים.	hˈu ʁaʔˈa pʁaχˈim tsivʔonijˈim veʔetsˈim ɡvohˈim.
+line	עַל אַחַד הָעֵצִים יָשְׁבָה סְנָאִית קְטַנָּה.	ʔˈal ʔaχˈad haʔetsˈim jaʃvˈa snaʔˈit ktanˈa.
+line	הַסְּנָאִית אָכְלָה אֱגוֹז.	hasnaʔˈit ʔaχlˈa ʔeɡˈoz.
+line	דָּנִי עָמַד בְּשֶׁקֶט וְהִסְתַּכֵּל.	dˈani ʔamˈad beʃˈeket vehistakˈel.
+line	פִּתְאֹם הַסְּנָאִית קָפְצָה לָעֵץ הַבָּא.	pitʔˈom hasnaʔˈit kaftsˈa laʔˈets habˈa.
+line	דָּנִי חִיֵּךְ. אֵיזֶה טִיּוּל נִפְלָא!	dˈani χijˈeχ. ʔˈejze tijˈul niflˈa!
+line	הַיּוֹם אֲנַחְנוּ אוֹפִים עוּגָה.	hajˈom ʔanˈaχnu ʔofˈim ʔuɡˈa.
+line	אִמָּא מוֹצִיאָה קֶמַח, סֻכָּר וּבֵיצִים.	ʔˈima motsiʔˈa kˈemaχ, sukˈaʁ uvetsˈim.
+line	שִׁירָה שׁוֹבֶרֶת אֶת הַבֵּיצִים לַקְּעָרָה.	ʃˈiʁa ʃovˈeʁet ʔˈet habetsˈim lakʔaʁˈa.
+line	אָחִיהָ יוֹנִי מְעַרְבֵּב הֵיטֵב.	ʔaχihˈa jˈoni meʔaʁbˈev hetˈev.
+line	שָׂמִים אֶת הָעוּגָה בַּתַּנּוּר.	samˈim ʔˈet haʔuɡˈa batanˈuʁ.
+line	רֵיחַ טוֹב מְמַלֵּא אֶת הַבַּיִת.	ʁˈeaχ tˈov memalˈe ʔˈet habˈajit.
+line	אַחֲרֵי חֲצִי שָׁעָה הָעוּגָה מוּכָנָה.	ʔaχaʁˈej χatsˈi ʃaʔˈa haʔuɡˈa muχanˈa.
+line	כֻּלָּם טוֹעֲמִים וְאוֹמְרִים: מַמָּשׁ טָעִים!	kulˈam toʔamˈim veʔomʁˈim: mamˈaʃ taʔˈim!
+line	לְרוֹנִי יֵשׁ כַּלְבָּה בְּשֵׁם לוּלוּ.	leʁˈoni jˈeʃ kalbˈa beʃˈem lˈulu.
+line	יוֹם אֶחָד לוּלוּ בָּרְחָה מֵהֶחָצֵר.	jˈom ʔeχˈad lˈulu baʁχˈa meheχatsˈeʁ.
+line	רוֹנִי חִפֵּשׂ אוֹתָהּ בְּכָל מָקוֹם.	ʁˈoni χipˈes ʔotˈa beχˈol makˈom.
+line	הוּא קָרָא בְּקוֹל: לוּלוּ, אֵיפֹה אַתְּ?	hˈu kaʁˈa bekˈol: lˈulu, ʔˈejfo ʔˈat?
+line	פִּתְאֹם הוּא שָׁמַע נְבִיחָה מֵאֲחוֹרֵי הַשִּׂיחַ.	pitʔˈom hˈu ʃamˈa neviχˈa meʔaχoʁˈej hasˈiaχ.
+line	לוּלוּ רָצָה אֵלָיו וְכִשְׁכְּשָׁה בַּזָּנָב.	lˈulu ʁˈatsa ʔelˈav veχiʃkeʃˈa bazanˈav.
+line	רוֹנִי חִבֵּק אוֹתָהּ חָזָק חָזָק.	ʁˈoni χibˈek ʔotˈa χazˈak χazˈak.
+line	מֵאָז הוּא סוֹגֵר תָּמִיד אֶת הַשַּׁעַר.	meʔˈaz hˈu soɡˈeʁ tamˈid ʔˈet haʃˈaʔaʁ.
+line	מָאיָה שָׁתְלָה זֶרַע קָטָן בְּעָצִיץ.	mˈaja ʃatlˈa zˈeʁa katˈan beʔatsˈits.
+line	כָּל יוֹם הִיא הִשְׁקְתָה אוֹתוֹ בִּזְהִירוּת.	kˈol jˈom hˈi hiʃketˈa ʔotˈo bizhiʁˈut.
+line	עָבְרוּ כַּמָּה יָמִים, וְלֹא קָרָה כְּלוּם.	ʔavʁˈu kˈama jamˈim, velˈo kaʁˈa klˈum.
+line	מָאיָה לֹא וִתְּרָה.	mˈaja lˈo vitʁˈa.
+line	בֹּקֶר אֶחָד הִיא רָאֲתָה עָלֶה יָרֹק קָטָן.	bˈokeʁ ʔeχˈad hˈi ʁaʔatˈa ʔalˈe jaʁˈok katˈan.
+line	הַצֶּמַח גָּדַל וְגָדַל, עַד שֶׁפָּרַח פֶּרַח צָהֹב.	hatsˈemaχ ɡadˈal veɡadˈal, ʔˈad ʃepaʁˈaχ pˈeʁaχ tsahˈov.
+line	מָאיָה לָמְדָה: סַבְלָנוּת מְשַׁתֶּלֶמֶת!	mˈaja lamdˈa: savlanˈut meʃatelˈemet!
+line	כָּל בֹּקֶר הָאוֹטוֹבּוּס הַצָּהֹב מַגִּיעַ לַתַּחֲנָה.	kˈol bˈokeʁ haʔˈotobus hatsahˈov maɡˈia lataχanˈa.
+line	הַנֶּהָג אוֹמֵר: בֹּקֶר טוֹב, יְלָדִים!	hanehˈaɡ ʔomˈeʁ: bˈokeʁ tˈov, jeladˈim!
+line	הַיְלָדִים עוֹלִים וּמִתְיַשְּׁבִים בִּמְקוֹמוֹת.	hajeladˈim ʔolˈim umitjaʃvˈim bimkomˈot.
+line	עִדּוֹ יוֹשֵׁב לְיַד הַחַלּוֹן.	ʔˈido joʃˈev lejˈad haχalˈon.
+line	הוּא סוֹפֵר מְכוֹנִיּוֹת אֲדֻמּוֹת.	hˈu sofˈeʁ meχonijˈot ʔadumˈot.
+line	אַחַת, שְׁתַּיִם, שָׁלֹשׁ... הִנֵּה בֵּית הַסֵּפֶר!	ʔaχˈat, ʃtˈajim, ʃalˈoʃ... hˈine bˈet hasˈefeʁ!
+line	כֻּלָּם יוֹרְדִים וְאוֹמְרִים תּוֹדָה לַנֶּהָג.	kulˈam joʁdˈim veʔomʁˈim todˈa lanehˈaɡ.
+line	נוֹגָה רָצְתָה לְשַׂמֵּחַ אֶת סַבְתָּא.	nˈoɡa ʁatstˈa lesamˈeaχ ʔˈet sˈavta.
+line	הִיא כָּתְבָה לָהּ מִכְתָּב.	hˈi katvˈa lˈa miχtˈav.
+line	סַבְתָּא יְקָרָה, אֲנִי אוֹהֶבֶת אוֹתָךְ מְאוֹד.	sˈavta jekaʁˈa, ʔanˈi ʔohˈevet ʔotˈaχ meʔˈod.
+line	נוֹגָה צִיְּרָה לֵב גָּדוֹל וּפְרָחִים.	nˈoɡa tsijʁˈa lˈev ɡadˈol ufʁaχˈim.
+line	הִיא שָׂמָה אֶת הַמִּכְתָּב בַּמַּעֲטָפָה.	hˈi sˈama ʔˈet hamiχtˈav bamaʔatafˈa.
+line	לְמָחֳרָת סַבְתָּא הִתְקַשְּׁרָה.	lemoχoʁˈat sˈavta hitkaʃʁˈa.
+line	קִבַּלְתִּי אֶת הַמִּכְתָּב, אָמְרָה סַבְתָּא, וְשָׂמַחְתִּי מְאוֹד!	kibˈalti ʔˈet hamiχtˈav, ʔamʁˈa sˈavta, vesamˈaχti meʔˈod!
+line	מִתַּחַת לַמַּדְרֵגוֹת גָּרָה חֲתוּלָה אֲפֹרָה.	mitˈaχat lamadʁeɡˈot ɡˈaʁa χatulˈa ʔafoʁˈa.
+line	יוֹם אֶחָד נוֹלְדוּ לָהּ אַרְבָּעָה גּוּרִים.	jˈom ʔeχˈad noldˈu lˈa ʔaʁbaʔˈa ɡuʁˈim.
+line	הַגּוּרִים הָיוּ קְטַנִּים וְעֵינֵיהֶם סְגוּרוֹת.	haɡuʁˈim hajˈu ktanˈim veʔenehˈem sɡuʁˈot.
+line	הַחֲתוּלָה לִקְּקָה אוֹתָם וְשָׁמְרָה עֲלֵיהֶם.	haχatulˈa likekˈa ʔotˈam veʃamʁˈa ʔalehˈem.
+line	אַחֲרֵי שָׁבוּעַ הַגּוּרִים פָּקְחוּ עֵינַיִם.	ʔaχaʁˈej ʃavˈua haɡuʁˈim pakχˈu ʔenˈajim.
+line	עַכְשָׁיו הֵם מְשַׂחֲקִים בְּכַדּוּר צֶמֶר.	ʔaχʃˈav hˈem mesaχakˈim beχadˈuʁ tsˈemeʁ.
+line	וְהַחֲתוּלָה מִסְתַּכֶּלֶת עֲלֵיהֶם בְּגַאֲוָה.	vehaχatulˈa mistakˈelet ʔalehˈem beɡaʔavˈa.
+line	טִיף, טִיף, טִפּוֹת קְטַנּוֹת,	tˈif, tˈif, tipˈot ktanˈot,
+line	רוֹקְדוֹת עַל הַגַּגּוֹת.	ʁokdˈot ʔˈal haɡaɡˈot.
+line	הָאֲדָמָה שׁוֹתָה מַיִם,	haʔadamˈa ʃotˈa mˈajim,
+line	הַפְּרָחִים פּוֹקְחִים עֵינַיִם.	hapʁaχˈim pokχˈim ʔenˈajim.
+line	הַגֶּשֶׁם עוֹצֵר, שֶׁקֶט, שֶׁקֶט,	haɡˈeʃem ʔotsˈeʁ, ʃˈeket, ʃˈeket,
+line	וּבַשָּׁמַיִם צוֹחֶקֶת קֶשֶׁת!	uvaʃamˈajim tsoχˈeket kˈeʃet!
+line	יוֹנָתָן אָהַב לְהִסְתַּכֵּל עַל הַכּוֹכָבִים מֵהַחַלּוֹן.	jonatˈan ʔahˈav lehistakˈel ʔˈal hakoχavˈim mehaχalˈon.
+line	כָּל לַיְלָה, לִפְנֵי הַשֵּׁנָה, הוּא חָלַם לִהְיוֹת אַסְטְרוֹנָאוּט.	kˈol lˈajla, lifnˈej haʃenˈa, hˈu χalˈam lihjˈot ʔastʁonaʔˈut.
+line	יוֹם אֶחָד הוּא בָּנָה חֲלָלִית מִקֻּפְסָאוֹת קַרְטוֹן.	jˈom ʔeχˈad hˈu banˈa χalalˈit mikufsaʔˈot kaʁtˈon.
+line	הוּא צָבַע אוֹתָהּ בְּכֶסֶף וּבִכְחֹל, וְהִדְבִּיק עָלֶיהָ כּוֹכָבִים מְנַצְנְצִים.	hˈu tsavˈa ʔotˈa beχˈesef uviχχˈol, vehidbˈik ʔalˈeha koχavˈim menatsnetsˈim.
+line	אֲחוֹתוֹ הַקְּטַנָּה, רוֹנִי, שָׁאֲלָה: לְאָן אַתָּה טָס?	ʔaχotˈo haktanˈa, ʁˈoni, ʃaʔalˈa: leʔˈan ʔatˈa tˈas?
+line	לַיָּרֵחַ, עָנָה יוֹנָתָן, וְאַחַר כָּךְ לְמַאְדִּים!	lajaʁˈeaχ, ʔanˈa jonatˈan, veʔaχˈaʁ kˈaχ lemaʔdˈim!
+line	הַשְּׁנַיִם נִכְנְסוּ לַחֲלָלִית וְסָפְרוּ לְאָחוֹר:	haʃnˈajim niχnesˈu laχalalˈit vesafʁˈu leʔaχˈoʁ:
+line	חָמֵשׁ, אַרְבַּע, שָׁלֹשׁ, שְׁתַּיִם, אַחַת, הַמְרָאָה!	χamˈeʃ, ʔaʁbˈa, ʃalˈoʃ, ʃtˈajim, ʔaχˈat, hamʁaʔˈa!
+line	אִמָּא קָרְאָה מֵהַמִּטְבָּח: אַסְטְרוֹנָאוּטִים, אֲרוּחַת עֶרֶב!	ʔˈima kaʁʔˈa mehamitbˈaχ: ʔastʁonaʔutˈim, ʔaʁuχˈat ʔˈeʁev!
+line	הַחֲלָלִית נָחֲתָה בְּשָׁלוֹם בַּמִּטְבָּח, וְכֻלָּם צָחֲקוּ.	haχalalˈit naχatˈa beʃalˈom bamitbˈaχ, veχulˈam tsaχakˈu.
+line	בְּעוֹד יוֹמַיִם יִהְיֶה יוֹם הַהֻלֶּדֶת שֶׁל אַבָּא.	beʔˈod jomˈajim jihjˈe jˈom hahulˈedet ʃˈel ʔˈaba.
+line	תָּמָר לֹא יָדְעָה מָה לָתֵת לוֹ.	tamˈaʁ lˈo jadʔˈa mˈa latˈet lˈo.
+line	אֵין לָהּ כֶּסֶף לִקְנוֹת מַתָּנָה.	ʔˈejn lˈa kˈesef liknˈot matanˈa.
+line	הִיא הָלְכָה לְסַבְתָּא וּבִקְּשָׁה עֵצָה.	hˈi halχˈa lesˈavta uvikʃˈa ʔetsˈa.
+line	סַבְתָּא אָמְרָה: הַמַּתָּנָה הֲכִי טוֹבָה הִיא מַשֶּׁהוּ שֶׁעוֹשִׂים בְּאַהֲבָה.	sˈavta ʔamʁˈa: hamatanˈa haχˈi tovˈa hˈi mˈaʃehu ʃeʔosˈim beʔahavˈa.
+line	תָּמָר חָשְׁבָה וְחָשְׁבָה, וְאָז הָיָה לָהּ רַעְיוֹן.	tamˈaʁ χaʃvˈa veχaʃvˈa, veʔˈaz hajˈa lˈa ʁaʔjˈon.
+line	הִיא אָסְפָה תְּמוּנוֹת שֶׁל כָּל הַמִּשְׁפָּחָה וְהִדְבִּיקָה אוֹתָן בְּאַלְבּוֹם.	hˈi ʔasfˈa tmunˈot ʃˈel kˈol hamiʃpaχˈa vehidbikˈa ʔotˈan beʔalbˈom.
+line	עַל כָּל דַּף הִיא כָּתְבָה זִכָּרוֹן קָטָן וּמַצְחִיק.	ʔˈal kˈol dˈaf hˈi katvˈa zikaʁˈon katˈan umatsχˈik.
+line	כְּשֶׁאַבָּא פָּתַח אֶת הָאַלְבּוֹם, הוּא צָחַק וְהִתְרַגֵּשׁ.	kʃeʔˈaba patˈaχ ʔˈet haʔalbˈom, hˈu tsaχˈak vehitʁaɡˈeʃ.
+line	זוֹ הַמַּתָּנָה הֲכִי יָפָה שֶׁקִּבַּלְתִּי, אָמַר וְחִבֵּק אוֹתָהּ.	zˈo hamatanˈa haχˈi jafˈa ʃekibˈalti, ʔamˈaʁ veχibˈek ʔotˈa.
+line	נִילִי הִיא נְמָלָה קְטַנָּה עִם לֵב גָּדוֹל.	nˈili hˈi nemalˈa ktanˈa ʔˈim lˈev ɡadˈol.
+line	כָּל הַקַּיִץ הִיא אָסְפָה גַּרְגְּרֵי חִטָּה לַקֵּן.	kˈol hakˈajits hˈi ʔasfˈa ɡaʁɡeʁˈej χitˈa lakˈen.
+line	הַגַּרְגְּרִים הָיוּ כְּבֵדִים, אֲבָל נִילִי לֹא וִתְּרָה.	haɡaʁɡeʁˈim hajˈu kvedˈim, ʔavˈal nˈili lˈo vitʁˈa.
+line	יוֹם אֶחָד הִיא רָאֲתָה חִפּוּשִׁית שֶׁנָּפְלָה עַל הַגַּב.	jˈom ʔeχˈad hˈi ʁaʔatˈa χipuʃˈit ʃenaflˈa ʔˈal haɡˈav.
+line	הַחִפּוּשִׁית נִסְּתָה לְהִתְהַפֵּךְ, אֲבָל לֹא הִצְלִיחָה.	haχipuʃˈit nistˈa lehithapˈeχ, ʔavˈal lˈo hitsliχˈa.
+line	נִילִי הִנִּיחָה אֶת הַגַּרְגֵּר וְרָצָה לַעֲזֹר.	nˈili hiniχˈa ʔˈet haɡaʁɡˈeʁ veʁˈatsa laʔazˈoʁ.
+line	בְּכָל הַכֹּחַ הִיא דָּחֲפָה, וְהַחִפּוּשִׁית עָמְדָה עַל הָרַגְלַיִם.	beχˈol hakˈoaχ hˈi daχafˈa, vehaχipuʃˈit ʔamdˈa ʔˈal haʁaɡlˈajim.
+line	תּוֹדָה! אָמְרָה הַחִפּוּשִׁית. אֵיךְ אוּכַל לַעֲזֹר לָךְ?	todˈa! ʔamʁˈa haχipuʃˈit. ʔˈejχ ʔuχˈal laʔazˈoʁ lˈaχ?
+line	הַחִפּוּשִׁית הַגְּדוֹלָה הֵרִימָה אֶת הַגַּרְגֵּר בְּקַלּוּת וְנָשְׂאָה אוֹתוֹ לַקֵּן.	haχipuʃˈit haɡdolˈa heʁimˈa ʔˈet haɡaʁɡˈeʁ bekalˈut venasʔˈa ʔotˈo lakˈen.
+line	מֵאָז נִילִי וְהַחִפּוּשִׁית עוֹבְדוֹת יַחַד, וְהָעֲבוֹדָה קַלָּה הַרְבֵּה יוֹתֵר.	meʔˈaz nˈili vehaχipuʃˈit ʔovdˈot jˈaχad, vehaʔavodˈa kalˈa haʁbˈe jotˈeʁ.
+line	הַבֹּקֶר אֵיתָן הִתְעוֹרֵר מֻקְדָּם מֵהָרָגִיל.	habˈokeʁ ʔejtˈan hitʔoʁˈeʁ mukdˈam mehaʁaɡˈil.
+line	הַיּוֹם הוּא הַיּוֹם הָרִאשׁוֹן שֶׁלּוֹ בְּכִתָּה א׳.	hajˈom hˈu hajˈom haʁiʃˈon ʃelˈo beχitˈa ʔˈalef.
+line	הַבֶּטֶן שֶׁלּוֹ הִרְגִּישָׁה מַשֶּׁהוּ מוּזָר, כְּמוֹ פַּרְפָּרִים קְטַנִּים.	habˈeten ʃelˈo hiʁɡiʃˈa mˈaʃehu muzˈaʁ, kmˈo paʁpaʁˈim ktanˈim.
+line	מָה אִם לֹא יִהְיוּ לִי חֲבֵרִים? שָׁאַל אֶת אִמָּא.	mˈa ʔˈim lˈo jihjˈu lˈi χaveʁˈim? ʃaʔˈal ʔˈet ʔˈima.
+line	אִמָּא לִטְּפָה אֶת רֹאשׁוֹ וְאָמְרָה:	ʔˈima litfˈa ʔˈet ʁoʃˈo veʔamʁˈa:
+line	כֻּלָּם חֲדָשִׁים הַיּוֹם, לֹא רַק אַתָּה.	kulˈam χadaʃˈim hajˈom, lˈo ʁˈak ʔatˈa.
+line	בַּכִּתָּה הַמּוֹרָה חִיְּכָה וְאָמְרָה: בְּרוּכִים הַבָּאִים!	bakitˈa hamoʁˈa χijχˈa veʔamʁˈa: bʁuχˈim habaʔˈim!
+line	לְיַד אֵיתָן יָשַׁב יֶלֶד עִם מִשְׁקָפַיִם אֲדֻמִּים.	lejˈad ʔejtˈan jaʃˈav jˈeled ʔˈim miʃkafˈajim ʔadumˈim.
+line	קוֹרְאִים לִי עוֹמֶר, אָמַר הַיֶּלֶד. רוֹצֶה לְשַׂחֵק בַּהַפְסָקָה?	koʁʔˈim lˈi ʔˈomeʁ, ʔamˈaʁ hajˈeled. ʁotsˈe lesaχˈek bahafsakˈa?
+line	אֵיתָן חִיֵּךְ, וְהַפַּרְפָּרִים בַּבֶּטֶן עָפוּ לְמָקוֹם אַחֵר.	ʔejtˈan χijˈeχ, vehapaʁpaʁˈim babˈeten ʔˈafu lemakˈom ʔaχˈeʁ.
+line	בְּיוֹם שִׁשִּׁי סַבָּא וְלִיאוֹר בָּנוּ עֲפִיפוֹן אָדֹם.	bejˈom ʃiʃˈi sˈaba veliʔˈoʁ banˈu ʔafifˈon ʔadˈom.
+line	הֵם הִשְׁתַּמְּשׁוּ בְּמַקְלוֹת, בִּנְיָר וּבְחוּט אָרֹךְ.	hˈem hiʃtamʃˈu bemaklˈot, binjˈaʁ uveχˈut ʔaʁˈoχ.
+line	הֵם יָצְאוּ לַגִּבְעָה שֶׁמֵּאֲחוֹרֵי הַבַּיִת.	hˈem jatsʔˈu laɡivʔˈa ʃemeʔaχoʁˈej habˈajit.
+line	שָׁם תָּמִיד נוֹשֶׁבֶת רוּחַ חֲזָקָה.	ʃˈam tamˈid noʃˈevet ʁˈuaχ χazakˈa.
+line	לִיאוֹר רָץ מַהֵר, וְהָעֲפִיפוֹן עָלָה לַשָּׁמַיִם.	liʔˈoʁ ʁˈats mahˈeʁ, vehaʔafifˈon ʔalˈa laʃamˈajim.
+line	הוּא רָקַד בָּרוּחַ כְּמוֹ צִפּוֹר אֲדֻמָּה וּשְׂמֵחָה.	hˈu ʁakˈad baʁˈuaχ kmˈo tsipˈoʁ ʔadumˈa usmeχˈa.
+line	פִּתְאֹם הַחוּט נִקְרַע, וְהָעֲפִיפוֹן עָף רָחוֹק.	pitʔˈom haχˈut nikʁˈa, vehaʔafifˈon ʔˈaf ʁaχˈok.
+line	לִיאוֹר הָיָה עָצוּב, אֲבָל סַבָּא אָמַר:	liʔˈoʁ hajˈa ʔatsˈuv, ʔavˈal sˈaba ʔamˈaʁ:
+line	לֹא נוֹרָא, נִבְנֶה שְׁנַיִם חֲדָשִׁים!	lˈo noʁˈa, nivnˈe ʃnˈajim χadaʃˈim!
+line	וּבְשַׁבָּת עָפוּ בַּשָּׁמַיִם שְׁנֵי עֲפִיפוֹנִים: אֶחָד כָּחֹל וְאֶחָד יָרֹק.	uveʃabˈat ʔˈafu baʃamˈajim ʃnˈej ʔafifonˈim: ʔeχˈad kaχˈol veʔeχˈad jaʁˈok.
+line	בְּכָל עֶרֶב שָׁמְעָה שִׁירָן רַחַשׁ מוּזָר בַּגִּנָּה.	beχˈol ʔˈeʁev ʃamʔˈa ʃiʁˈan ʁˈaχaʃ muzˈaʁ baɡinˈa.
+line	מִי מִסְתּוֹבֵב שָׁם בַּחֹשֶׁךְ? שָׁאֲלָה אֶת אַבָּא.	mˈi mistovˈev ʃˈam baχˈoʃeχ? ʃaʔalˈa ʔˈet ʔˈaba.
+line	אַבָּא הֵבִיא פַּנָּס, וְהֵם יָצְאוּ לִבְדֹּק בְּשֶׁקֶט.	ʔˈaba hevˈi panˈas, vehˈem jatsʔˈu livdˈok beʃˈeket.
+line	לְיַד הַגָּדֵר הֵם רָאוּ כַּדּוּר קָטָן עִם קוֹצִים.	lejˈad haɡadˈeʁ hˈem ʁaʔˈu kadˈuʁ katˈan ʔˈim kotsˈim.
+line	זֶה קִפּוֹד! לָחֲשָׁה שִׁירָן בְּהִתְרַגְּשׁוּת.	zˈe kipˈod! laχaʃˈa ʃiʁˈan behitʁaɡʃˈut.
+line	הַקִּפּוֹד הֵרִים אֶת הָאַף הַקָּטָן וְרִחְרֵחַ אֶת הָאֲוִיר.	hakipˈod heʁˈim ʔˈet haʔˈaf hakatˈan veʁiχʁˈeaχ ʔˈet haʔavˈiʁ.
+line	אַבָּא הִסְבִּיר שֶׁקִּפּוֹדִים יוֹצְאִים בַּלַּיְלָה לְחַפֵּשׂ חֲרָקִים.	ʔˈaba hisbˈiʁ ʃekipodˈim jotsʔˈim balˈajla leχapˈes χaʁakˈim.
+line	שִׁירָן הִנִּיחָה לוֹ קְעָרָה קְטַנָּה עִם מַיִם.	ʃiʁˈan hiniχˈa lˈo keʔaʁˈa ktanˈa ʔˈim mˈajim.
+line	מֵאָז, בְּכָל עֶרֶב, הַקִּפּוֹד בָּא לִשְׁתּוֹת.	meʔˈaz, beχˈol ʔˈeʁev, hakipˈod bˈa liʃtˈot.
+line	וְשִׁירָן מְחַכָּה לוֹ בַּחַלּוֹן וּמְחַיֶּכֶת.	veʃiʁˈan meχakˈa lˈo baχalˈon umeχajˈeχet.
+line	לַכִּתָּה שֶׁל יָעֵל הִגִּיעָה תַּלְמִידָה חֲדָשָׁה בְּשֵׁם אָנָה.	lakitˈa ʃˈel jaʔˈel hiɡiʔˈa talmidˈa χadaʃˈa beʃˈem ʔˈana.
+line	אָנָה בָּאָה מֵאֶרֶץ רְחוֹקָה, וְעוֹד לֹא יָדְעָה עִבְרִית.	ʔˈana bˈaʔa meʔˈeʁets ʁeχokˈa, veʔˈod lˈo jadʔˈa ʔivʁˈit.
+line	בַּהַפְסָקָה הִיא יָשְׁבָה לְבַד עַל הַסַּפְסָל.	bahafsakˈa hˈi jaʃvˈa levˈad ʔˈal hasafsˈal.
+line	יָעֵל הִתְיַשְּׁבָה לְיָדָהּ וְהוֹצִיאָה מֵהַתִּיק שְׁנֵי תַּפּוּחִים.	jaʔˈel hitjaʃvˈa lejadˈa vehotsiʔˈa mehatˈik ʃnˈej tapuχˈim.
+line	הִיא נָתְנָה תַּפּוּחַ אֶחָד לְאָנָה וְחִיְּכָה.	hˈi natnˈa tapˈuaχ ʔeχˈad leʔˈana veχijχˈa.
+line	אָנָה חִיְּכָה בַּחֲזָרָה וְאָמְרָה בְּשֶׁקֶט: תּוֹדָה.	ʔˈana χijχˈa baχazaʁˈa veʔamʁˈa beʃˈeket: todˈa.
+line	כָּל יוֹם יָעֵל לִמְּדָה אוֹתָהּ כַּמָּה מִלִּים חֲדָשׁוֹת.	kˈol jˈom jaʔˈel limdˈa ʔotˈa kˈama milˈim χadaʃˈot.
+line	וְאָנָה לִמְּדָה אֶת יָעֵל שִׁיר בַּשָּׂפָה שֶׁלָּהּ.	veʔˈana limdˈa ʔˈet jaʔˈel ʃˈiʁ basafˈa ʃelˈa.
+line	אַחֲרֵי חֹדֶשׁ הֵן כְּבָר דִּבְּרוּ וְצָחֲקוּ יַחַד,	ʔaχaʁˈej χˈodeʃ hˈen kvˈaʁ dibʁˈu vetsaχakˈu jˈaχad,
+line	כְּמוֹ חֲבֵרוֹת טוֹבוֹת.	kmˈo χaveʁˈot tovˈot.
+line	טִפִּי הָיְתָה טִפַּת מַיִם קְטַנָּה בַּיָּם הַגָּדוֹל.	tˈipi hajtˈa tipˈat mˈajim ktanˈa bajˈam haɡadˈol.
+line	יוֹם אֶחָד הַשֶּׁמֶשׁ חִמְּמָה אוֹתָהּ, וְהִיא עָלְתָה לַשָּׁמַיִם.	jˈom ʔeχˈad haʃˈemeʃ χimemˈa ʔotˈa, vehˈi ʔaltˈa laʃamˈajim.
+line	שָׁם הִיא פָּגְשָׁה עוֹד הַרְבֵּה טִפּוֹת.	ʃˈam hˈi paɡʃˈa ʔˈod haʁbˈe tipˈot.
+line	יַחַד הֵן הָיוּ לְעָנָן אָפֹר וְכָבֵד.	jˈaχad hˈen hajˈu leʔanˈan ʔafˈoʁ veχavˈed.
+line	הָרוּחַ דָּחֲפָה אֶת הֶעָנָן אֶל הֶהָרִים.	haʁˈuaχ daχafˈa ʔˈet heʔanˈan ʔˈel hehaʁˈim.
+line	שָׁם הָיָה קַר, וְטִפִּי נָפְלָה אַרְצָה יַחַד עִם הַגֶּשֶׁם.	ʃˈam hajˈa kˈaʁ, vetˈipi naflˈa ʔˈaʁtsa jˈaχad ʔˈim haɡˈeʃem.
+line	הִיא זָרְמָה בְּנַחַל קָטָן, וְאַחַר כָּךְ בְּנָהָר רָחָב.	hˈi zaʁmˈa benˈaχal katˈan, veʔaχˈaʁ kˈaχ benahˈaʁ ʁaχˈav.
+line	הַנָּהָר הִשְׁקָה שָׂדוֹת וְעֵצִים בַּדֶּרֶךְ.	hanahˈaʁ hiʃkˈa sadˈot veʔetsˈim badˈeʁeχ.
+line	הָעֵצִים שָׁתוּ וְאָמְרוּ: תּוֹדָה, טִפִּי!	haʔetsˈim ʃatˈu veʔamʁˈu: todˈa, tˈipi!
+line	בַּסּוֹף טִפִּי חָזְרָה אֶל הַיָּם, מוּכָנָה לְמַסָּע חָדָשׁ.	basˈof tˈipi χazʁˈa ʔˈel hajˈam, muχanˈa lemasˈa χadˈaʃ.
+line	הַדְּבוֹרָה הִיא חֶרֶק קָטָן אֲבָל חָשׁוּב מְאוֹד.	hadvoʁˈa hˈi χˈeʁek katˈan ʔavˈal χaʃˈuv meʔˈod.
+line	הַדְּבוֹרִים חַיּוֹת יַחַד בְּכַוֶּרֶת, כְּמוֹ מִשְׁפָּחָה גְּדוֹלָה.	hadvoʁˈim χajˈot jˈaχad beχavˈeʁet, kmˈo miʃpaχˈa ɡdolˈa.
+line	בְּכָל כַּוֶּרֶת יֵשׁ מַלְכָּה אַחַת וְאַלְפֵי דְּבוֹרִים פּוֹעֲלוֹת.	beχˈol kavˈeʁet jˈeʃ malkˈa ʔaχˈat veʔalfˈej dvoʁˈim poʔalˈot.
+line	הַפּוֹעֲלוֹת עָפוֹת מִפֶּרַח לְפֶרַח וְאוֹסְפוֹת צוּף.	hapoʔalˈot ʔafˈot mipˈeʁaχ lefˈeʁaχ veʔosfˈot tsˈuf.
+line	מֵהַצּוּף הֵן מְכִינוֹת דְּבַשׁ מָתוֹק.	mehatsˈuf hˈen meχinˈot dvˈaʃ matˈok.
+line	כְּשֶׁהַדְּבוֹרָה עוֹבֶרֶת מִפֶּרַח לְפֶרַח,	kʃehadvoʁˈa ʔovˈeʁet mipˈeʁaχ lefˈeʁaχ,
+line	הִיא מַעֲבִירָה אִתָּהּ אַבְקַת פְּרָחִים.	hˈi maʔaviʁˈa ʔitˈa ʔavkˈat pʁaχˈim.
+line	כָּךְ הַפְּרָחִים יְכוֹלִים לְהַצְמִיחַ פֵּרוֹת וּזְרָעִים.	kˈaχ hapʁaχˈim jeχolˈim lehatsmˈiaχ peʁˈot uzʁaʔˈim.
+line	בְּלִי דְּבוֹרִים, הָיוּ לָנוּ הַרְבֵּה פָּחוֹת פֵּרוֹת וִירָקוֹת.	blˈi dvoʁˈim, hajˈu lˈanu haʁbˈe paχˈot peʁˈot viʁakˈot.
+line	לָכֵן חָשׁוּב לִשְׁמֹר עַל הַדְּבוֹרִים וְלִשְׁתֹּל הַרְבֵּה פְּרָחִים.	laχˈen χaʃˈuv liʃmˈoʁ ʔˈal hadvoʁˈim veliʃtˈol haʁbˈe pʁaχˈim.
+line	הַיָּרֵחַ הוּא הַשָּׁכֵן הֲכִי קָרוֹב שֶׁל כַּדּוּר הָאָרֶץ.	hajaʁˈeaχ hˈu haʃaχˈen haχˈi kaʁˈov ʃˈel kadˈuʁ haʔˈaʁets.
+line	הוּא לֹא מֵאִיר בְּעַצְמוֹ: הוּא מַחֲזִיר אֶת אוֹר הַשֶּׁמֶשׁ.	hˈu lˈo meʔˈiʁ beʔatsmˈo: hˈu maχazˈiʁ ʔˈet ʔˈoʁ haʃˈemeʃ.
+line	לָכֵן לִפְעָמִים אֲנַחְנוּ רוֹאִים יָרֵחַ מָלֵא,	laχˈen lifʔamˈim ʔanˈaχnu ʁoʔˈim jaʁˈeaχ malˈe,
+line	וְלִפְעָמִים רַק חֵלֶק מִמֶּנּוּ, כְּמוֹ בָּנָנָה.	velifʔamˈim ʁˈak χˈelek mimˈenu, kmˈo banˈana.
+line	עַל הַיָּרֵחַ אֵין אֲוִיר, אֵין מַיִם וְאֵין רוּחַ.	ʔˈal hajaʁˈeaχ ʔˈejn ʔavˈiʁ, ʔˈejn mˈajim veʔˈejn ʁˈuaχ.
+line	הַקַּרְקַע שֶׁלּוֹ מְכֻסָּה בְּאָבָק אָפֹר וּבְמַכְתֵּשִׁים עֲגֻלִּים.	hakˈaʁka ʃelˈo meχusˈa beʔavˈak ʔafˈoʁ uvemaχteʃˈim ʔaɡulˈim.
+line	לִפְנֵי יוֹתֵר מֵחֲמִשִּׁים שָׁנָה, אֲנָשִׁים טָסוּ לַיָּרֵחַ.	lifnˈej jotˈeʁ meχamiʃˈim ʃanˈa, ʔanaʃˈim tˈasu lajaʁˈeaχ.
+line	הֵם הָלְכוּ עָלָיו וְהֵבִיאוּ מִשָּׁם אֲבָנִים.	hˈem halχˈu ʔalˈav veheviʔˈu miʃˈam ʔavanˈim.
+line	הָעֲקֵבוֹת שֶׁלָּהֶם עוֹד נִמְצָאִים שָׁם גַּם הַיּוֹם,	haʔakevˈot ʃelahˈem ʔˈod nimtsaʔˈim ʃˈam ɡˈam hajˈom,
+line	כִּי אֵין שָׁם רוּחַ שֶׁתִּמְחַק אוֹתָם.	kˈi ʔˈejn ʃˈam ʁˈuaχ ʃetimχˈak ʔotˈam.
+line	הַגָּמָל חַי בַּמִּדְבָּר,	haɡamˈal χˈaj bamidbˈaʁ,
+line	שָׁם חַם מְאוֹד וְיֵשׁ מְעַט מַיִם.	ʃˈam χˈam meʔˈod vejˈeʃ meʔˈat mˈajim.
+line	עַל הַגַּב שֶׁלּוֹ יֵשׁ דַּבֶּשֶׁת, וּבָהּ הוּא אוֹגֵר שֻׁמָּן.	ʔˈal haɡˈav ʃelˈo jˈeʃ dabˈeʃet, uvˈa hˈu ʔoɡˈeʁ ʃumˈan.
+line	כְּשֶׁאֵין אֹכֶל, הַגּוּף שֶׁלּוֹ מִשְׁתַּמֵּשׁ בַּשֻּׁמָּן הַזֶּה.	kʃeʔˈejn ʔˈoχel, haɡˈuf ʃelˈo miʃtamˈeʃ baʃumˈan hazˈe.
+line	גָּמָל צָמֵא יָכוֹל לִשְׁתּוֹת הַרְבֵּה מְאוֹד מַיִם בְּפַעַם אַחַת.	ɡamˈal tsamˈe jaχˈol liʃtˈot haʁbˈe meʔˈod mˈajim befˈaʔam ʔaχˈat.
+line	לַגָּמָל יֵשׁ רִיסִים אֲרֻכִּים שֶׁשּׁוֹמְרִים עַל הָעֵינַיִם מִפְּנֵי הַחוֹל.	laɡamˈal jˈeʃ ʁisˈim ʔaʁukˈim ʃeʃomʁˈim ʔˈal haʔenˈajim mipnˈej haχˈol.
+line	הָרַגְלַיִם שֶׁלּוֹ רְחָבוֹת, וְהֵן לֹא שׁוֹקְעוֹת בַּחוֹל הָרַךְ.	haʁaɡlˈajim ʃelˈo ʁeχavˈot, vehˈen lˈo ʃokʔˈot baχˈol haʁˈaχ.
+line	בִּזְכוּת כָּל אֵלֶּה, הַגָּמָל יָכוֹל לָלֶכֶת יָמִים רַבִּים בַּמִּדְבָּר.	bizχˈut kˈol ʔelˈe, haɡamˈal jaχˈol lalˈeχet jamˈim ʁabˈim bamidbˈaʁ.
+line	בִּגְלַל זֶה קוֹרְאִים לוֹ סְפִינַת הַמִּדְבָּר.	biɡlˈal zˈe koʁʔˈim lˈo sfinˈat hamidbˈaʁ.
+line	בְּתוֹךְ הַגּוּף שֶׁלָּנוּ פּוֹעֵם לֵב, בְּגֹדֶל שֶׁל אֶגְרוֹף.	betˈoχ haɡˈuf ʃelˈanu poʔˈem lˈev, beɡˈodel ʃˈel ʔeɡʁˈof.
+line	הַלֵּב הוּא שְׁרִיר חָזָק שֶׁעוֹבֵד כָּל הַזְּמַן,	halˈev hˈu ʃʁˈiʁ χazˈak ʃeʔovˈed kˈol hazmˈan,
+line	גַּם כְּשֶׁאֲנַחְנוּ יְשֵׁנִים.	ɡˈam kʃeʔanˈaχnu jeʃenˈim.
+line	בְּכָל פְּעִימָה הוּא שׁוֹלֵחַ דָּם לְכָל חֶלְקֵי הַגּוּף.	beχˈol peʔimˈa hˈu ʃolˈeaχ dˈam leχˈol χelkˈej haɡˈuf.
+line	הַדָּם מֵבִיא לַגּוּף חַמְצָן וּמָזוֹן, כְּדֵי שֶׁיִּהְיֶה לָנוּ כֹּחַ.	hadˈam mevˈi laɡˈuf χamtsˈan umazˈon, kedˈej ʃejihjˈe lˈanu kˈoaχ.
+line	כְּשֶׁאֲנַחְנוּ רָצִים אוֹ קוֹפְצִים, הַלֵּב פּוֹעֵם מַהֵר יוֹתֵר.	kʃeʔanˈaχnu ʁatsˈim ʔˈo koftsˈim, halˈev poʔˈem mahˈeʁ jotˈeʁ.
+line	אֶפְשָׁר לְהַרְגִּישׁ אֶת הַדֹּפֶק	ʔefʃˈaʁ lehaʁɡˈiʃ ʔˈet hadˈofek
+line	אִם שָׂמִים שְׁתֵּי אֶצְבָּעוֹת עַל הַצַּוָּאר.	ʔˈim samˈim ʃtˈej ʔetsbaʔˈot ʔˈal hatsavˈaʁ.
+line	כְּדֵי לִשְׁמֹר עַל לֵב בָּרִיא, כְּדַאי לְשַׂחֵק בַּחוּץ	kedˈej liʃmˈoʁ ʔˈal lˈev baʁˈi, kedˈaj lesaχˈek baχˈuts
+line	וְלֶאֱכֹל פֵּרוֹת וִירָקוֹת.	veleʔeχˈol peʁˈot viʁakˈot.
+line	הַדּוֹלְפִין חַי בַּיָּם, אֲבָל הוּא לֹא דָּג.	hadolfˈin χˈaj bajˈam, ʔavˈal hˈu lˈo dˈaɡ.
+line	הוּא יוֹנֵק, כְּמוֹ הַכֶּלֶב וְכָמוֹנוּ.	hˈu jonˈek, kmˈo hakˈelev veχamˈonu.
+line	הַדּוֹלְפִין נוֹשֵׁם אֲוִיר, וְלָכֵן הוּא עוֹלֶה לְמַעְלָה מִדֵּי פַּעַם.	hadolfˈin noʃˈem ʔavˈiʁ, velaχˈen hˈu ʔolˈe lemˈaʔla midˈej pˈaʔam.
+line	הוּא נוֹשֵׁם דֶּרֶךְ חֹר קָטָן שֶׁנִּמְצָא לְמַעְלָה, עַל הָרֹאשׁ.	hˈu noʃˈem dˈeʁeχ χˈoʁ katˈan ʃenimtsˈa lemˈaʔla, ʔˈal haʁˈoʃ.
+line	דּוֹלְפִינִים חַיִּים בִּקְבוּצוֹת וּמְדַבְּרִים זֶה עִם זֶה בִּשְׁרִיקוֹת.	dolfinˈim χajˈim bikvutsˈot umedabʁˈim zˈe ʔˈim zˈe biʃʁikˈot.
+line	לְכָל דּוֹלְפִין יֵשׁ שְׁרִיקָה מְיֻחֶדֶת, כְּמוֹ שֵׁם.	leχˈol dolfˈin jˈeʃ ʃʁikˈa mejuχˈedet, kmˈo ʃˈem.
+line	הֵם חֲכָמִים מְאוֹד, אוֹהֲבִים לְשַׂחֵק וּלְזַנֵּק מֵעַל הַגַּלִּים.	hˈem χaχamˈim meʔˈod, ʔohavˈim lesaχˈek ulezanˈek meʔˈal haɡalˈim.
+line	דּוֹלְפִינִים מוֹצְאִים אֹכֶל בְּעֶזְרַת קוֹלוֹת שֶׁחוֹזְרִים אֲלֵיהֶם כְּמוֹ הֵד.	dolfinˈim motsʔˈim ʔˈoχel beʔezʁˈat kolˈot ʃeχozʁˈim ʔalehˈem kmˈo hˈed.
+line	כָּךְ הֵם יוֹדְעִים אֵיפֹה יֵשׁ דָּגִים, גַּם בְּמַיִם עֲכוּרִים.	kˈaχ hˈem jodʔˈim ʔˈejfo jˈeʃ daɡˈim, ɡˈam bemˈajim ʔaχuʁˈim.
+line	כָּל יוֹם אֲנַחְנוּ זוֹרְקִים לַפַּח הַרְבֵּה דְּבָרִים.	kˈol jˈom ʔanˈaχnu zoʁkˈim lapˈaχ haʁbˈe dvaʁˈim.
+line	בַּקְבּוּקִים, קֻפְסָאוֹת, עִתּוֹנִים וּשְׂקִיּוֹת, וְכֻלָּם מַגִּיעִים לַזֶּבֶל.	bakbukˈim, kufsaʔˈot, ʔitonˈim uskijˈot, veχulˈam maɡiʔˈim lazˈevel.
+line	הַזֶּבֶל מַגִּיעַ לְמִזְבָּלָה, וְהִיא הוֹלֶכֶת וּגְדֵלָה כָּל הַזְּמַן.	hazˈevel maɡˈia lemizbalˈa, vehˈi holˈeχet uɡdelˈa kˈol hazmˈan.
+line	בְּמִחְזוּר מִשְׁתַּמְּשִׁים שׁוּב בַּחֳמָרִים, וְעוֹשִׂים מֵהֶם דְּבָרִים חֲדָשִׁים.	bemiχzˈuʁ miʃtamʃˈim ʃˈuv baχomaʁˈim, veʔosˈim mehˈem dvaʁˈim χadaʃˈim.
+line	מִבַּקְבּוּקֵי פְּלַסְטִיק אֶפְשָׁר לְהָכִין כִּסְאוֹת, וַאֲפִלּוּ חֻלְצוֹת!	mibakbukˈej plˈastik ʔefʃˈaʁ lehaχˈin kisʔˈot, vaʔafilˈu χultsˈot!
+line	מֵעִתּוֹנִים יְשָׁנִים מְכִינִים נְיָר חָדָשׁ, וְכָךְ כּוֹרְתִים פָּחוֹת עֵצִים.	meʔitonˈim jeʃanˈim meχinˈim nejˈaʁ χadˈaʃ, veχˈaχ koʁtˈim paχˈot ʔetsˈim.
+line	גַּם אֲנַחְנוּ יְכוֹלִים לַעֲזֹר: לְהַפְרִיד אֶת הַפְּסֹלֶת לְפַחִים צִבְעוֹנִיִּים.	ɡˈam ʔanˈaχnu jeχolˈim laʔazˈoʁ: lehafʁˈid ʔˈet hapsˈolet lefaχˈim tsivʔonijˈim.
+line	כָּל בַּקְבּוּק שֶׁאֲנַחְנוּ מְמַחְזְרִים	kˈol bakbˈuk ʃeʔanˈaχnu memaχzeʁˈim
+line	עוֹזֵר לִשְׁמֹר עַל כַּדּוּר הָאָרֶץ נָקִי.	ʔozˈeʁ liʃmˈoʁ ʔˈal kadˈuʁ haʔˈaʁets nakˈi.
+line	הַכִּנֶּרֶת הִיא אֲגַם גָּדוֹל בִּצְפוֹן הָאָרֶץ.	hakinˈeʁet hˈi ʔaɡˈam ɡadˈol bitsfˈon haʔˈaʁets.
+line	הַמַּיִם בַּכִּנֶּרֶת מְתוּקִים, לֹא מְלוּחִים כְּמוֹ בַּיָּם.	hamˈajim bakinˈeʁet metukˈim, lˈo meluχˈim kmˈo bajˈam.
+line	קוֹרְאִים לָהּ כִּנֶּרֶת,	koʁʔˈim lˈa kinˈeʁet,
+line	כִּי יֵשׁ אוֹמְרִים שֶׁהַצּוּרָה שֶׁלָּהּ דּוֹמָה לְכִנּוֹר.	kˈi jˈeʃ ʔomʁˈim ʃehatsuʁˈa ʃelˈa domˈa leχinˈoʁ.
+line	נְהַר הַיַּרְדֵּן זוֹרֵם אֶל הַכִּנֶּרֶת וּמְמַלֵּא אוֹתָהּ בְּמַיִם.	nehˈaʁ hajaʁdˈen zoʁˈem ʔˈel hakinˈeʁet umemalˈe ʔotˈa bemˈajim.
+line	בַּחֹרֶף, כְּשֶׁיּוֹרֵד הַרְבֵּה גֶּשֶׁם, הַמַּיִם בַּכִּנֶּרֶת עוֹלִים.	baχˈoʁef, kʃejoʁˈed haʁbˈe ɡˈeʃem, hamˈajim bakinˈeʁet ʔolˈim.
+line	בַּקַּיִץ, כְּשֶׁחַם וְאֵין גֶּשֶׁם, הַמַּיִם יוֹרְדִים.	bakˈajits, kʃeχˈam veʔˈejn ɡˈeʃem, hamˈajim joʁdˈim.
+line	בַּכִּנֶּרֶת חַיִּים דָּגִים רַבִּים, וְהַמְּפֻרְסָם בֵּינֵיהֶם הוּא אַמְנוּן.	bakinˈeʁet χajˈim daɡˈim ʁabˈim, vehamfuʁsˈam benehˈem hˈu ʔamnˈun.
+line	מִסָּבִיב לַכִּנֶּרֶת יֵשׁ חוֹפִים, וְאֶפְשָׁר לְטַיֵּל בָּהֶם וְלִשְׂחוֹת בַּמַּיִם.	misavˈiv lakinˈeʁet jˈeʃ χofˈim, veʔefʃˈaʁ letajˈel bahˈem velisχˈot bamˈajim.
+line	חָשׁוּב לִשְׁמֹר עַל הַכִּנֶּרֶת נְקִיָּה,	χaʃˈuv liʃmˈoʁ ʔˈal hakinˈeʁet nekijˈa,
+line	כִּי הִיא אוֹצָר שֶׁל כֻּלָּנוּ.	kˈi hˈi ʔotsˈaʁ ʃˈel kulˈanu.
+line	בַּשָּׁנָה יֵשׁ אַרְבַּע עוֹנוֹת: סְתָו, חֹרֶף, אָבִיב וְקַיִץ.	baʃanˈa jˈeʃ ʔaʁbˈa ʔonˈot: stˈav, χˈoʁef, ʔavˈiv vekˈajits.
+line	בַּסְּתָו הֶעָלִים מַחְלִיפִים צֶבַע וְנוֹשְׁרִים מֵהָעֵצִים.	bastˈav heʔalˈim maχlifˈim tsˈeva venoʃʁˈim mehaʔetsˈim.
+line	הָרוּחַ מְפַזֶּרֶת אוֹתָם, וְהֵם מְרַשְׁרְשִׁים מִתַּחַת לָרַגְלַיִם.	haʁˈuaχ mefazˈeʁet ʔotˈam, vehˈem meʁaʃʁeʃˈim mitˈaχat laʁaɡlˈajim.
+line	בַּחֹרֶף קַר וְיוֹרֵד גֶּשֶׁם, וּבֶהָרִים הַגְּבוֹהִים לִפְעָמִים גַּם שֶׁלֶג.	baχˈoʁef kˈaʁ vejoʁˈed ɡˈeʃem, uvehaʁˈim haɡvohˈim lifʔamˈim ɡˈam ʃˈeleɡ.
+line	בָּאָבִיב הַכֹּל פּוֹרֵחַ: כַּלָּנִיּוֹת אֲדֻמּוֹת מְכַסּוֹת אֶת הַשָּׂדוֹת.	baʔavˈiv hakˈol poʁˈeaχ: kalanijˈot ʔadumˈot meχasˈot ʔˈet hasadˈot.
+line	הַצִּפֳּרִים חוֹזְרוֹת מֵאֲרָצוֹת חַמּוֹת וּבוֹנוֹת קִנִּים.	hatsipoʁˈim χozʁˈot meʔaʁatsˈot χamˈot uvonˈot kinˈim.
+line	בַּקַּיִץ חַם, הַיָּמִים אֲרֻכִּים, וְהַיְלָדִים נֶהֱנִים מֵהַחֻפְשָׁה הַגְּדוֹלָה.	bakˈajits χˈam, hajamˈim ʔaʁukˈim, vehajeladˈim nehenˈim mehaχufʃˈa haɡdolˈa.
+line	וְאָז שׁוּב מַגִּיעַ הַסְּתָו, וְהַמַּעְגָּל מַתְחִיל מֵחָדָשׁ.	veʔˈaz ʃˈuv maɡˈia hastˈav, vehamaʔɡˈal matχˈil meχadˈaʃ.
+line	וְאֵיזוֹ עוֹנָה אַתֶּם הֲכִי אוֹהֲבִים?	veʔˈejzo ʔonˈa ʔatˈem haχˈi ʔohavˈim?
+vocab	כֶּלֶב	kˈelev
+vocab	חָתוּל	χatˈul
+vocab	דָּג	dˈaɡ
+vocab	צִפּוֹר	tsipˈoʁ
+vocab	סוּס	sˈus
+vocab	פָּרָה	paʁˈa
+vocab	כֶּבֶשׂ	kˈeves
+vocab	אַרְיֵה	ʔaʁjˈe
+vocab	פִּיל	pˈil
+vocab	קוֹף	kˈof
+vocab	דֹּב	dˈov
+vocab	אַרְנָב	ʔaʁnˈav
+vocab	צְפַרְדֵּעַ	tsfaʁdˈea
+vocab	צָב	tsˈav
+vocab	פַּרְפַּר	paʁpˈaʁ
+vocab	דְּבוֹרָה	dvoʁˈa
+vocab	נָחָשׁ	naχˈaʃ
+vocab	תַּרְנְגֹלֶת	taʁneɡˈolet
+vocab	בַּרְוָז	baʁvˈaz
+vocab	עַכְבָּר	ʔaχbˈaʁ
+vocab	יַנְשׁוּף	janʃˈuf
+vocab	גָּמָל	ɡamˈal
+vocab	זֶבְּרָה	zˈebʁa
+vocab	תַּנִּין	tanˈin
+vocab	דּוֹלְפִין	dolfˈin
+vocab	תְּמָנוּן	tmanˈun
+vocab	תַּפּוּחַ	tapˈuaχ
+vocab	בָּנָנָה	banˈana
+vocab	עֲנָבִים	ʔanavˈim
+vocab	אֲבַטִּיחַ	ʔavatˈiaχ
+vocab	לֶחֶם	lˈeχem
+vocab	גְּבִינָה	ɡvinˈa
+vocab	בֵּיצָה	betsˈa
+vocab	חָלָב	χalˈav
+vocab	עוּגָה	ʔuɡˈa
+vocab	גְּלִידָה	ɡlidˈa
+vocab	תּוּת	tˈut
+vocab	תַּפּוּז	tapˈuz
+vocab	גֶּזֶר	ɡˈezeʁ
+vocab	עַגְבָנִיָּה	ʔaɡvanijˈa
+vocab	תִּירָס	tiʁˈas
+vocab	לִימוֹן	limˈon
+vocab	פִּיצָה	pˈitsa
+vocab	מְלָפְפוֹן	melafefˈon
+vocab	דְּבַשׁ	dvˈaʃ
+vocab	בַּיִת	bˈajit
+vocab	דֶּלֶת	dˈelet
+vocab	כִּסֵּא	kisˈe
+vocab	סֵפֶר	sˈefeʁ
+vocab	עִפָּרוֹן	ʔipaʁˈon
+vocab	כַּדּוּר	kadˈuʁ
+vocab	בָּלוֹן	balˈon
+vocab	מַפְתֵּחַ	maftˈeaχ
+vocab	שָׁעוֹן	ʃaʔˈon
+vocab	נַעַל	nˈaʔal
+vocab	חֻלְצָה	χultsˈa
+vocab	כּוֹבַע	kˈova
+vocab	מִטְרִיָּה	mitʁijˈa
+vocab	מִטָּה	mitˈa
+vocab	מַתָּנָה	matanˈa
+vocab	פַּעֲמוֹן	paʔamˈon
+vocab	דֻּבִּי	dˈubi
+vocab	עֲפִיפוֹן	ʔafifˈon
+vocab	תִּיק	tˈik
+vocab	שֶׁמֶשׁ	ʃˈemeʃ
+vocab	יָרֵחַ	jaʁˈeaχ
+vocab	כּוֹכָב	koχˈav
+vocab	עָנָן	ʔanˈan
+vocab	גֶּשֶׁם	ɡˈeʃem
+vocab	קֶשֶׁת	kˈeʃet
+vocab	עֵץ	ʔˈets
+vocab	פֶּרַח	pˈeʁaχ
+vocab	יָם	jˈam
+vocab	הַר	hˈaʁ
+vocab	אֵשׁ	ʔˈeʃ
+vocab	שֶׁלֶג	ʃˈeleɡ
+vocab	מְכוֹנִית	meχonˈit
+vocab	אוֹטוֹבּוּס	ʔˈotobus
+vocab	אוֹפַנַּיִם	ʔofanˈajim
+vocab	מָטוֹס	matˈos
+vocab	רַכֶּבֶת	ʁakˈevet
+vocab	סִירָה	siʁˈa
+vocab	חֲלָלִית	χalalˈit
+vocab	עַיִן	ʔˈajin
+vocab	אֹזֶן	ʔˈozen
+vocab	יָד	jˈad
+vocab	רֶגֶל	ʁˈeɡel
+vocab	לֵב	lˈev
+vocab	שֵׁן	ʃˈen
+vocab	תִּינוֹק	tinˈok
+vocab	סַבְתָּא	sˈavta
+vocab	סַבָּא	sˈaba
+word	אַבָּא	ʔˈaba
+word	אִמָּא	ʔˈima
+word	גַּן	ɡˈan
+word	בָּא	bˈa
+word	בָּאָה	baʔˈa
+word	וְסַבְתָּא	vesˈavta
+word	בָּאִים	baʔˈim
+word	כֻּלָּם	kulˈam
+word	בַּבַּיִת	babˈajit
+word	אֵיזֶה	ʔˈejze
+word	כֵּיף	kˈef
+word	זֶה	zˈe
+word	הַדָּג	hadˈaɡ
+word	קָטָן	katˈan
+word	שׂוֹחֶה	soχˈe
+word	בַּמַּיִם	bamˈajim
+word	אוֹהֵב	ʔohˈev
+word	מַיִם	mˈajim
+word	שָׁלוֹם	ʃalˈom
+word	יֵשׁ	jˈeʃ
+word	לִי	lˈi
+word	הֶחָתוּל	heχatˈul
+word	לָבָן	lavˈan
+word	אוֹכֵל	ʔoχˈel
+word	יָשֵׁן	jaʃˈen
+word	מְיָאוּ	mejaʔˈu
+word	הַכַּדּוּר	hakadˈuʁ
+word	גָּדוֹל	ɡadˈol
+word	אָדֹם	ʔadˈom
+word	אֲנִי	ʔanˈi
+word	זוֹרֵק	zoʁˈek
+word	דָּנִי	dˈani
+word	תּוֹפֵס	tofˈes
+word	הַגַּן	haɡˈan
+word	בַּגַּן	baɡˈan
+word	עַל	ʔˈal
+word	הָעֵץ	haʔˈets
+word	פֵּרוֹת	peʁˈot
+word	דָּנָה	dˈana
+word	קוֹטֶפֶת	kotˈefet
+word	טָעִים	taʔˈim
+word	הִנֵּה	hˈine
+word	הַשֶּׁמֶשׁ	haʃˈemeʃ
+word	חַמָּה	χamˈa
+word	הַשָּׁמַיִם	haʃamˈajim
+word	כְּחֻלִּים	keχulˈim
+word	נֵצֵא	netsˈe
+word	לְשַׂחֵק	lesaχˈek
+word	בַּחוּץ	baχˈuts
+word	עָף	ʔˈaf
+word	הַפַּרְפַּר	hapaʁpˈaʁ
+word	צִבְעוֹנִי	tsivʔonˈi
+word	הוּא	hˈu
+word	אֶל	ʔˈel
+word	הַפֶּרַח	hapˈeʁaχ
+word	רֵיחָנִי	ʁeχanˈi
+word	לְתָמָר	letamˈaʁ
+word	הַכֶּלֶב	hakˈelev
+word	קוֹפֵץ	kofˈets
+word	רָץ	ʁˈats
+word	נוֹבֵחַ	novˈeaχ
+word	הַב	hˈav
+word	תָּמָר	tamˈaʁ
+word	צוֹחֶקֶת	tsoχˈeket
+word	בַּבֹּקֶר	babˈokeʁ
+word	נוֹעָה	nˈoʔa
+word	קָמָה	kamˈa
+word	הִיא	hˈi
+word	מְצַחְצַחַת	metsaχtsˈaχat
+word	שִׁנַּיִם	ʃinˈajim
+word	אַחַר	ʔaχˈaʁ
+word	כָּךְ	kˈaχ
+word	אוֹכֶלֶת	ʔoχˈelet
+word	אֲרוּחַת	ʔaʁuχˈat
+word	בֹּקֶר	bˈokeʁ
+word	לוֹבֶשֶׁת	lovˈeʃet
+word	כְּחֻלָּה	keχulˈa
+word	לוֹקַחַת	lokˈaχat
+word	אֶת	ʔˈet
+word	הַתִּיק	hatˈik
+word	לְהִתְרָאוֹת	lehitʁaʔˈot
+word	הוֹלֶכֶת	holˈeχet
+word	לַגַּן	laɡˈan
+word	יוֹשֶׁבֶת	joʃˈevet
+word	קְטַנָּה	ktanˈa
+word	הַצִּפּוֹר	hatsipˈoʁ
+word	שָׁרָה	ʃaʁˈa
+word	שִׁיר	ʃˈiʁ
+word	הַשִּׁיר	haʃˈiʁ
+word	יָפֶה	jafˈe
+word	מְאוֹד	meʔˈod
+word	פִּתְאֹם	pitʔˈom
+word	נוֹשֶׁבֶת	noʃˈevet
+word	רוּחַ	ʁˈuaχ
+word	פּוֹרֶשֶׂת	poʁˈeset
+word	כְּנָפַיִם	knafˈajim
+word	וְעָפָה	veʔafˈa
+word	לְאָן	leʔˈan
+word	עָפָה	ʔafˈa
+word	הַבַּיְתָה	habˈajta
+word	הַיּוֹם	hajˈom
+word	לְאוֹרִי	leʔˈoʁi
+word	יוֹם	jˈom
+word	הֻלֶּדֶת	hulˈedet
+word	אוֹרִי	ʔˈoʁi
+word	בֶּן	bˈen
+word	שֵׁשׁ	ʃˈeʃ
+word	כָּל	kˈol
+word	הַחֲבֵרִים	haχaveʁˈim
+word	בָּאוּ	bˈaʔu
+word	לַמְּסִבָּה	lamsibˈa
+word	וּבָלוֹנִים	uvalonˈim
+word	שָׁרִים	ʃaʁˈim
+word	מְכַבֶּה	meχabˈe
+word	הַנֵּרוֹת	haneʁˈot
+word	בַּחֹרֶף	baχˈoʁef
+word	יוֹרֵד	joʁˈed
+word	טִיף	tˈif
+word	טִפּוֹת	tipˈot
+word	הַחַלּוֹן	haχalˈon
+word	יוֹאָב	joʔˈav
+word	לוֹבֵשׁ	lovˈeʃ
+word	מְעִיל	meʔˈil
+word	וּמַגָּפַיִם	umaɡafˈajim
+word	בַּשְּׁלוּלִית	baʃlulˈit
+word	הַמַּיִם	hamˈajim
+word	מַתִּיזִים	matizˈim
+word	לְכָל	leχˈol
+word	הַצְּדָדִים	hatsdadˈim
+word	אַחֲרֵי	ʔaχaʁˈej
+word	הַגֶּשֶׁם	haɡˈeʃem
+word	בַּשָּׁמַיִם	baʃamˈajim
+word	גָּר	ɡˈaʁ
+word	בַּיַּעַר	bajˈaʔaʁ
+word	אֶחָד	ʔeχˈad
+word	פָּגַשׁ	paɡˈaʃ
+word	בּוֹא	bˈo
+word	נִהְיֶה	nihjˈe
+word	חֲבֵרִים	χaveʁˈim
+word	אָמַר	ʔamˈaʁ
+word	הָאַרְנָב	haʔaʁnˈav
+word	הַצָּב	hatsˈav
+word	חִיֵּךְ	χijˈeχ
+word	וְאָמַר	veʔamˈaʁ
+word	כֵּן	kˈen
+word	מֵאָז	meʔˈaz
+word	הֵם	hˈem
+word	מְשַׂחֲקִים	mesaχakˈim
+word	בְּיַחַד	bejˈaχad
+word	מַהֵר	mahˈeʁ
+word	וְהַצָּב	vehatsˈav
+word	הוֹלֵךְ	holˈeχ
+word	לְאַט	leʔˈat
+word	אֲבָל	ʔavˈal
+word	תָּמִיד	tamˈid
+word	מְחַכִּים	meχakˈim
+word	לָזֶה	lazˈe
+word	בַּקַּיִץ	bakˈajits
+word	הוֹלְכִים	holχˈim
+word	לַיָּם	lajˈam
+word	הַחוֹל	haχˈol
+word	חַם	χˈam
+word	וְרַךְ	veʁˈaχ
+word	מִיכַל	miχˈal
+word	בּוֹנָה	bonˈa
+word	אַרְמוֹן	ʔaʁmˈon
+word	מִחוֹל	miχˈol
+word	אָחִיהָ	ʔaχihˈa
+word	אוֹסֵף	ʔosˈef
+word	צְדָפִים	tsdafˈim
+word	גַּל	ɡˈal
+word	מַגִּיעַ	maɡˈia
+word	הַחוֹף	haχˈof
+word	הָאַרְמוֹן	haʔaʁmˈon
+word	נֶעֱלָם	neʔelˈam
+word	וְכֻלָּם	veχulˈam
+word	צוֹחֲקִים	tsoχakˈim
+word	לְסַבָּא	lesˈaba
+word	גִּנָּה	ɡinˈa
+word	גְּדוֹלָה	ɡdolˈa
+word	בַּגִּנָּה	baɡinˈa
+word	גְּדֵלִים	ɡdelˈim
+word	עַגְבָנִיּוֹת	ʔaɡvanijˈot
+word	וּמְלָפְפוֹנִים	umelafefonˈim
+word	רוֹנִי	ʁˈoni
+word	עוֹזֵר	ʔozˈeʁ
+word	לְהַשְׁקוֹת	lehaʃkˈot
+word	שׁוֹלְפִים	ʃolfˈim
+word	מִן	mˈin
+word	הָאֲדָמָה	haʔadamˈa
+word	הַגֶּזֶר	haɡˈezeʁ
+word	כָּתֹם	katˈom
+word	וּמָתוֹק	umatˈok
+word	אוֹמֵר	ʔomˈeʁ
+word	מַה	mˈa
+word	שֶּׁגָּדֵל	ʃeɡadˈel
+word	הֲכִי	haχˈi
+word	בַּלַּיְלָה	balˈajla
+word	חֲשׁוּכִים	χaʃuχˈim
+word	הַיָּרֵחַ	hajaʁˈeaχ
+word	מֵאִיר	meʔˈiʁ
+word	מִסָּבִיב	misavˈiv
+word	הַרְבֵּה	haʁbˈe
+word	כּוֹכָבִים	koχavˈim
+word	עֲנָנָה	ʔananˈa
+word	מְכַסָּה	meχasˈa
+word	אֵיפֹה	ʔˈejfo
+word	לַיְלָה	lˈajla
+word	טוֹב	tˈov
+word	יָצָא	jatsˈa
+word	לְטַיֵּל	letajˈel
+word	רָאָה	ʁaʔˈa
+word	פְּרָחִים	pʁaχˈim
+word	צִבְעוֹנִיִּים	tsivʔonijˈim
+word	וְעֵצִים	veʔetsˈim
+word	גְּבוֹהִים	ɡvohˈim
+word	אַחַד	ʔaχˈad
+word	הָעֵצִים	haʔetsˈim
+word	יָשְׁבָה	jaʃvˈa
+word	סְנָאִית	snaʔˈit
+word	הַסְּנָאִית	hasnaʔˈit
+word	אָכְלָה	ʔaχlˈa
+word	אֱגוֹז	ʔeɡˈoz
+word	עָמַד	ʔamˈad
+word	בְּשֶׁקֶט	beʃˈeket
+word	וְהִסְתַּכֵּל	vehistakˈel
+word	קָפְצָה	kaftsˈa
+word	לָעֵץ	laʔˈets
+word	הַבָּא	habˈa
+word	טִיּוּל	tijˈul
+word	נִפְלָא	niflˈa
+word	אֲנַחְנוּ	ʔanˈaχnu
+word	אוֹפִים	ʔofˈim
+word	מוֹצִיאָה	motsiʔˈa
+word	קֶמַח	kˈemaχ
+word	סֻכָּר	sukˈaʁ
+word	וּבֵיצִים	uvetsˈim
+word	שִׁירָה	ʃˈiʁa
+word	שׁוֹבֶרֶת	ʃovˈeʁet
+word	הַבֵּיצִים	habetsˈim
+word	לַקְּעָרָה	lakʔaʁˈa
+word	יוֹנִי	jˈoni
+word	מְעַרְבֵּב	meʔaʁbˈev
+word	הֵיטֵב	hetˈev
+word	שָׂמִים	samˈim
+word	הָעוּגָה	haʔuɡˈa
+word	בַּתַּנּוּר	batanˈuʁ
+word	רֵיחַ	ʁˈeaχ
+word	מְמַלֵּא	memalˈe
+word	הַבַּיִת	habˈajit
+word	חֲצִי	χatsˈi
+word	שָׁעָה	ʃaʔˈa
+word	מוּכָנָה	muχanˈa
+word	טוֹעֲמִים	toʔamˈim
+word	וְאוֹמְרִים	veʔomʁˈim
+word	מַמָּשׁ	mamˈaʃ
+word	לְרוֹנִי	leʁˈoni
+word	כַּלְבָּה	kalbˈa
+word	בְּשֵׁם	beʃˈem
+word	לוּלוּ	lˈulu
+word	בָּרְחָה	baʁχˈa
+word	מֵהֶחָצֵר	meheχatsˈeʁ
+word	חִפֵּשׂ	χipˈes
+word	אוֹתָהּ	ʔotˈa
+word	בְּכָל	beχˈol
+word	מָקוֹם	makˈom
+word	קָרָא	kaʁˈa
+word	בְּקוֹל	bekˈol
+word	אַתְּ	ʔˈat
+word	שָׁמַע	ʃamˈa
+word	נְבִיחָה	neviχˈa
+word	מֵאֲחוֹרֵי	meʔaχoʁˈej
+word	הַשִּׂיחַ	hasˈiaχ
+word	רָצָה	ʁˈatsa
+word	אֵלָיו	ʔelˈav
+word	וְכִשְׁכְּשָׁה	veχiʃkeʃˈa
+word	בַּזָּנָב	bazanˈav
+word	חִבֵּק	χibˈek
+word	חָזָק	χazˈak
+word	סוֹגֵר	soɡˈeʁ
+word	הַשַּׁעַר	haʃˈaʔaʁ
+word	מָאיָה	mˈaja
+word	שָׁתְלָה	ʃatlˈa
+word	זֶרַע	zˈeʁa
+word	בְּעָצִיץ	beʔatsˈits
+word	הִשְׁקְתָה	hiʃketˈa
+word	אוֹתוֹ	ʔotˈo
+word	בִּזְהִירוּת	bizhiʁˈut
+word	עָבְרוּ	ʔavʁˈu
+word	כַּמָּה	kˈama
+word	יָמִים	jamˈim
+word	וְלֹא	velˈo
+word	קָרָה	kaʁˈa
+word	כְּלוּם	klˈum
+word	לֹא	lˈo
+word	וִתְּרָה	vitʁˈa
+word	רָאֲתָה	ʁaʔatˈa
+word	עָלֶה	ʔalˈe
+word	יָרֹק	jaʁˈok
+word	הַצֶּמַח	hatsˈemaχ
+word	גָּדַל	ɡadˈal
+word	וְגָדַל	veɡadˈal
+word	עַד	ʔˈad
+word	שֶׁפָּרַח	ʃepaʁˈaχ
+word	צָהֹב	tsahˈov
+word	לָמְדָה	lamdˈa
+word	סַבְלָנוּת	savlanˈut
+word	מְשַׁתֶּלֶמֶת	meʃatelˈemet
+word	הָאוֹטוֹבּוּס	haʔˈotobus
+word	הַצָּהֹב	hatsahˈov
+word	לַתַּחֲנָה	lataχanˈa
+word	הַנֶּהָג	hanehˈaɡ
+word	יְלָדִים	jeladˈim
+word	הַיְלָדִים	hajeladˈim
+word	עוֹלִים	ʔolˈim
+word	וּמִתְיַשְּׁבִים	umitjaʃvˈim
+word	בִּמְקוֹמוֹת	bimkomˈot
+word	עִדּוֹ	ʔˈido
+word	יוֹשֵׁב	joʃˈev
+word	לְיַד	lejˈad
+word	סוֹפֵר	sofˈeʁ
+word	מְכוֹנִיּוֹת	meχonijˈot
+word	אֲדֻמּוֹת	ʔadumˈot
+word	אַחַת	ʔaχˈat
+word	שְׁתַּיִם	ʃtˈajim
+word	שָׁלֹשׁ	ʃalˈoʃ
+word	בֵּית	bˈet
+word	הַסֵּפֶר	hasˈefeʁ
+word	יוֹרְדִים	joʁdˈim
+word	תּוֹדָה	todˈa
+word	לַנֶּהָג	lanehˈaɡ
+word	נוֹגָה	nˈoɡa
+word	רָצְתָה	ʁatstˈa
+word	לְשַׂמֵּחַ	lesamˈeaχ
+word	כָּתְבָה	katvˈa
+word	לָהּ	lˈa
+word	מִכְתָּב	miχtˈav
+word	יְקָרָה	jekaʁˈa
+word	אוֹהֶבֶת	ʔohˈevet
+word	אוֹתָךְ	ʔotˈaχ
+word	צִיְּרָה	tsijʁˈa
+word	וּפְרָחִים	ufʁaχˈim
+word	שָׂמָה	sˈama
+word	הַמִּכְתָּב	hamiχtˈav
+word	בַּמַּעֲטָפָה	bamaʔatafˈa
+word	לְמָחֳרָת	lemoχoʁˈat
+word	הִתְקַשְּׁרָה	hitkaʃʁˈa
+word	קִבַּלְתִּי	kibˈalti
+word	אָמְרָה	ʔamʁˈa
+word	וְשָׂמַחְתִּי	vesamˈaχti
+word	מִתַּחַת	mitˈaχat
+word	לַמַּדְרֵגוֹת	lamadʁeɡˈot
+word	גָּרָה	ɡˈaʁa
+word	חֲתוּלָה	χatulˈa
+word	אֲפֹרָה	ʔafoʁˈa
+word	נוֹלְדוּ	noldˈu
+word	אַרְבָּעָה	ʔaʁbaʔˈa
+word	גּוּרִים	ɡuʁˈim
+word	הַגּוּרִים	haɡuʁˈim
+word	הָיוּ	hajˈu
+word	קְטַנִּים	ktanˈim
+word	וְעֵינֵיהֶם	veʔenehˈem
+word	סְגוּרוֹת	sɡuʁˈot
+word	הַחֲתוּלָה	haχatulˈa
+word	לִקְּקָה	likekˈa
+word	אוֹתָם	ʔotˈam
+word	וְשָׁמְרָה	veʃamʁˈa
+word	עֲלֵיהֶם	ʔalehˈem
+word	שָׁבוּעַ	ʃavˈua
+word	פָּקְחוּ	pakχˈu
+word	עֵינַיִם	ʔenˈajim
+word	עַכְשָׁיו	ʔaχʃˈav
+word	בְּכַדּוּר	beχadˈuʁ
+word	צֶמֶר	tsˈemeʁ
+word	וְהַחֲתוּלָה	vehaχatulˈa
+word	מִסְתַּכֶּלֶת	mistakˈelet
+word	בְּגַאֲוָה	beɡaʔavˈa
+word	קְטַנּוֹת	ktanˈot
+word	רוֹקְדוֹת	ʁokdˈot
+word	הַגַּגּוֹת	haɡaɡˈot
+word	שׁוֹתָה	ʃotˈa
+word	הַפְּרָחִים	hapʁaχˈim
+word	פּוֹקְחִים	pokχˈim
+word	עוֹצֵר	ʔotsˈeʁ
+word	שֶׁקֶט	ʃˈeket
+word	וּבַשָּׁמַיִם	uvaʃamˈajim
+word	יוֹנָתָן	jonatˈan
+word	אָהַב	ʔahˈav
+word	לְהִסְתַּכֵּל	lehistakˈel
+word	הַכּוֹכָבִים	hakoχavˈim
+word	מֵהַחַלּוֹן	mehaχalˈon
+word	לִפְנֵי	lifnˈej
+word	הַשֵּׁנָה	haʃenˈa
+word	חָלַם	χalˈam
+word	לִהְיוֹת	lihjˈot
+word	אַסְטְרוֹנָאוּט	ʔastʁonaʔˈut
+word	בָּנָה	banˈa
+word	מִקֻּפְסָאוֹת	mikufsaʔˈot
+word	קַרְטוֹן	kaʁtˈon
+word	צָבַע	tsavˈa
+word	בְּכֶסֶף	beχˈesef
+word	וּבִכְחֹל	uviχχˈol
+word	וְהִדְבִּיק	vehidbˈik
+word	עָלֶיהָ	ʔalˈeha
+word	מְנַצְנְצִים	menatsnetsˈim
+word	אֲחוֹתוֹ	ʔaχotˈo
+word	הַקְּטַנָּה	haktanˈa
+word	שָׁאֲלָה	ʃaʔalˈa
+word	אַתָּה	ʔatˈa
+word	טָס	tˈas
+word	לַיָּרֵחַ	lajaʁˈeaχ
+word	עָנָה	ʔanˈa
+word	וְאַחַר	veʔaχˈaʁ
+word	לְמַאְדִּים	lemaʔdˈim
+word	הַשְּׁנַיִם	haʃnˈajim
+word	נִכְנְסוּ	niχnesˈu
+word	לַחֲלָלִית	laχalalˈit
+word	וְסָפְרוּ	vesafʁˈu
+word	לְאָחוֹר	leʔaχˈoʁ
+word	חָמֵשׁ	χamˈeʃ
+word	אַרְבַּע	ʔaʁbˈa
+word	הַמְרָאָה	hamʁaʔˈa
+word	קָרְאָה	kaʁʔˈa
+word	מֵהַמִּטְבָּח	mehamitbˈaχ
+word	אַסְטְרוֹנָאוּטִים	ʔastʁonaʔutˈim
+word	עֶרֶב	ʔˈeʁev
+word	הַחֲלָלִית	haχalalˈit
+word	נָחֲתָה	naχatˈa
+word	בְּשָׁלוֹם	beʃalˈom
+word	בַּמִּטְבָּח	bamitbˈaχ
+word	צָחֲקוּ	tsaχakˈu
+word	בְּעוֹד	beʔˈod
+word	יוֹמַיִם	jomˈajim
+word	יִהְיֶה	jihjˈe
+word	הַהֻלֶּדֶת	hahulˈedet
+word	שֶׁל	ʃˈel
+word	יָדְעָה	jadʔˈa
+word	מָה	mˈa
+word	לָתֵת	latˈet
+word	לוֹ	lˈo
+word	אֵין	ʔˈejn
+word	כֶּסֶף	kˈesef
+word	לִקְנוֹת	liknˈot
+word	הָלְכָה	halχˈa
+word	לְסַבְתָּא	lesˈavta
+word	וּבִקְּשָׁה	uvikʃˈa
+word	עֵצָה	ʔetsˈa
+word	הַמַּתָּנָה	hamatanˈa
+word	טוֹבָה	tovˈa
+word	מַשֶּׁהוּ	mˈaʃehu
+word	שֶׁעוֹשִׂים	ʃeʔosˈim
+word	בְּאַהֲבָה	beʔahavˈa
+word	חָשְׁבָה	χaʃvˈa
+word	וְחָשְׁבָה	veχaʃvˈa
+word	וְאָז	veʔˈaz
+word	הָיָה	hajˈa
+word	רַעְיוֹן	ʁaʔjˈon
+word	אָסְפָה	ʔasfˈa
+word	תְּמוּנוֹת	tmunˈot
+word	הַמִּשְׁפָּחָה	hamiʃpaχˈa
+word	וְהִדְבִּיקָה	vehidbikˈa
+word	אוֹתָן	ʔotˈan
+word	בְּאַלְבּוֹם	beʔalbˈom
+word	דַּף	dˈaf
+word	זִכָּרוֹן	zikaʁˈon
+word	וּמַצְחִיק	umatsχˈik
+word	כְּשֶׁאַבָּא	kʃeʔˈaba
+word	פָּתַח	patˈaχ
+word	הָאַלְבּוֹם	haʔalbˈom
+word	צָחַק	tsaχˈak
+word	וְהִתְרַגֵּשׁ	vehitʁaɡˈeʃ
+word	זוֹ	zˈo
+word	יָפָה	jafˈa
+word	שֶׁקִּבַּלְתִּי	ʃekibˈalti
+word	וְחִבֵּק	veχibˈek
+word	נִילִי	nˈili
+word	נְמָלָה	nemalˈa
+word	עִם	ʔˈim
+word	הַקַּיִץ	hakˈajits
+word	גַּרְגְּרֵי	ɡaʁɡeʁˈej
+word	חִטָּה	χitˈa
+word	לַקֵּן	lakˈen
+word	הַגַּרְגְּרִים	haɡaʁɡeʁˈim
+word	כְּבֵדִים	kvedˈim
+word	חִפּוּשִׁית	χipuʃˈit
+word	שֶׁנָּפְלָה	ʃenaflˈa
+word	הַגַּב	haɡˈav
+word	הַחִפּוּשִׁית	haχipuʃˈit
+word	נִסְּתָה	nistˈa
+word	לְהִתְהַפֵּךְ	lehithapˈeχ
+word	הִצְלִיחָה	hitsliχˈa
+word	הִנִּיחָה	hiniχˈa
+word	הַגַּרְגֵּר	haɡaʁɡˈeʁ
+word	וְרָצָה	veʁˈatsa
+word	לַעֲזֹר	laʔazˈoʁ
+word	הַכֹּחַ	hakˈoaχ
+word	דָּחֲפָה	daχafˈa
+word	וְהַחִפּוּשִׁית	vehaχipuʃˈit
+word	עָמְדָה	ʔamdˈa
+word	הָרַגְלַיִם	haʁaɡlˈajim
+word	אֵיךְ	ʔˈejχ
+word	אוּכַל	ʔuχˈal
+word	לָךְ	lˈaχ
+word	הַגְּדוֹלָה	haɡdolˈa
+word	הֵרִימָה	heʁimˈa
+word	בְּקַלּוּת	bekalˈut
+word	וְנָשְׂאָה	venasʔˈa
+word	עוֹבְדוֹת	ʔovdˈot
+word	יַחַד	jˈaχad
+word	וְהָעֲבוֹדָה	vehaʔavodˈa
+word	קַלָּה	kalˈa
+word	יוֹתֵר	jotˈeʁ
+word	הַבֹּקֶר	habˈokeʁ
+word	אֵיתָן	ʔejtˈan
+word	הִתְעוֹרֵר	hitʔoʁˈeʁ
+word	מֻקְדָּם	mukdˈam
+word	מֵהָרָגִיל	mehaʁaɡˈil
+word	הָרִאשׁוֹן	haʁiʃˈon
+word	שֶׁלּוֹ	ʃelˈo
+word	בְּכִתָּה	beχitˈa
+word	א	ʔˈalef
+word	הַבֶּטֶן	habˈeten
+word	הִרְגִּישָׁה	hiʁɡiʃˈa
+word	מוּזָר	muzˈaʁ
+word	כְּמוֹ	kmˈo
+word	פַּרְפָּרִים	paʁpaʁˈim
+word	אִם	ʔˈim
+word	יִהְיוּ	jihjˈu
+word	שָׁאַל	ʃaʔˈal
+word	לִטְּפָה	litfˈa
+word	רֹאשׁוֹ	ʁoʃˈo
+word	וְאָמְרָה	veʔamʁˈa
+word	חֲדָשִׁים	χadaʃˈim
+word	רַק	ʁˈak
+word	בַּכִּתָּה	bakitˈa
+word	הַמּוֹרָה	hamoʁˈa
+word	חִיְּכָה	χijχˈa
+word	בְּרוּכִים	bʁuχˈim
+word	הַבָּאִים	habaʔˈim
+word	יָשַׁב	jaʃˈav
+word	יֶלֶד	jˈeled
+word	מִשְׁקָפַיִם	miʃkafˈajim
+word	אֲדֻמִּים	ʔadumˈim
+word	קוֹרְאִים	koʁʔˈim
+word	עוֹמֶר	ʔˈomeʁ
+word	הַיֶּלֶד	hajˈeled
+word	רוֹצֶה	ʁotsˈe
+word	בַּהַפְסָקָה	bahafsakˈa
+word	וְהַפַּרְפָּרִים	vehapaʁpaʁˈim
+word	בַּבֶּטֶן	babˈeten
+word	עָפוּ	ʔˈafu
+word	לְמָקוֹם	lemakˈom
+word	אַחֵר	ʔaχˈeʁ
+word	בְּיוֹם	bejˈom
+word	שִׁשִּׁי	ʃiʃˈi
+word	וְלִיאוֹר	veliʔˈoʁ
+word	בָּנוּ	banˈu
+word	הִשְׁתַּמְּשׁוּ	hiʃtamʃˈu
+word	בְּמַקְלוֹת	bemaklˈot
+word	בִּנְיָר	binjˈaʁ
+word	וּבְחוּט	uveχˈut
+word	אָרֹךְ	ʔaʁˈoχ
+word	יָצְאוּ	jatsʔˈu
+word	לַגִּבְעָה	laɡivʔˈa
+word	שֶׁמֵּאֲחוֹרֵי	ʃemeʔaχoʁˈej
+word	שָׁם	ʃˈam
+word	חֲזָקָה	χazakˈa
+word	לִיאוֹר	liʔˈoʁ
+word	וְהָעֲפִיפוֹן	vehaʔafifˈon
+word	עָלָה	ʔalˈa
+word	לַשָּׁמַיִם	laʃamˈajim
+word	רָקַד	ʁakˈad
+word	בָּרוּחַ	baʁˈuaχ
+word	אֲדֻמָּה	ʔadumˈa
+word	וּשְׂמֵחָה	usmeχˈa
+word	הַחוּט	haχˈut
+word	נִקְרַע	nikʁˈa
+word	רָחוֹק	ʁaχˈok
+word	עָצוּב	ʔatsˈuv
+word	נוֹרָא	noʁˈa
+word	נִבְנֶה	nivnˈe
+word	שְׁנַיִם	ʃnˈajim
+word	וּבְשַׁבָּת	uveʃabˈat
+word	שְׁנֵי	ʃnˈej
+word	עֲפִיפוֹנִים	ʔafifonˈim
+word	כָּחֹל	kaχˈol
+word	וְאֶחָד	veʔeχˈad
+word	שָׁמְעָה	ʃamʔˈa
+word	שִׁירָן	ʃiʁˈan
+word	רַחַשׁ	ʁˈaχaʃ
+word	מִי	mˈi
+word	מִסְתּוֹבֵב	mistovˈev
+word	בַּחֹשֶׁךְ	baχˈoʃeχ
+word	הֵבִיא	hevˈi
+word	פַּנָּס	panˈas
+word	וְהֵם	vehˈem
+word	לִבְדֹּק	livdˈok
+word	הַגָּדֵר	haɡadˈeʁ
+word	רָאוּ	ʁaʔˈu
+word	קוֹצִים	kotsˈim
+word	קִפּוֹד	kipˈod
+word	לָחֲשָׁה	laχaʃˈa
+word	בְּהִתְרַגְּשׁוּת	behitʁaɡʃˈut
+word	הַקִּפּוֹד	hakipˈod
+word	הֵרִים	heʁˈim
+word	הָאַף	haʔˈaf
+word	הַקָּטָן	hakatˈan
+word	וְרִחְרֵחַ	veʁiχʁˈeaχ
+word	הָאֲוִיר	haʔavˈiʁ
+word	הִסְבִּיר	hisbˈiʁ
+word	שֶׁקִּפּוֹדִים	ʃekipodˈim
+word	יוֹצְאִים	jotsʔˈim
+word	לְחַפֵּשׂ	leχapˈes
+word	חֲרָקִים	χaʁakˈim
+word	קְעָרָה	keʔaʁˈa
+word	לִשְׁתּוֹת	liʃtˈot
+word	וְשִׁירָן	veʃiʁˈan
+word	מְחַכָּה	meχakˈa
+word	בַּחַלּוֹן	baχalˈon
+word	וּמְחַיֶּכֶת	umeχajˈeχet
+word	לַכִּתָּה	lakitˈa
+word	יָעֵל	jaʔˈel
+word	הִגִּיעָה	hiɡiʔˈa
+word	תַּלְמִידָה	talmidˈa
+word	חֲדָשָׁה	χadaʃˈa
+word	אָנָה	ʔˈana
+word	מֵאֶרֶץ	meʔˈeʁets
+word	רְחוֹקָה	ʁeχokˈa
+word	וְעוֹד	veʔˈod
+word	עִבְרִית	ʔivʁˈit
+word	לְבַד	levˈad
+word	הַסַּפְסָל	hasafsˈal
+word	הִתְיַשְּׁבָה	hitjaʃvˈa
+word	לְיָדָהּ	lejadˈa
+word	וְהוֹצִיאָה	vehotsiʔˈa
+word	מֵהַתִּיק	mehatˈik
+word	תַּפּוּחִים	tapuχˈim
+word	נָתְנָה	natnˈa
+word	לְאָנָה	leʔˈana
+word	וְחִיְּכָה	veχijχˈa
+word	בַּחֲזָרָה	baχazaʁˈa
+word	לִמְּדָה	limdˈa
+word	מִלִּים	milˈim
+word	חֲדָשׁוֹת	χadaʃˈot
+word	וְאָנָה	veʔˈana
+word	בַּשָּׂפָה	basafˈa
+word	שֶׁלָּהּ	ʃelˈa
+word	חֹדֶשׁ	χˈodeʃ
+word	הֵן	hˈen
+word	כְּבָר	kvˈaʁ
+word	דִּבְּרוּ	dibʁˈu
+word	וְצָחֲקוּ	vetsaχakˈu
+word	חֲבֵרוֹת	χaveʁˈot
+word	טוֹבוֹת	tovˈot
+word	טִפִּי	tˈipi
+word	הָיְתָה	hajtˈa
+word	טִפַּת	tipˈat
+word	בַּיָּם	bajˈam
+word	הַגָּדוֹל	haɡadˈol
+word	חִמְּמָה	χimemˈa
+word	וְהִיא	vehˈi
+word	עָלְתָה	ʔaltˈa
+word	פָּגְשָׁה	paɡʃˈa
+word	עוֹד	ʔˈod
+word	לְעָנָן	leʔanˈan
+word	אָפֹר	ʔafˈoʁ
+word	וְכָבֵד	veχavˈed
+word	הָרוּחַ	haʁˈuaχ
+word	הֶעָנָן	heʔanˈan
+word	הֶהָרִים	hehaʁˈim
+word	קַר	kˈaʁ
+word	וְטִפִּי	vetˈipi
+word	נָפְלָה	naflˈa
+word	אַרְצָה	ʔˈaʁtsa
+word	זָרְמָה	zaʁmˈa
+word	בְּנַחַל	benˈaχal
+word	בְּנָהָר	benahˈaʁ
+word	רָחָב	ʁaχˈav
+word	הַנָּהָר	hanahˈaʁ
+word	הִשְׁקָה	hiʃkˈa
+word	שָׂדוֹת	sadˈot
+word	בַּדֶּרֶךְ	badˈeʁeχ
+word	שָׁתוּ	ʃatˈu
+word	וְאָמְרוּ	veʔamʁˈu
+word	בַּסּוֹף	basˈof
+word	חָזְרָה	χazʁˈa
+word	הַיָּם	hajˈam
+word	לְמַסָּע	lemasˈa
+word	חָדָשׁ	χadˈaʃ
+word	הַדְּבוֹרָה	hadvoʁˈa
+word	חֶרֶק	χˈeʁek
+word	חָשׁוּב	χaʃˈuv
+word	הַדְּבוֹרִים	hadvoʁˈim
+word	חַיּוֹת	χajˈot
+word	בְּכַוֶּרֶת	beχavˈeʁet
+word	מִשְׁפָּחָה	miʃpaχˈa
+word	כַּוֶּרֶת	kavˈeʁet
+word	מַלְכָּה	malkˈa
+word	וְאַלְפֵי	veʔalfˈej
+word	דְּבוֹרִים	dvoʁˈim
+word	פּוֹעֲלוֹת	poʔalˈot
+word	הַפּוֹעֲלוֹת	hapoʔalˈot
+word	עָפוֹת	ʔafˈot
+word	מִפֶּרַח	mipˈeʁaχ
+word	לְפֶרַח	lefˈeʁaχ
+word	וְאוֹסְפוֹת	veʔosfˈot
+word	צוּף	tsˈuf
+word	מֵהַצּוּף	mehatsˈuf
+word	מְכִינוֹת	meχinˈot
+word	מָתוֹק	matˈok
+word	כְּשֶׁהַדְּבוֹרָה	kʃehadvoʁˈa
+word	עוֹבֶרֶת	ʔovˈeʁet
+word	מַעֲבִירָה	maʔaviʁˈa
+word	אִתָּהּ	ʔitˈa
+word	אַבְקַת	ʔavkˈat
+word	יְכוֹלִים	jeχolˈim
+word	לְהַצְמִיחַ	lehatsmˈiaχ
+word	וּזְרָעִים	uzʁaʔˈim
+word	בְּלִי	blˈi
+word	לָנוּ	lˈanu
+word	פָּחוֹת	paχˈot
+word	וִירָקוֹת	viʁakˈot
+word	לָכֵן	laχˈen
+word	לִשְׁמֹר	liʃmˈoʁ
+word	וְלִשְׁתֹּל	veliʃtˈol
+word	הַשָּׁכֵן	haʃaχˈen
+word	קָרוֹב	kaʁˈov
+word	הָאָרֶץ	haʔˈaʁets
+word	בְּעַצְמוֹ	beʔatsmˈo
+word	מַחֲזִיר	maχazˈiʁ
+word	אוֹר	ʔˈoʁ
+word	לִפְעָמִים	lifʔamˈim
+word	רוֹאִים	ʁoʔˈim
+word	מָלֵא	malˈe
+word	וְלִפְעָמִים	velifʔamˈim
+word	חֵלֶק	χˈelek
+word	מִמֶּנּוּ	mimˈenu
+word	אֲוִיר	ʔavˈiʁ
+word	וְאֵין	veʔˈejn
+word	הַקַּרְקַע	hakˈaʁka
+word	מְכֻסָּה	meχusˈa
+word	בְּאָבָק	beʔavˈak
+word	וּבְמַכְתֵּשִׁים	uvemaχteʃˈim
+word	עֲגֻלִּים	ʔaɡulˈim
+word	מֵחֲמִשִּׁים	meχamiʃˈim
+word	שָׁנָה	ʃanˈa
+word	אֲנָשִׁים	ʔanaʃˈim
+word	טָסוּ	tˈasu
+word	הָלְכוּ	halχˈu
+word	עָלָיו	ʔalˈav
+word	וְהֵבִיאוּ	veheviʔˈu
+word	מִשָּׁם	miʃˈam
+word	אֲבָנִים	ʔavanˈim
+word	הָעֲקֵבוֹת	haʔakevˈot
+word	שֶׁלָּהֶם	ʃelahˈem
+word	נִמְצָאִים	nimtsaʔˈim
+word	גַּם	ɡˈam
+word	כִּי	kˈi
+word	שֶׁתִּמְחַק	ʃetimχˈak
+word	הַגָּמָל	haɡamˈal
+word	חַי	χˈaj
+word	בַּמִּדְבָּר	bamidbˈaʁ
+word	וְיֵשׁ	vejˈeʃ
+word	מְעַט	meʔˈat
+word	דַּבֶּשֶׁת	dabˈeʃet
+word	וּבָהּ	uvˈa
+word	אוֹגֵר	ʔoɡˈeʁ
+word	שֻׁמָּן	ʃumˈan
+word	כְּשֶׁאֵין	kʃeʔˈejn
+word	אֹכֶל	ʔˈoχel
+word	הַגּוּף	haɡˈuf
+word	מִשְׁתַּמֵּשׁ	miʃtamˈeʃ
+word	בַּשֻּׁמָּן	baʃumˈan
+word	הַזֶּה	hazˈe
+word	צָמֵא	tsamˈe
+word	יָכוֹל	jaχˈol
+word	בְּפַעַם	befˈaʔam
+word	לַגָּמָל	laɡamˈal
+word	רִיסִים	ʁisˈim
+word	אֲרֻכִּים	ʔaʁukˈim
+word	שֶׁשּׁוֹמְרִים	ʃeʃomʁˈim
+word	הָעֵינַיִם	haʔenˈajim
+word	מִפְּנֵי	mipnˈej
+word	רְחָבוֹת	ʁeχavˈot
+word	וְהֵן	vehˈen
+word	שׁוֹקְעוֹת	ʃokʔˈot
+word	בַּחוֹל	baχˈol
+word	הָרַךְ	haʁˈaχ
+word	בִּזְכוּת	bizχˈut
+word	אֵלֶּה	ʔelˈe
+word	לָלֶכֶת	lalˈeχet
+word	רַבִּים	ʁabˈim
+word	בִּגְלַל	biɡlˈal
+word	סְפִינַת	sfinˈat
+word	הַמִּדְבָּר	hamidbˈaʁ
+word	בְּתוֹךְ	betˈoχ
+word	שֶׁלָּנוּ	ʃelˈanu
+word	פּוֹעֵם	poʔˈem
+word	בְּגֹדֶל	beɡˈodel
+word	אֶגְרוֹף	ʔeɡʁˈof
+word	הַלֵּב	halˈev
+word	שְׁרִיר	ʃʁˈiʁ
+word	שֶׁעוֹבֵד	ʃeʔovˈed
+word	הַזְּמַן	hazmˈan
+word	כְּשֶׁאֲנַחְנוּ	kʃeʔanˈaχnu
+word	יְשֵׁנִים	jeʃenˈim
+word	פְּעִימָה	peʔimˈa
+word	שׁוֹלֵחַ	ʃolˈeaχ
+word	דָּם	dˈam
+word	חֶלְקֵי	χelkˈej
+word	הַדָּם	hadˈam
+word	מֵבִיא	mevˈi
+word	לַגּוּף	laɡˈuf
+word	חַמְצָן	χamtsˈan
+word	וּמָזוֹן	umazˈon
+word	כְּדֵי	kedˈej
+word	שֶׁיִּהְיֶה	ʃejihjˈe
+word	כֹּחַ	kˈoaχ
+word	רָצִים	ʁatsˈim
+word	אוֹ	ʔˈo
+word	קוֹפְצִים	koftsˈim
+word	אֶפְשָׁר	ʔefʃˈaʁ
+word	לְהַרְגִּישׁ	lehaʁɡˈiʃ
+word	הַדֹּפֶק	hadˈofek
+word	שְׁתֵּי	ʃtˈej
+word	אֶצְבָּעוֹת	ʔetsbaʔˈot
+word	הַצַּוָּאר	hatsavˈaʁ
+word	בָּרִיא	baʁˈi
+word	כְּדַאי	kedˈaj
+word	וְלֶאֱכֹל	veleʔeχˈol
+word	הַדּוֹלְפִין	hadolfˈin
+word	יוֹנֵק	jonˈek
+word	וְכָמוֹנוּ	veχamˈonu
+word	נוֹשֵׁם	noʃˈem
+word	וְלָכֵן	velaχˈen
+word	עוֹלֶה	ʔolˈe
+word	לְמַעְלָה	lemˈaʔla
+word	מִדֵּי	midˈej
+word	פַּעַם	pˈaʔam
+word	דֶּרֶךְ	dˈeʁeχ
+word	חֹר	χˈoʁ
+word	שֶׁנִּמְצָא	ʃenimtsˈa
+word	הָרֹאשׁ	haʁˈoʃ
+word	דּוֹלְפִינִים	dolfinˈim
+word	חַיִּים	χajˈim
+word	בִּקְבוּצוֹת	bikvutsˈot
+word	וּמְדַבְּרִים	umedabʁˈim
+word	בִּשְׁרִיקוֹת	biʃʁikˈot
+word	שְׁרִיקָה	ʃʁikˈa
+word	מְיֻחֶדֶת	mejuχˈedet
+word	שֵׁם	ʃˈem
+word	חֲכָמִים	χaχamˈim
+word	אוֹהֲבִים	ʔohavˈim
+word	וּלְזַנֵּק	ulezanˈek
+word	מֵעַל	meʔˈal
+word	הַגַּלִּים	haɡalˈim
+word	מוֹצְאִים	motsʔˈim
+word	בְּעֶזְרַת	beʔezʁˈat
+word	קוֹלוֹת	kolˈot
+word	שֶׁחוֹזְרִים	ʃeχozʁˈim
+word	אֲלֵיהֶם	ʔalehˈem
+word	הֵד	hˈed
+word	יוֹדְעִים	jodʔˈim
+word	דָּגִים	daɡˈim
+word	בְּמַיִם	bemˈajim
+word	עֲכוּרִים	ʔaχuʁˈim
+word	זוֹרְקִים	zoʁkˈim
+word	לַפַּח	lapˈaχ
+word	דְּבָרִים	dvaʁˈim
+word	בַּקְבּוּקִים	bakbukˈim
+word	קֻפְסָאוֹת	kufsaʔˈot
+word	עִתּוֹנִים	ʔitonˈim
+word	וּשְׂקִיּוֹת	uskijˈot
+word	מַגִּיעִים	maɡiʔˈim
+word	לַזֶּבֶל	lazˈevel
+word	הַזֶּבֶל	hazˈevel
+word	לְמִזְבָּלָה	lemizbalˈa
+word	וּגְדֵלָה	uɡdelˈa
+word	בְּמִחְזוּר	bemiχzˈuʁ
+word	מִשְׁתַּמְּשִׁים	miʃtamʃˈim
+word	שׁוּב	ʃˈuv
+word	בַּחֳמָרִים	baχomaʁˈim
+word	וְעוֹשִׂים	veʔosˈim
+word	מֵהֶם	mehˈem
+word	מִבַּקְבּוּקֵי	mibakbukˈej
+word	פְּלַסְטִיק	plˈastik
+word	לְהָכִין	lehaχˈin
+word	כִּסְאוֹת	kisʔˈot
+word	וַאֲפִלּוּ	vaʔafilˈu
+word	חֻלְצוֹת	χultsˈot
+word	מֵעִתּוֹנִים	meʔitonˈim
+word	יְשָׁנִים	jeʃanˈim
+word	מְכִינִים	meχinˈim
+word	נְיָר	nejˈaʁ
+word	וְכָךְ	veχˈaχ
+word	כּוֹרְתִים	koʁtˈim
+word	עֵצִים	ʔetsˈim
+word	לְהַפְרִיד	lehafʁˈid
+word	הַפְּסֹלֶת	hapsˈolet
+word	לְפַחִים	lefaχˈim
+word	בַּקְבּוּק	bakbˈuk
+word	שֶׁאֲנַחְנוּ	ʃeʔanˈaχnu
+word	מְמַחְזְרִים	memaχzeʁˈim
+word	נָקִי	nakˈi
+word	הַכִּנֶּרֶת	hakinˈeʁet
+word	אֲגַם	ʔaɡˈam
+word	בִּצְפוֹן	bitsfˈon
+word	בַּכִּנֶּרֶת	bakinˈeʁet
+word	מְתוּקִים	metukˈim
+word	מְלוּחִים	meluχˈim
+word	כִּנֶּרֶת	kinˈeʁet
+word	אוֹמְרִים	ʔomʁˈim
+word	שֶׁהַצּוּרָה	ʃehatsuʁˈa
+word	דּוֹמָה	domˈa
+word	לְכִנּוֹר	leχinˈoʁ
+word	נְהַר	nehˈaʁ
+word	הַיַּרְדֵּן	hajaʁdˈen
+word	זוֹרֵם	zoʁˈem
+word	וּמְמַלֵּא	umemalˈe
+word	כְּשֶׁיּוֹרֵד	kʃejoʁˈed
+word	כְּשֶׁחַם	kʃeχˈam
+word	וְהַמְּפֻרְסָם	vehamfuʁsˈam
+word	בֵּינֵיהֶם	benehˈem
+word	אַמְנוּן	ʔamnˈun
+word	לַכִּנֶּרֶת	lakinˈeʁet
+word	חוֹפִים	χofˈim
+word	וְאֶפְשָׁר	veʔefʃˈaʁ
+word	בָּהֶם	bahˈem
+word	וְלִשְׂחוֹת	velisχˈot
+word	נְקִיָּה	nekijˈa
+word	אוֹצָר	ʔotsˈaʁ
+word	כֻּלָּנוּ	kulˈanu
+word	בַּשָּׁנָה	baʃanˈa
+word	עוֹנוֹת	ʔonˈot
+word	סְתָו	stˈav
+word	חֹרֶף	χˈoʁef
+word	אָבִיב	ʔavˈiv
+word	וְקַיִץ	vekˈajits
+word	בַּסְּתָו	bastˈav
+word	הֶעָלִים	heʔalˈim
+word	מַחְלִיפִים	maχlifˈim
+word	צֶבַע	tsˈeva
+word	וְנוֹשְׁרִים	venoʃʁˈim
+word	מֵהָעֵצִים	mehaʔetsˈim
+word	מְפַזֶּרֶת	mefazˈeʁet
+word	מְרַשְׁרְשִׁים	meʁaʃʁeʃˈim
+word	לָרַגְלַיִם	laʁaɡlˈajim
+word	וְיוֹרֵד	vejoʁˈed
+word	וּבֶהָרִים	uvehaʁˈim
+word	הַגְּבוֹהִים	haɡvohˈim
+word	בָּאָבִיב	baʔavˈiv
+word	הַכֹּל	hakˈol
+word	פּוֹרֵחַ	poʁˈeaχ
+word	כַּלָּנִיּוֹת	kalanijˈot
+word	מְכַסּוֹת	meχasˈot
+word	הַשָּׂדוֹת	hasadˈot
+word	הַצִּפֳּרִים	hatsipoʁˈim
+word	חוֹזְרוֹת	χozʁˈot
+word	מֵאֲרָצוֹת	meʔaʁatsˈot
+word	חַמּוֹת	χamˈot
+word	וּבוֹנוֹת	uvonˈot
+word	קִנִּים	kinˈim
+word	הַיָּמִים	hajamˈim
+word	וְהַיְלָדִים	vehajeladˈim
+word	נֶהֱנִים	nehenˈim
+word	מֵהַחֻפְשָׁה	mehaχufʃˈa
+word	הַסְּתָו	hastˈav
+word	וְהַמַּעְגָּל	vehamaʔɡˈal
+word	מַתְחִיל	matχˈil
+word	מֵחָדָשׁ	meχadˈaʃ
+word	וְאֵיזוֹ	veʔˈejzo
+word	עוֹנָה	ʔonˈa
+word	אַתֶּם	ʔatˈem

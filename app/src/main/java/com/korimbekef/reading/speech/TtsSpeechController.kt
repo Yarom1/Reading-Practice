@@ -101,6 +101,7 @@ class TtsSpeechController(
             return
         }
         if (!ready) return
+        if (s.voiceGenders != old.voiceGenders) loadVoices()
         if (s.voiceName != old.voiceName) applyVoice()
         if (s.syncMode != old.syncMode) publishSync()
     }
@@ -174,7 +175,7 @@ class TtsSpeechController(
                     label = "קול ${i + 1}",
                     isNetwork = v.isNetworkConnectionRequired,
                     quality = v.quality,
-                    gender = detectGender(v),
+                    gender = settings.voiceGenders[v.name] ?: detectGender(v),
                 )
             },
         )

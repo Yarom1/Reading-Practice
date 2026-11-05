@@ -45,8 +45,8 @@ data class AppSettings(
     val speakNikud: Boolean = true,
     val soundEffects: Boolean = true,
     val voicePrompts: Boolean = true,
-    /** Built-in texts are played from the app's recorded voice (device voice only for other texts). */
-    val useRecordedVoice: Boolean = true,
+    /** voice name -> "m" / "f", as tagged by the parent (engines rarely report gender). */
+    val voiceGenders: Map<String, String> = emptyMap(),
     /** "engine|voice" -> result of the word-sync capability check. */
     val rangeSupport: Map<String, String> = emptyMap(),
     val hiddenPassages: Set<String> = emptySet(),
@@ -68,7 +68,7 @@ class SettingsRepository(private val dataStore: DataStore<Preferences>) {
         val speakNikud = booleanPreferencesKey("speak_nikud")
         val soundEffects = booleanPreferencesKey("sound_effects")
         val voicePrompts = booleanPreferencesKey("voice_prompts")
-        val recordedVoice = booleanPreferencesKey("recorded_voice")
+        val voiceGenders = stringSetPreferencesKey("voice_genders")
         val rangeSupport = stringSetPreferencesKey("range_support")
         val hidden = stringSetPreferencesKey("hidden_passages")
     }
@@ -86,7 +86,7 @@ class SettingsRepository(private val dataStore: DataStore<Preferences>) {
             speakNikud = p[Keys.speakNikud] ?: true,
             soundEffects = p[Keys.soundEffects] ?: true,
             voicePrompts = p[Keys.voicePrompts] ?: true,
-            useRecordedVoice = p[Keys.recordedVoice] ?: true,
+            voiceGenders = decodeMap(p[Keys.voiceGenders]),
             rangeSupport = decodeMap(p[Keys.rangeSupport]),
             hiddenPassages = p[Keys.hidden] ?: emptySet(),
         )
@@ -113,7 +113,11 @@ class SettingsRepository(private val dataStore: DataStore<Preferences>) {
     suspend fun setSoundEffects(value: Boolean) = edit { it[Keys.soundEffects] = value }
     suspend fun setVoicePrompts(value: Boolean) = edit { it[Keys.voicePrompts] = value }
 
-    suspend fun setUseRecordedVoice(value: Boolean) = edit { it[Keys.recordedVoice] = value }
+    suspend fun setVoiceGender(voice: String, gender: String?) = edit { p ->
+        val map = decodeMap(p[Keys.voiceGenders]).toMutableMap()
+        if (gender == null) map.remove(voice) else map[voice] = gender
+        p[Keys.voiceGenders] = encodeMap(map)
+    }
 
     suspend fun setRangeSupport(key: String, value: String?) = edit { p ->
         val map = decodeMap(p[Keys.rangeSupport]).toMutableMap()

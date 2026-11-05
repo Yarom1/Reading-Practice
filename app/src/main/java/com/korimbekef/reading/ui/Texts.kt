@@ -139,17 +139,5 @@ object T {
     const val VOLUME_OFF = "הַקּוֹל כָּבוּי. כְּדַאי לְהַגְבִּיר אֶת הַקּוֹל 🔊"
     const val NO_VOICE_CHILD = "אֵין קוֹל עִבְרִי בַּמַּכְשִׁיר. אֶפְשָׁר לְבַקֵּשׁ עֶזְרָה מֵהַהוֹרִים."
 
-    // ---- Spoken only (recorded in the app's voice, so they carry no names or numbers) ----
-    const val HOME_GREETING = "שָׁלוֹם! מָה נִקְרָא הַיּוֹם?"
-    val ONBOARDING_SAMPLE = G("שָׁלוֹם! בּוֹא נִקְרָא יַחַד.", "שָׁלוֹם! בּוֹאִי נִקְרָא יַחַד.")
-    const val SPEED_SAMPLE = "זֶה קֶצֶב הַקְּרִיאָה שֶׁנִּבְחַר."
-    const val VOICE_SAMPLE = "שָׁלוֹם! בּוֹאוּ נִקְרָא סִפּוּר יַחַד."
-
-    /** Every message the app speaks with a fixed text (both forms). The recordings are made from this list. */
-    val SPOKEN: List<String> by lazy {
-        val pairs = TURN_PROMPTS + PRAISE + listOf(TOGETHER_PROMPT, READ_ALL_DONE, COMPLETED, ONBOARDING_SAMPLE)
-        pairs.flatMap { listOf(it.m, it.f) } + listOf(HOME_GREETING, GAME_DONE, SPEED_SAMPLE, VOICE_SAMPLE)
-    }
-
     fun <T> pick(list: List<T>, random: Random = Random.Default): T = list[random.nextInt(list.size)]
 }

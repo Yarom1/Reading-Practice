@@ -82,11 +82,6 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-
-    // The recorded voice is played straight from the APK (AssetFileDescriptor), so it must stay uncompressed.
-    androidResources {
-        noCompress += "mp3"
-    }
 }
 
 kotlin {

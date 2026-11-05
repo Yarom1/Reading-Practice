@@ -6,12 +6,6 @@ on:
     paths-ignore:
       - "**.md"
       - "docs/**"
-      - "tools/voice/**"
-      - ".github/workflows/voice-samples.yml"
-      - ".github/workflows/g2p-compare.yml"
-      - ".github/workflows/stress-probe.yml"
-      - ".github/workflows/asr-check.yml"
-      - ".github/workflows/speech-assets.yml"
   workflow_dispatch:
     inputs:
       release:

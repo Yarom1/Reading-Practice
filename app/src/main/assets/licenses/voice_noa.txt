@@ -1,7 +1,0 @@
-Voice "noa" (Piper Hebrew, medium)
-https://huggingface.co/thewh1teagle/piper-he-noa
-License: Creative Commons Attribution 4.0 (CC BY 4.0) - https://creativecommons.org/licenses/by/4.0/
-
-The app's recordings were made with this voice. Pronunciation (IPA) was prepared with
-Phonikud (https://github.com/thewh1teagle/phonikud) from the app's own vocalized texts, and the
-stress of every word was reviewed by hand.

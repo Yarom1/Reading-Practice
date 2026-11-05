@@ -61,7 +61,6 @@ import com.korimbekef.reading.ui.components.PinPad
 import com.korimbekef.reading.ui.components.SelectableChip
 import com.korimbekef.reading.ui.components.SoftCard
 import com.korimbekef.reading.ui.components.bouncyClick
-import com.korimbekef.reading.ui.T
 import com.korimbekef.reading.ui.theme.KColors
 import kotlinx.coroutines.launch
 
@@ -71,7 +70,8 @@ class OnboardingViewModel(private val c: AppContainer) : ViewModel() {
     val speech = c.speech.state
 
     fun sample(name: String, girl: Boolean) {
-        c.speech.speakMessage(T.ONBOARDING_SAMPLE.of(girl), 0.9f)
+        val call = if (girl) "בּוֹאִי" else "בּוֹא"
+        c.speech.speakMessage("שָׁלוֹם $name! $call נִקְרָא יַחַד.", 0.9f)
     }
 
     fun finish(name: String, girl: Boolean, avatar: String, level: Int, nikud: Boolean, pin: String, onDone: () -> Unit) {
@@ -249,11 +249,7 @@ fun OnboardingScreen(onDone: () -> Unit) {
                                         Text("מחפשים קול עברי במכשיר…", color = KColors.InkSoft)
                                     }
                                     EngineStatus.READY -> {
-                                        Text(
-                                            if (speech.recorded) "✅ הקול של האפליקציה מוכן" else "✅ נמצא קול עברי",
-                                            style = MaterialTheme.typography.titleLarge,
-                                            color = KColors.Ink,
-                                        )
+                                        Text("✅ נמצא קול עברי", style = MaterialTheme.typography.titleLarge, color = KColors.Ink)
                                         Spacer(Modifier.height(6.dp))
                                         Text("לחצו כדי לשמוע דוגמה. אם לא שומעים – הגבירו את עוצמת הקול.", color = KColors.InkSoft, textAlign = TextAlign.Center)
                                         Spacer(Modifier.height(12.dp))
@@ -276,7 +272,7 @@ fun OnboardingScreen(onDone: () -> Unit) {
                         }
                         Spacer(Modifier.height(16.dp))
                         Text(
-                            "הסיפורים מוקראים בקול מוקלט שנבדק. בהגדרות ההורים אפשר לשנות מהירות ולבחור קול מכשיר לטקסטים שתוסיפו בעצמכם.",
+                            "בהגדרות ההורים אפשר לבחור קול (נשי/גברי, לפי הקולות במכשיר), מהירות וגובה קול.",
                             style = MaterialTheme.typography.bodySmall,
                             color = KColors.InkSoft,
                             textAlign = TextAlign.Center,

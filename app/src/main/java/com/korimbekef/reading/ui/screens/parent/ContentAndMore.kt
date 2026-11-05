@@ -295,11 +295,10 @@ fun AboutScreen(onBack: () -> Unit) {
             Bullet("אין פרסומות ואין קישורים חיצוניים בממשק הילד.")
             Bullet("אין שימוש במיקרופון ואין הקלטות של הילד.")
             Bullet("כל הנתונים (פרופיל, התקדמות, מילים) נשמרים רק במכשיר, ואפשר למחוק אותם בהגדרות הילד/ה.")
-            Bullet("הסיפורים, ההודעות והמילים שבאפליקציה מוקראים מהקלטות שנמצאות בתוך האפליקציה.")
-            Bullet("טקסטים שהוספתם בעצמכם מוקראים על ידי מנוע ההקראה של המכשיר. קולות שמסומנים \"דורש אינטרנט\" עשויים לשלוח את הטקסט לספק הקול – מומלץ לבחור קול שעובד בלי אינטרנט.")
+            Bullet("ההקראה נעשית על ידי מנוע ההקראה של המכשיר. קולות שמסומנים \"דורש אינטרנט\" עשויים לשלוח את הטקסט לספק הקול – מומלץ לבחור קול שעובד בלי אינטרנט.")
         }
         SectionCard(title = "איך זה עובד") {
-            Bullet("כל שורה בקטע ניתנת ללחיצה: היא מוקראת, וכל מילה מודגשת בדיוק כשהיא נשמעת.")
+            Bullet("כל שורה בקטע ניתנת ללחיצה: יַנְשׁוּפִי מקריא אותה ומדגיש כל מילה בזמן שהיא נשמעת.")
             Bullet("בסוף השורה הילד מוזמן לקרוא לבד. האפליקציה מחכה ולא עוברת לבד לשורה הבאה.")
             Bullet("כוכבים ניתנים על התמדה ומאמץ – לא על דיוק. אין ציונים שליליים ואין עונשים.")
             Bullet("מצב \"קריאה לבד\": הילד קורא קודם, ונעזר בהקראה של מילה או שורה רק כשצריך.")
@@ -310,12 +309,10 @@ fun AboutScreen(onBack: () -> Unit) {
         }
         SectionCard(title = "גרסה") {
             InfoText("קוראים בכיף ${BuildConfig.VERSION_NAME}")
-            TextButton(onClick = { showLicenses = !showLicenses }) { Text(if (showLicenses) "הסתרת רישיונות" else "רישיונות (קול וגופנים)") }
+            TextButton(onClick = { showLicenses = !showLicenses }) { Text(if (showLicenses) "הסתרת רישיונות" else "רישיונות גופנים") }
             if (showLicenses) {
                 val license = remember {
-                    listOf("licenses/voice_noa.txt", "licenses/fonts_ofl.txt").joinToString("\n\n") { name ->
-                        runCatching { context.assets.open(name).bufferedReader().use { it.readText() } }.getOrDefault("")
-                    }
+                    runCatching { context.assets.open("licenses/fonts_ofl.txt").bufferedReader().use { it.readText() } }.getOrDefault("")
                 }
                 Text(license, style = MaterialTheme.typography.bodySmall, color = KColors.InkSoft)
             }

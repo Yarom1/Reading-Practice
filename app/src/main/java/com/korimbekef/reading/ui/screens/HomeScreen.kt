@@ -125,7 +125,7 @@ class HomeViewModel(private val c: AppContainer) : ViewModel() {
             val ready = withTimeoutOrNull(5000) { c.speech.state.first { it.status != EngineStatus.INITIALIZING } }
             if (ready?.status != EngineStatus.READY) return@launch
             delay(400)
-            c.speech.speakMessage(T.HOME_GREETING, 0.95f)
+            c.speech.speakMessage("${T.hello(child.name)} ${T.WHAT_TODAY}", 0.95f)
         }
     }
 

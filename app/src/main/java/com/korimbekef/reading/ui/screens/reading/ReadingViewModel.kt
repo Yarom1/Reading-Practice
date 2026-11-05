@@ -339,9 +339,8 @@ class ReadingViewModel(
         viewModelScope.launch {
             if (c.settings.current().voicePrompts && st.speechAvailable) {
                 // short spoken intro, then the slow word-by-word reading
-                val prompt = T.TOGETHER_PROMPT.of(st.girl)
-                c.speech.speakMessage(prompt, 0.9f)
-                delay((c.speech.estimatedDurationMs(prompt, 0.9f) ?: 2400L) + 250L)
+                c.speech.speakMessage(T.TOGETHER_PROMPT.of(st.girl), 0.9f)
+                delay(2600)
             }
             playLine(line, together = true)
         }

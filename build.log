@@ -1,0 +1,18 @@
+[0;93m2026-11-05 00:19:45.969059438 [W:onnxruntime:Default, device_discovery.cc:95 GetPciBusId] Skipping pci_bus_id for PCI path at "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171" because filename "5620e0c7-8062-4dce-aeb7-520c7ef76171" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+[m
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+1402 texts, 1108 distinct words, 0 problems
+  100/1402
+  200/1402
+  300/1402
+  400/1402
+  500/1402
+  600/1402
+  700/1402
+  800/1402
+  900/1402
+  1000/1402
+  1100/1402
+  1200/1402
+  1300/1402
+  1400/1402
+done: 1402 recordings, 21.6 minutes, 8.8 MB

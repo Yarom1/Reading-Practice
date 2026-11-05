@@ -61,8 +61,9 @@ def main():
         for raw in p["lines"]:
             n = unicodedata.normalize("NFC", " ".join(nikud_of(raw).split()))
             lines.append((p["id"], n, " ".join(plain_of(raw).split())))
-    if args.limit:
-        lines = lines[: args.limit]
+    if args.limit and args.limit < len(lines):
+        step = len(lines) / args.limit  # an even sample over all levels
+        lines = [lines[int(i * step)] for i in range(args.limit)]
 
     model = None
     for name in (args.model, "large-v3-turbo"):
@@ -102,7 +103,7 @@ def main():
             missed.setdefault(w.strip(".,!?:;\"'"), []).append(h)
         if bad_words:
             rows.append(f"{pid}\t{plain}\tHEARD: {heard}\tWRONG: " + "; ".join(f"{w}→{h or '∅'}" for w, h in bad_words))
-        if i % 25 == 0:
+        if i % 10 == 0:
             print(f"  {i}/{len(lines)}  accuracy so far {100 * ok / max(1, total):.1f}%  ({time.time() - t0:.0f}s)", flush=True)
     summary = {"lines": len(lines), "words": total, "heard_as_written_%": round(100 * ok / max(1, total), 1),
                "lines_with_differences": sum(1 for r in rows if "WRONG:" in r)}

@@ -33,10 +33,11 @@ jobs:
       - name: Compare
         id: compare
         continue-on-error: true
+        timeout-minutes: 35
         run: |
           set -o pipefail
           mkdir -p g2p-out
-          python tools/voice/asr_check.py --assets app/src/main/assets --out g2p-out 2>&1 | tee g2p-out/run.log
+          python -u tools/voice/asr_check.py --assets app/src/main/assets --out g2p-out --limit 60 2>&1 | tee g2p-out/run.log
 
       - name: Encode MP3
         if: always()

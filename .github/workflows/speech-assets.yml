@@ -13,6 +13,13 @@ on:
       - "app/src/main/java/com/korimbekef/reading/speech/SpeechCatalog.kt"
       - ".github/workflows/speech-assets.yml"
   workflow_dispatch:
+    inputs:
+      pitch_accent:
+        description: "Raise stressed vowels' pitch by this fraction (0 = off)"
+        default: "0"
+      variant:
+        description: "Suffix for the output branch (to keep several versions side by side)"
+        default: ""
 
 permissions:
   contents: write
@@ -60,13 +67,15 @@ jobs:
         id: record
         run: |
           set -o pipefail
-          python tools/voice/build_speech.py --catalog speech-out/utterances.json --out speech-out 2>&1 | tee speech-out/build.log
+          python tools/voice/build_speech.py --catalog speech-out/utterances.json --out speech-out \
+            --pitch-accent "${{ github.event.inputs.pitch_accent || '0' }}" 2>&1 | tee speech-out/build.log
 
       - name: Publish output branch
         if: always()
         run: |
-          echo "record=${{ steps.record.outcome }} sha=${GITHUB_SHA} run=${GITHUB_RUN_NUMBER}" > speech-out/STATUS.txt
-          BRANCH="build-output/${GITHUB_REF_NAME}-speech"
+          echo "record=${{ steps.record.outcome }} sha=${GITHUB_SHA} run=${GITHUB_RUN_NUMBER} pitch=${{ github.event.inputs.pitch_accent || '0' }}" > speech-out/STATUS.txt
+          VARIANT="${{ github.event.inputs.variant }}"
+          BRANCH="build-output/${GITHUB_REF_NAME}-speech${VARIANT:+-$VARIANT}"
           rm -rf /tmp/out && mkdir -p /tmp/out && cp -r speech-out/. /tmp/out/
           cd /tmp/out
           git init -q -b main

@@ -539,7 +539,8 @@ def main():
     ap.add_argument("--length-scale", type=float, default=0.9)
     ap.add_argument("--bitrate", default="48k")
     ap.add_argument("--raw-stress", action="store_true", help="do not enforce the stressed vowel's length")
-    ap.add_argument("--pitch-accent", type=float, default=0.0, help="raise stressed vowels' pitch by this fraction")
+    ap.add_argument("--pitch-accent", type=float, default=0.12,
+                    help="raise stressed vowels' pitch by this fraction (0.12 = the version chosen by listening)")
     ap.add_argument("--voice", choices=sorted(VOICES), default="noa")
     args = ap.parse_args()
 

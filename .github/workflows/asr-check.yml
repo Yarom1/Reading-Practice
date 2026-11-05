@@ -8,6 +8,13 @@ on:
       - "tools/voice/asr_check.py"
       - ".github/workflows/asr-check.yml"
   workflow_dispatch:
+    inputs:
+      speech_branch:
+        description: "Check the recordings of this output branch instead of the app's (e.g. build-output/<branch>-speech-pitch)"
+        default: ""
+      tag:
+        description: "Suffix for the result branch"
+        default: ""
 
 permissions:
   contents: write
@@ -19,6 +26,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Recordings to check
+        run: |
+          mkdir -p check-assets
+          cp -r app/src/main/assets/content check-assets/
+          SRC="${{ github.event.inputs.speech_branch }}"
+          if [ -n "$SRC" ]; then
+            git fetch -q origin "$SRC"
+            mkdir -p from-branch && git --work-tree=from-branch checkout FETCH_HEAD -- speech
+            cp -r from-branch/speech check-assets/
+          else
+            cp -r app/src/main/assets/speech check-assets/
+          fi
+          ls check-assets/speech | wc -l
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -37,7 +58,7 @@ jobs:
         run: |
           set -o pipefail
           mkdir -p g2p-out
-          python -u tools/voice/asr_check.py --assets app/src/main/assets --out g2p-out --limit 60 2>&1 | tee g2p-out/run.log
+          python -u tools/voice/asr_check.py --assets check-assets --out g2p-out --limit 60 2>&1 | tee g2p-out/run.log
 
       - name: Encode MP3
         if: always()
@@ -53,7 +74,8 @@ jobs:
       - name: Publish output branch
         if: always()
         run: |
-          BRANCH="build-output/${GITHUB_REF_NAME}-asr"
+          TAG="${{ github.event.inputs.tag }}"
+          BRANCH="build-output/${GITHUB_REF_NAME}-asr${TAG:+-$TAG}"
           rm -rf /tmp/out && mkdir -p /tmp/out && cp -r g2p-out/. /tmp/out/
           cd /tmp/out
           git init -q -b main

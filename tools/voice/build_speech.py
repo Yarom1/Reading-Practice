@@ -37,7 +37,10 @@ VOWELS = set("ֱֲֳִֵֶַָׇֹֺֻ")
 FULL_VOWELS = VOWELS - set("ֱֲֳ")
 PREFIX_LETTERS = set("והבכלמש")
 
-VOICE_REPO, VOICE_FILE, VOICE_CONFIG = "thewh1teagle/piper-he-noa", "he_IL-noa-medium.onnx", "he_IL-noa-medium.onnx.json"
+VOICES = {  # name: (repo, model, config, speaker)
+    "noa": ("thewh1teagle/piper-he-noa", "he_IL-noa-medium.onnx", "he_IL-noa-medium.onnx.json", 0),
+    "male": ("thewh1teagle/phonikud-tts-checkpoints", "model.onnx", "model.config.json", 0),
+}
 NAKDAN_REPO, NAKDAN_FILE = "thewh1teagle/phonikud-onnx", "phonikud-1.0.onnx"
 
 
@@ -537,6 +540,7 @@ def main():
     ap.add_argument("--bitrate", default="48k")
     ap.add_argument("--raw-stress", action="store_true", help="do not enforce the stressed vowel's length")
     ap.add_argument("--pitch-accent", type=float, default=0.0, help="raise stressed vowels' pitch by this fraction")
+    ap.add_argument("--voice", choices=sorted(VOICES), default="noa")
     args = ap.parse_args()
 
     out = Path(args.out)
@@ -594,8 +598,9 @@ def main():
     import numpy as np
     import soundfile as sf
     from huggingface_hub import hf_hub_download
-    voice = Voice(hf_hub_download(VOICE_REPO, VOICE_FILE), hf_hub_download(VOICE_REPO, VOICE_CONFIG),
-                  speaker=0, length_scale=args.length_scale, enforce_stress=not args.raw_stress,
+    repo, model_file, config_file, speaker = VOICES[args.voice]
+    voice = Voice(hf_hub_download(repo, model_file), hf_hub_download(repo, config_file),
+                  speaker=speaker, length_scale=args.length_scale, enforce_stress=not args.raw_stress,
                   pitch_accent=args.pitch_accent)
     sr = voice.sr
 
@@ -605,7 +610,7 @@ def main():
         ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
     speech = out / "speech"
     speech.mkdir(parents=True, exist_ok=True)
-    manifest = {"version": 1, "voice": "noa", "items": {}}
+    manifest = {"version": 1, "voice": args.voice, "items": {}}
     tmp = Path(tempfile.mkdtemp())
     for n, e in enumerate(catalog, 1):
         text, tokens = e["text"], e["tokens"]

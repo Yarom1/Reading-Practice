@@ -11,7 +11,6 @@ on:
       - "app/src/main/assets/content/**"
       - "app/src/main/java/com/korimbekef/reading/ui/Texts.kt"
       - "app/src/main/java/com/korimbekef/reading/speech/SpeechCatalog.kt"
-      - ".github/workflows/speech-assets.yml"
   workflow_dispatch:
     inputs:
       pitch_accent:
@@ -20,12 +19,15 @@ on:
       variant:
         description: "Suffix for the output branch (to keep several versions side by side)"
         default: ""
+      voice:
+        description: "noa or male"
+        default: "noa"
 
 permissions:
   contents: write
 
 concurrency:
-  group: speech-${{ github.ref }}
+  group: speech-${{ github.ref }}-${{ github.event.inputs.variant }}
   cancel-in-progress: true
 
 jobs:
@@ -68,7 +70,8 @@ jobs:
         run: |
           set -o pipefail
           python tools/voice/build_speech.py --catalog speech-out/utterances.json --out speech-out \
-            --pitch-accent "${{ github.event.inputs.pitch_accent || '0' }}" 2>&1 | tee speech-out/build.log
+            --pitch-accent "${{ github.event.inputs.pitch_accent || '0' }}" \
+            --voice "${{ github.event.inputs.voice || 'noa' }}" 2>&1 | tee speech-out/build.log
 
       - name: Publish output branch
         if: always()

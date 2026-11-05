@@ -1,0 +1,9 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+speech recognizer: ivrit-ai/whisper-large-v3-turbo-ct2
+  10/60  accuracy so far 80.8%  (67s)
+  20/60  accuracy so far 82.6%  (133s)
+  30/60  accuracy so far 83.1%  (200s)
+  40/60  accuracy so far 85.6%  (268s)
+  50/60  accuracy so far 85.1%  (334s)
+  60/60  accuracy so far 86.6%  (402s)
+{"lines": 60, "words": 322, "heard_as_written_%": 86.6, "lines_with_differences": 26}

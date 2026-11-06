@@ -1,5 +1,6 @@
 package com.korimbekef.reading.ui.screens.parent
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -19,6 +20,7 @@ import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.Delete
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -283,6 +285,66 @@ fun ChangePinScreen(onBack: () -> Unit) {
     }
 }
 
+// ---------------------------------------------------------------- erase all data
+
+class EraseAllViewModel(c: AppContainer) : ParentBaseViewModel(c) {
+    /** Runs in the app's scope, so leaving the screen cannot stop the erase half way. */
+    fun eraseAll(onDone: () -> Unit) {
+        c.scope.launch {
+            c.eraseAllData()
+            onDone()
+        }
+    }
+}
+
+@Composable
+fun EraseAllScreen(onBack: () -> Unit, onErased: () -> Unit) {
+    val vm = appViewModel { EraseAllViewModel(it) }
+    val scope = rememberCoroutineScope()
+    var confirmed by rememberSaveable { mutableStateOf(false) }
+    var erasing by remember { mutableStateOf(false) }
+    var error by remember { mutableStateOf<String?>(null) }
+    var errorKey by remember { mutableIntStateOf(0) }
+    BackHandler(enabled = erasing) { }
+    ParentScaffold(title = "מחיקת כל הנתונים", onBack = { if (!erasing) onBack() }) {
+        when {
+            erasing -> SectionCard { Text("מוחקים את כל הנתונים…", style = MaterialTheme.typography.titleMedium, color = KColors.Ink) }
+            !confirmed -> {
+                SectionCard(title = "מה יימחק") {
+                    Bullet("כל הפרופילים של הילדים")
+                    Bullet("ההתקדמות: כוכבים, מדליות, היסטוריה ורשימות המילים")
+                    Bullet("קטעי הקריאה שהוספתם")
+                    Bullet("קוד ההורים וכל ההגדרות (קול, הקראה ועוד)")
+                }
+                InfoText("אחרי המחיקה האפליקציה תתחיל מההתחלה, כמו אחרי התקנה חדשה. אי אפשר לבטל את המחיקה.")
+                Button(
+                    onClick = { confirmed = true },
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error),
+                    modifier = Modifier.fillMaxWidth(),
+                ) { Text("המשך למחיקה") }
+                TextButton(onClick = onBack, modifier = Modifier.fillMaxWidth()) { Text("ביטול") }
+            }
+            else -> PinPad(
+                title = "הקישו את קוד ההורים כדי למחוק הכול",
+                error = error,
+                errorKey = errorKey,
+                resetKey = "erase",
+                onComplete = { pin ->
+                    scope.launch(Dispatchers.Main.immediate) {
+                        if (vm.pinMatches(pin)) {
+                            erasing = true
+                            vm.eraseAll(onErased)
+                        } else {
+                            error = "קוד שגוי"
+                            errorKey++
+                        }
+                    }
+                },
+            )
+        }
+    }
+}
+
 // ---------------------------------------------------------------- about & privacy
 
 @Composable
@@ -294,7 +356,7 @@ fun AboutScreen(onBack: () -> Unit) {
             Bullet("האפליקציה עובדת בלי אינטרנט ואין לה הרשאת אינטרנט בכלל.")
             Bullet("אין פרסומות ואין קישורים חיצוניים בממשק הילד.")
             Bullet("אין שימוש במיקרופון ואין הקלטות של הילד.")
-            Bullet("כל הנתונים (פרופיל, התקדמות, מילים) נשמרים רק במכשיר, ואפשר למחוק אותם בהגדרות הילד/ה.")
+            Bullet("כל הנתונים (פרופיל, התקדמות, מילים) נשמרים רק במכשיר. אפשר למחוק אותם בהגדרות הילד/ה, או הכול יחד ב\"מחיקת כל הנתונים\" באזור ההורים.")
             Bullet("ההקראה נעשית על ידי מנוע ההקראה של המכשיר. קולות שמסומנים \"דורש אינטרנט\" עשויים לשלוח את הטקסט לספק הקול – מומלץ לבחור קול שעובד בלי אינטרנט.")
         }
         SectionCard(title = "איך זה עובד") {

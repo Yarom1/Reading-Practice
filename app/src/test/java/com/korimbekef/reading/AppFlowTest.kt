@@ -14,6 +14,7 @@ import androidx.compose.ui.test.longClick
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.text.TextLayoutResult
@@ -143,6 +144,12 @@ open class AppFlowTest {
 
     private fun click(text: String) {
         node(text).performClick()
+        rule.waitForIdle()
+    }
+
+    /** Clicks a button that may be below the visible part of a scrolling screen. */
+    private fun clickScrolled(text: String) {
+        node(text).performScrollTo().performClick()
         rule.waitForIdle()
     }
 
@@ -330,6 +337,38 @@ open class AppFlowTest {
         click("קטעי קריאה")
         waitText("הוספת קטע קריאה משלכם")
         shot("45_parent_content")
+    }
+
+    @Test
+    fun eraseAllDataStartsOverFromTheBeginning() {
+        seed()
+        runBlocking { app.container.progress.addWord(app.container.children.active()!!.id, "שָׁלוֹם", "שלום", byParent = true) }
+        launch()
+        waitText(T.START_STORY.m)
+        clickDescription(T.PARENTS)
+        waitText("הקישו את קוד ההורים")
+        listOf("1", "2", "3", "4").forEach { click(it) }
+        waitText("דוח התקדמות")
+        clickScrolled("מחיקת כל הנתונים")
+        waitText("המשך למחיקה")
+        shot("46_parent_erase_all")
+        click("המשך למחיקה")
+        waitText("הקישו את קוד ההורים כדי למחוק הכול")
+        // a wrong code erases nothing
+        listOf("0", "0", "0", "0").forEach { click(it) }
+        waitText("קוד שגוי")
+        assertTrue(runBlocking { app.container.children.children.first() }.isNotEmpty())
+        listOf("1", "2", "3", "4").forEach { click(it) }
+        // the app starts over from the first setup, with nothing left
+        waitText("בואו נתחיל")
+        shot("47_after_erase_all")
+        runBlocking {
+            val c = app.container
+            assertTrue("profiles left", c.children.children.first().isEmpty())
+            val s = c.settings.current()
+            assertTrue("onboarding still marked done", !s.onboardingDone)
+            assertTrue("parent code left", s.pinHash == null)
+        }
     }
 
     @Test

@@ -46,6 +46,7 @@ import com.korimbekef.reading.ui.screens.parent.AddPassageScreen
 import com.korimbekef.reading.ui.screens.parent.ChangePinScreen
 import com.korimbekef.reading.ui.screens.parent.ChildSettingsScreen
 import com.korimbekef.reading.ui.screens.parent.ContentScreen
+import com.korimbekef.reading.ui.screens.parent.EraseAllScreen
 import com.korimbekef.reading.ui.screens.parent.ParentGateScreen
 import com.korimbekef.reading.ui.screens.parent.ParentHomeScreen
 import com.korimbekef.reading.ui.screens.parent.ParentWordsScreen
@@ -80,6 +81,7 @@ object Routes {
     const val PARENT_WORDS = "parent/words"
     const val PARENT_PIN = "parent/pin"
     const val PARENT_ABOUT = "parent/about"
+    const val PARENT_ERASE = "parent/erase"
 }
 
 @Composable
@@ -212,6 +214,7 @@ private fun AppNavHost(nav: NavHostController, startRoute: String) {
                 onWords = { nav.navigate(Routes.PARENT_WORDS) },
                 onPin = { nav.navigate(Routes.PARENT_PIN) },
                 onAbout = { nav.navigate(Routes.PARENT_ABOUT) },
+                onErase = { nav.navigate(Routes.PARENT_ERASE) },
             )
         }
         composable(Routes.PARENT_REPORT) { ReportScreen(onBack = { nav.popBackStack() }) }
@@ -229,6 +232,13 @@ private fun AppNavHost(nav: NavHostController, startRoute: String) {
         composable(Routes.PARENT_WORDS) { ParentWordsScreen(onBack = { nav.popBackStack() }) }
         composable(Routes.PARENT_PIN) { ChangePinScreen(onBack = { nav.popBackStack() }) }
         composable(Routes.PARENT_ABOUT) { AboutScreen(onBack = { nav.popBackStack() }) }
+        composable(Routes.PARENT_ERASE) {
+            EraseAllScreen(
+                onBack = { nav.popBackStack() },
+                // nothing is left to go back to: start over from the first setup
+                onErased = { nav.navigate(Routes.ONBOARDING) { popUpTo(nav.graph.id) { inclusive = true } } },
+            )
+        }
     }
 }
 

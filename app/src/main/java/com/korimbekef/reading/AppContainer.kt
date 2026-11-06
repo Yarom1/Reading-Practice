@@ -12,6 +12,7 @@ import com.korimbekef.reading.speech.SpeechController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.withContext
 
 /** Simple manual dependency container, created once by [ReadingApp]. */
 class AppContainer(
@@ -27,4 +28,17 @@ class AppContainer(
     val children: ChildrenRepository by lazy { ChildrenRepository(db, settings, progress) }
     val speech: SpeechController by lazy { speechFactory(this) }
     val sounds: SoundEffects by lazy { SoundEffects(appContext, settings, scope) }
+
+    /**
+     * Erases everything the app saved on the device: child profiles, progress, word lists, texts
+     * added by the parent, the parent code and all settings. The app then starts like a new install.
+     */
+    suspend fun eraseAllData() {
+        speech.stop()
+        withContext(Dispatchers.IO) {
+            db.clearAllTables()
+            appContext.cacheDir.listFiles()?.forEach { runCatching { it.deleteRecursively() } }
+        }
+        settings.clearAll()
+    }
 }

@@ -127,6 +127,9 @@ class SettingsRepository(private val dataStore: DataStore<Preferences>) {
 
     suspend fun clearRangeSupport() = edit { it.remove(Keys.rangeSupport) }
 
+    /** Back to a fresh install: no profile, no parent code, default settings. */
+    suspend fun clearAll() = edit { it.clear() }
+
     suspend fun setPassageHidden(id: String, hidden: Boolean) = edit { p ->
         val set = (p[Keys.hidden] ?: emptySet()).toMutableSet()
         if (hidden) set += id else set -= id

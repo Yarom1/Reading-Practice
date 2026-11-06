@@ -28,6 +28,7 @@ import androidx.compose.material.icons.automirrored.rounded.ExitToApp
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.BarChart
+import androidx.compose.material.icons.rounded.DeleteForever
 import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material.icons.rounded.LibraryBooks
 import androidx.compose.material.icons.rounded.Password
@@ -241,6 +242,7 @@ fun ParentHomeScreen(
     onWords: () -> Unit,
     onPin: () -> Unit,
     onAbout: () -> Unit,
+    onErase: () -> Unit,
 ) {
     val vm = appViewModel { ParentHomeViewModel(it) }
     val children by vm.children.collectAsStateWithLifecycle()
@@ -322,6 +324,9 @@ fun ParentHomeScreen(
             MenuRow(Icons.Rounded.Password, "קוד הורים", "שינוי הקוד", onPin)
             MenuRow(Icons.Rounded.Info, "פרטיות ומידע", "איך האפליקציה עובדת ומה היא לא אוספת", onAbout)
         }
+        SectionCard {
+            MenuRow(Icons.Rounded.DeleteForever, "מחיקת כל הנתונים", "כל הפרופילים, ההתקדמות וההגדרות – התחלה מחדש", onErase, danger = true)
+        }
     }
 }
 
@@ -334,7 +339,8 @@ private fun MiniStat(label: String, value: String) {
 }
 
 @Composable
-fun MenuRow(icon: ImageVector, title: String, subtitle: String, onClick: () -> Unit) {
+fun MenuRow(icon: ImageVector, title: String, subtitle: String, onClick: () -> Unit, danger: Boolean = false) {
+    val accent = if (danger) MaterialTheme.colorScheme.error else KColors.Violet
     Row(
         Modifier
             .fillMaxWidth()
@@ -342,12 +348,12 @@ fun MenuRow(icon: ImageVector, title: String, subtitle: String, onClick: () -> U
             .padding(vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Box(Modifier.size(42.dp).background(KColors.VioletLight, CircleShape), contentAlignment = Alignment.Center) {
-            Icon(icon, contentDescription = null, tint = KColors.Violet)
+        Box(Modifier.size(42.dp).background(if (danger) accent.copy(alpha = 0.12f) else KColors.VioletLight, CircleShape), contentAlignment = Alignment.Center) {
+            Icon(icon, contentDescription = null, tint = accent)
         }
         Spacer(Modifier.width(12.dp))
         Column(Modifier.weight(1f)) {
-            Text(title, style = MaterialTheme.typography.titleMedium, color = KColors.Ink)
+            Text(title, style = MaterialTheme.typography.titleMedium, color = if (danger) accent else KColors.Ink)
             Text(subtitle, style = MaterialTheme.typography.bodySmall, color = KColors.InkSoft)
         }
         Icon(Icons.AutoMirrored.Rounded.KeyboardArrowRight, contentDescription = null, tint = KColors.InkSoft)

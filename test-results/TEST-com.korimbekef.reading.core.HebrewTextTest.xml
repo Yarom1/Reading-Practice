@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.korimbekef.reading.core.HebrewTextTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-06T09:47:48.560Z" hostname="runnervmwuk1x" time="0.0">
+  <properties/>
+  <testcase name="tokenizesWordsWithNikudAndPunctuation" classname="com.korimbekef.reading.core.HebrewTextTest" time="0.0"/>
+  <testcase name="mapsCharacterOffsetsToWords" classname="com.korimbekef.reading.core.HebrewTextTest" time="0.0"/>
+  <testcase name="fullAlternativeSyntax" classname="com.korimbekef.reading.core.HebrewTextTest" time="0.0"/>
+  <testcase name="normalizeCollapsesSpaces" classname="com.korimbekef.reading.core.HebrewTextTest" time="0.0"/>
+  <testcase name="stripsNikudButKeepsLettersAndPunctuation" classname="com.korimbekef.reading.core.HebrewTextTest" time="0.0"/>
+  <testcase name="firstLetterUsesBaseForm" classname="com.korimbekef.reading.core.HebrewTextTest" time="0.0"/>
+  <testcase name="standalonePunctuationAttachesToPreviousWord" classname="com.korimbekef.reading.core.HebrewTextTest" time="0.0"/>
+  <testcase name="nikudAndPlainVersionsAlign" classname="com.korimbekef.reading.core.HebrewTextTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

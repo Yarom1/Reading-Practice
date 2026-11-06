@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.korimbekef.reading.AppFlowTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-06T09:47:27.157Z" hostname="runnervmwuk1x" time="15.014">
+  <properties/>
+  <testcase name="eraseAllDataStartsOverFromTheBeginning" classname="com.korimbekef.reading.AppFlowTest" time="6.243"/>
+  <testcase name="readingLineHighlightsWordsAndWaitsForChild" classname="com.korimbekef.reading.AppFlowTest" time="2.091"/>
+  <testcase name="finishingAStoryCelebratesAndProgressIsSaved" classname="com.korimbekef.reading.AppFlowTest" time="1.231"/>
+  <testcase name="gamesTreasureAndWords" classname="com.korimbekef.reading.AppFlowTest" time="1.471"/>
+  <testcase name="aloneModeAndWordCard" classname="com.korimbekef.reading.AppFlowTest" time="1.133"/>
+  <testcase name="onboardingCreatesProfileAndShowsHome" classname="com.korimbekef.reading.AppFlowTest" time="1.014"/>
+  <testcase name="parentZoneIsProtectedByPin" classname="com.korimbekef.reading.AppFlowTest" time="1.199"/>
+  <testcase name="tabletLayout" classname="com.korimbekef.reading.AppFlowTest" time="0.632"/>
+  <system-out><![CDATA[Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/46_parent_erase_all.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/47_after_erase_all.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/10_home.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/11_library.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/12_reading.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/13_reading_highlight.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/14_reading_your_turn.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/15_reading_after_done.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/16_reading_no_nikud.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/20_story_completed.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/21_home_after_story.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/50_games.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/51_game_word_picture.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/52_game_missing_word.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/52a_game_listen.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/52b_game_listen_without_voice.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/53_game_memory.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/54_treasure.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/55_my_words.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/30_reading_settings.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/31_reading_alone_mode.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/32_word_card.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/01_onboarding_welcome.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/02_onboarding_child.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/03_onboarding_level.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/04_onboarding_voice.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/05_home_girl.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/40_parent_pin_wrong.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/41_parent_home.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/42_parent_report.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/43_parent_voice.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/44_parent_child_settings.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/45_parent_content.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/60_tablet_home.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/61_tablet_reading.png
+]]></system-out>
+  <system-err><![CDATA[[Robolectric] WARN: Android SDK 36 requires Java 21 (have Java 17). Tests won't be run on SDK 36 unless explicitly requested.
+System.logW: A resource failed to call close. 
+System.logW: A resource failed to call close. 
+System.logW: A resource failed to call close. 
+System.logW: A resource failed to call close. 
+System.logW: A resource failed to call close. 
+]]></system-err>
+</testsuite>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.korimbekef.reading.LargeTextAppFlowTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-06T09:47:42.179Z" hostname="runnervmwuk1x" time="6.27">
+  <properties/>
+  <testcase name="eraseAllDataStartsOverFromTheBeginning" classname="com.korimbekef.reading.LargeTextAppFlowTest" time="0.427"/>
+  <testcase name="readingLineHighlightsWordsAndWaitsForChild" classname="com.korimbekef.reading.LargeTextAppFlowTest" time="1.066"/>
+  <testcase name="finishingAStoryCelebratesAndProgressIsSaved" classname="com.korimbekef.reading.LargeTextAppFlowTest" time="0.91"/>
+  <testcase name="gamesTreasureAndWords" classname="com.korimbekef.reading.LargeTextAppFlowTest" time="0.949"/>
+  <testcase name="aloneModeAndWordCard" classname="com.korimbekef.reading.LargeTextAppFlowTest" time="0.868"/>
+  <testcase name="onboardingCreatesProfileAndShowsHome" classname="com.korimbekef.reading.LargeTextAppFlowTest" time="0.642"/>
+  <testcase name="parentZoneIsProtectedByPin" classname="com.korimbekef.reading.LargeTextAppFlowTest" time="0.834"/>
+  <testcase name="tabletLayout" classname="com.korimbekef.reading.LargeTextAppFlowTest" time="0.573"/>
+  <system-out><![CDATA[Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_46_parent_erase_all.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_47_after_erase_all.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_10_home.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_11_library.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_12_reading.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_13_reading_highlight.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_14_reading_your_turn.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_15_reading_after_done.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_16_reading_no_nikud.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_20_story_completed.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_21_home_after_story.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_50_games.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_51_game_word_picture.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_52_game_missing_word.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_52a_game_listen.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_52b_game_listen_without_voice.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_53_game_memory.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_54_treasure.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_55_my_words.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_30_reading_settings.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_31_reading_alone_mode.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_32_word_card.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_01_onboarding_welcome.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_02_onboarding_child.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_03_onboarding_level.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_04_onboarding_voice.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_05_home_girl.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_40_parent_pin_wrong.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_41_parent_home.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_42_parent_report.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_43_parent_voice.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_44_parent_child_settings.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_45_parent_content.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_60_tablet_home.png
+Saved screenshot /home/runner/work/Reading-Practice/Reading-Practice/build/screenshots/large_61_tablet_reading.png
+]]></system-out>
+  <system-err><![CDATA[System.logW: A resource failed to call close. 
+System.logW: A resource failed to call close. 
+System.logW: A resource failed to call close. 
+System.logW: A resource failed to call close. 
+System.logW: A resource failed to call close. 
+System.logW: A resource failed to call close. 
+]]></system-err>
+</testsuite>

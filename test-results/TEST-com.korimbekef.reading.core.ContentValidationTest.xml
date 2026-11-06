@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.korimbekef.reading.core.ContentValidationTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-06T09:47:48.452Z" hostname="runnervmwuk1x" time="0.081">
+  <properties/>
+  <testcase name="nikudMarksAreWellFormed" classname="com.korimbekef.reading.core.ContentValidationTest" time="0.031"/>
+  <testcase name="plainSpellingOnlyAddsVavOrYod" classname="com.korimbekef.reading.core.ContentValidationTest" time="0.009"/>
+  <testcase name="plainTextHasNoMarksAndNoBraces" classname="com.korimbekef.reading.core.ContentValidationTest" time="0.009"/>
+  <testcase name="spokenTextKeepsTheWordsInPlace" classname="com.korimbekef.reading.core.ContentValidationTest" time="0.015"/>
+  <testcase name="levelsAndCounts" classname="com.korimbekef.reading.core.ContentValidationTest" time="0.004"/>
+  <testcase name="nikudAndPlainHaveTheSameWords" classname="com.korimbekef.reading.core.ContentValidationTest" time="0.005"/>
+  <testcase name="reportPossibleMissingOverrides" classname="com.korimbekef.reading.core.ContentValidationTest" time="0.007"/>
+  <system-out><![CDATA[POSSIBLE MISSING KTIV-MALE OVERRIDES (1):
+  לְמָחֳרָת
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

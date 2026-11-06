@@ -51,6 +51,18 @@ class ContentValidationTest {
     }
 
     @Test
+    fun spokenTextKeepsTheWordsInPlace() {
+        // what the voice is given (כָּל → כּוֹל) must have the same words as the screen, for highlighting
+        val problems = allTexts().mapNotNull { (where, t) ->
+            val spoken = SpokenText.fix(t.nikud)
+            if (LineTokens.of(spoken).wordCount != t.wordCount) "$where: $spoken" else null
+        }
+        assertTrue("word count changed:\n" + problems.joinToString("\n"), problems.isEmpty())
+        val kol = allTexts().count { (_, t) -> SpokenText.fix(t.nikud) != t.nikud }
+        assertTrue("expected the כָּל lines to be fixed, got $kol", kol >= 20)
+    }
+
+    @Test
     fun plainTextHasNoMarksAndNoBraces() {
         val problems = allTexts().mapNotNull { (where, t) ->
             when {

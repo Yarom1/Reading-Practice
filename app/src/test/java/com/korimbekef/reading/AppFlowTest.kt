@@ -41,7 +41,10 @@ import org.robolectric.annotation.GraphicsMode
 @RunWith(RobolectricTestRunner::class)
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @Config(sdk = [35], application = TestApp::class, qualifiers = "w411dp-h891dp-xxhdpi")
-class AppFlowTest {
+open class AppFlowTest {
+
+    /** Prefix of the screenshot names (the large-font run saves its own set). */
+    protected open val shotPrefix: String = ""
 
     @get:Rule
     val rule = createEmptyComposeRule()
@@ -86,7 +89,7 @@ class AppFlowTest {
     private fun shot(name: String) {
         var activity: android.app.Activity? = null
         scenario?.onActivity { activity = it }
-        Screenshots.capture(rule, name, activity)
+        Screenshots.capture(rule, shotPrefix + name, activity)
     }
 
     private fun content(raw: String): String = DualText.parse(raw).nikud
@@ -314,6 +317,22 @@ class AppFlowTest {
         click(T.GAME_MISSING)
         waitText(T.Q_MISSING)
         shot("52_game_missing_word")
+        scenario?.onActivity { it.onBackPressedDispatcher.onBackPressed() }
+        click(T.GAME_LISTEN)
+        waitText(T.Q_LISTEN)
+        // the speaker button says the word of the question
+        val before = fake.requests.size
+        clickDescription(T.HEAR_WORD)
+        assertTrue("the speaker button speaks", fake.requests.size > before)
+        val said = fake.requests.last().second
+        assertEquals("game", said.tag)
+        assertEquals(1, said.lines.size)
+        shot("52a_game_listen")
+        // a phone that cannot speak: the picture is shown instead of the ear, so the game still works
+        fake.fail()
+        rule.waitForIdle()
+        waitText(T.Q_PICTURE_WORD)
+        shot("52b_game_listen_without_voice")
         scenario?.onActivity { it.onBackPressedDispatcher.onBackPressed() }
         click(T.GAME_MEMORY)
         waitText(T.Q_MEMORY)

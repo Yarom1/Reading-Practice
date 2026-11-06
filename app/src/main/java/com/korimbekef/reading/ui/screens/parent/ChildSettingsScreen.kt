@@ -144,7 +144,10 @@ fun ChildSettingsScreen(childId: Long, onBack: () -> Unit) {
         SectionCard(title = "תצוגה") {
             SwitchRow("ניקוד כברירת מחדל", "הילד יכול להחליף בכל רגע במסך הקריאה", d.withNikud) { draft = d.copy(withNikud = it) }
             Text("גודל גופן", style = MaterialTheme.typography.bodyLarge, color = KColors.Ink)
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.Bottom) {
+            FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
                 FontSteps.sizes.forEachIndexed { i, size ->
                     FilterChip(
                         selected = d.fontStep == i,

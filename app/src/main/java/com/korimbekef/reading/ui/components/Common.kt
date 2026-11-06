@@ -31,6 +31,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicText
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material3.Icon
@@ -58,6 +60,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.isSpecified
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.korimbekef.reading.ui.T
@@ -82,6 +86,31 @@ fun Modifier.bouncyClick(enabled: Boolean = true, role: Role = Role.Button, onCl
             role = role,
             onClick = onClick,
         )
+}
+
+/**
+ * Text that shrinks to fit its space instead of breaking a word letter by letter or being cut off
+ * (long words, narrow phones, a large font set on the device).
+ */
+@Composable
+fun FitText(
+    text: String,
+    style: TextStyle,
+    modifier: Modifier = Modifier,
+    color: Color = Color.Unspecified,
+    maxLines: Int = 1,
+    minFontSize: TextUnit = 9.sp,
+    textAlign: TextAlign = TextAlign.Center,
+) {
+    val max = if (style.fontSize.isSpecified) style.fontSize else 16.sp
+    BasicText(
+        text = text,
+        modifier = modifier,
+        style = style.copy(color = if (color != Color.Unspecified) color else style.color, textAlign = textAlign),
+        maxLines = maxLines,
+        softWrap = maxLines > 1,
+        autoSize = TextAutoSize.StepBased(minFontSize = minFontSize, maxFontSize = max, stepSize = 1.sp),
+    )
 }
 
 /** Large rounded "3D" button used across the child screens. */
@@ -140,13 +169,12 @@ fun BigButton(
                 Icon(icon, contentDescription = null, tint = contentColor, modifier = Modifier.size(height * 0.42f))
                 Spacer(Modifier.width(8.dp))
             }
-            Text(
+            FitText(
                 text,
                 style = textStyle,
                 color = if (enabled) contentColor else KColors.InkSoft,
                 maxLines = 2,
-                textAlign = TextAlign.Center,
-                overflow = TextOverflow.Ellipsis,
+                minFontSize = 12.sp,
             )
         }
     }
@@ -271,7 +299,7 @@ fun LabeledIconButton(
     Column(modifier.widthIn(max = 84.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         RoundIconButton(icon, label, onClick, color = color, tint = tint, enabled = enabled, size = 48.dp)
         Spacer(Modifier.height(4.dp))
-        Text(label, style = MaterialTheme.typography.labelSmall, color = KColors.InkSoft, textAlign = TextAlign.Center, maxLines = 2)
+        FitText(label, MaterialTheme.typography.labelSmall, color = KColors.InkSoft, maxLines = 2, minFontSize = 8.sp)
     }
 }
 
@@ -292,23 +320,22 @@ fun SpeechBubble(
     }
 }
 
-/** Small pill showing an emoji and a value, e.g. ⭐ 42. */
+/** A small card with an emoji, a value and (optionally) a label under it, e.g. ⭐ 42 / כּוֹכָבִים. */
 @Composable
 fun StatPill(emoji: String, value: String, modifier: Modifier = Modifier, color: Color = Color.White, label: String? = null) {
-    Row(
+    Column(
         modifier
-            .shadow(3.dp, RoundedCornerShape(50))
-            .background(color, RoundedCornerShape(50))
-            .padding(horizontal = 12.dp, vertical = 6.dp),
-        verticalAlignment = Alignment.CenterVertically,
+            .shadow(3.dp, RoundedCornerShape(18.dp))
+            .background(color, RoundedCornerShape(18.dp))
+            .padding(horizontal = 8.dp, vertical = 6.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(emoji, fontSize = 20.sp)
-        Spacer(Modifier.width(6.dp))
-        Text(value, style = MaterialTheme.typography.titleMedium, color = KColors.Ink, fontWeight = FontWeight.Bold)
-        if (label != null) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(emoji, fontSize = 18.sp)
             Spacer(Modifier.width(4.dp))
-            Text(label, style = MaterialTheme.typography.labelSmall, color = KColors.InkSoft)
+            FitText(value, MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold), color = KColors.Ink)
         }
+        if (label != null) FitText(label, MaterialTheme.typography.labelSmall, color = KColors.InkSoft, minFontSize = 8.sp)
     }
 }
 

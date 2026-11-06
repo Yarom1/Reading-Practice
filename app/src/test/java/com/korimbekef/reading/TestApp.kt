@@ -68,6 +68,13 @@ class FakeSpeechController : SpeechController {
         _playback.value = Playback(id, r.tag, PlayStatus.SPEAKING, line, word)
     }
 
+    /** The voice fails, like a phone without a working Hebrew voice. */
+    fun fail() {
+        val (id, r) = current ?: return
+        current = null
+        _playback.value = Playback(id, r.tag, PlayStatus.ERROR, r.startLine, -1, "test-error")
+    }
+
     fun finish() {
         val (id, r) = current ?: return
         current = null

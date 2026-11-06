@@ -34,7 +34,7 @@ data class QuizQuestion(
     val promptText: DualText? = null,
     val promptEmoji: String? = null,
     /** What the speaker button says (and what is read aloud after a correct answer). */
-    val speakText: String? = null,
+    val speakText: DualText? = null,
     val blankWordIndex: Int = -1,
     val options: List<QuizOption>,
     val correctIndex: Int,
@@ -98,7 +98,7 @@ class GameGenerator(
         return QuizQuestion(
             type = GameType.WORD_TO_PICTURE,
             promptText = target.word,
-            speakText = target.word.nikud,
+            speakText = target.word,
             options = options.map { QuizOption(emoji = it.emoji) },
             correctIndex = idx,
         )
@@ -109,7 +109,7 @@ class GameGenerator(
         return QuizQuestion(
             type = GameType.PICTURE_TO_WORD,
             promptEmoji = target.emoji,
-            speakText = target.word.nikud,
+            speakText = target.word,
             options = options.map { QuizOption(text = it.word) },
             correctIndex = idx,
         )
@@ -123,7 +123,7 @@ class GameGenerator(
             type = GameType.FIRST_LETTER,
             promptEmoji = target.emoji,
             promptText = target.word,
-            speakText = target.word.nikud,
+            speakText = target.word,
             options = options.map { QuizOption(letter = it) },
             correctIndex = idx,
         )
@@ -133,8 +133,9 @@ class GameGenerator(
         val (options, idx) = withCorrect(target, similarWords(target, pool, 2))
         return QuizQuestion(
             type = GameType.LISTEN_AND_CHOOSE,
-            speakText = target.word.nikud,
-            promptEmoji = null,
+            speakText = target.word,
+            // shown instead of the ear only when the device cannot speak, so the game stays playable
+            promptEmoji = target.emoji,
             options = options.map { QuizOption(text = it.word) },
             correctIndex = idx,
         )
@@ -172,7 +173,7 @@ class GameGenerator(
             result += QuizQuestion(
                 type = GameType.MISSING_WORD,
                 promptText = line,
-                speakText = line.nikud,
+                speakText = line,
                 blankWordIndex = blank,
                 options = options.map { QuizOption(text = it) },
                 correctIndex = idx,

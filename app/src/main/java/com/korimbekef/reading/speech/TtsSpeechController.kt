@@ -8,8 +8,10 @@ import android.os.Looper
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
 import android.speech.tts.Voice
+import com.korimbekef.reading.core.DualText
 import com.korimbekef.reading.core.HebrewText
 import com.korimbekef.reading.core.LineTokens
+import com.korimbekef.reading.core.SpokenText
 import com.korimbekef.reading.data.prefs.AppSettings
 import com.korimbekef.reading.data.prefs.SettingsRepository
 import com.korimbekef.reading.data.prefs.SyncMode
@@ -62,6 +64,13 @@ class TtsSpeechController(
     private var paused: Pair<Active, Pair<Int, Int>>? = null
     private var pending: Pair<Long, SpeakRequest>? = null
 
+    /** A message asked for while the engine was still starting; it is said as soon as the voice is ready. */
+    private var pendingMessage: Pair<String, Float>? = null
+    private var lastMessage: Message? = null
+
+    /** Lines as sent to the engine (see [SpokenText]), by their text with nikud. */
+    private val spokenCache = HashMap<String, LineTokens>()
+
     private var probe: Probe? = null
     private var probeCounter = 0
     private var probeAttempts = 0
@@ -85,6 +94,8 @@ class TtsSpeechController(
     }
 
     private data class Uid(val gen: Int, val type: Char, val line: Int, val word: Int)
+
+    private class Message(val gen: Int, val text: String, val rate: Float)
 
     init {
         scope.launch { settingsRepo.settings.collect { onSettings(it) } }
@@ -137,6 +148,7 @@ class TtsSpeechController(
             } else {
                 _state.value = SpeechState(status = EngineStatus.NO_ENGINE)
                 failPending("no-engine")
+                pendingMessage = null
             }
             return
         }
@@ -158,6 +170,10 @@ class TtsSpeechController(
         pending?.let { (id, req) ->
             pending = null
             speakInternal(req, id)
+        }
+        pendingMessage?.let { (text, rate) ->
+            pendingMessage = null
+            speakMessage(text, rate)
         }
     }
 
@@ -303,6 +319,7 @@ class TtsSpeechController(
         if (t == null || !ready) {
             if (_state.value.status == EngineStatus.INITIALIZING) {
                 pending = id to request
+                pendingMessage = null
                 _playback.value = Playback(id, request.tag, PlayStatus.SPEAKING, request.startLine, -1)
             } else {
                 _playback.value = Playback(id, request.tag, PlayStatus.ERROR, request.startLine, -1, "no-engine")
@@ -335,7 +352,7 @@ class TtsSpeechController(
         var lastLine = startLine
         var lastWord = 0
         if (request.singleWord) {
-            val tokens = request.lines[startLine].tokens(!plain)
+            val tokens = spoken(request.lines[startLine], plain)
             if (tokens.wordCount > 0) {
                 val w = request.startWord.coerceIn(0, tokens.wordCount - 1)
                 ok = say(t, tokens.speechWord(w), queueMode(), uid(gen, 'W', startLine, w))
@@ -343,7 +360,7 @@ class TtsSpeechController(
             }
         } else {
             for (li in startLine..endLine) {
-                val tokens = request.lines[li].tokens(!plain)
+                val tokens = spoken(request.lines[li], plain)
                 if (tokens.wordCount == 0) continue
                 val first = if (li == startLine) request.startWord.coerceIn(0, tokens.wordCount - 1) else 0
                 if (sync == EffectiveSync.ENGINE_RANGES) {
@@ -399,6 +416,7 @@ class TtsSpeechController(
         active = null
         paused = null
         pending = null
+        pendingMessage = null
         runCatching { tts?.stop() }
         val pb = _playback.value
         if (pb.status == PlayStatus.SPEAKING || pb.status == PlayStatus.PAUSED) {
@@ -407,18 +425,27 @@ class TtsSpeechController(
     }
 
     override fun speakMessage(text: String, rate: Float) {
-        val t = tts ?: return
-        if (!ready || _state.value.status != EngineStatus.READY) return
+        val t = tts
+        if (t == null || !ready) {
+            // The voice is still starting (e.g. right after the app opened): say it when it is ready.
+            if (_state.value.status == EngineStatus.INITIALIZING) {
+                if (pending != null) stop()
+                pendingMessage = text to rate
+            }
+            return
+        }
+        if (_state.value.status != EngineStatus.READY) return
         val pb = _playback.value
         if (pb.status == PlayStatus.SPEAKING || pb.status == PlayStatus.PAUSED) stop()
+        pendingMessage = null
         generation++
         paused = null
         runCatching {
             t.setSpeechRate(rate.coerceIn(0.3f, 2f))
             t.setPitch(settings.pitch)
         }
-        val msg = if (settings.speakNikud) text else HebrewText.stripNikud(text)
-        say(t, msg, TextToSpeech.QUEUE_FLUSH, uid(generation, 'M', 0, 0))
+        lastMessage = Message(generation, text, rate)
+        say(t, spokenText(text), TextToSpeech.QUEUE_FLUSH, uid(generation, 'M', 0, 0))
     }
 
     override fun preview(voiceName: String?, text: String, rate: Float) {
@@ -433,7 +460,7 @@ class TtsSpeechController(
             t.setSpeechRate(rate.coerceIn(0.3f, 2f))
             t.setPitch(settings.pitch)
         }
-        say(t, text, TextToSpeech.QUEUE_FLUSH, uid(generation, 'V', 0, 0))
+        say(t, spokenText(text), TextToSpeech.QUEUE_FLUSH, uid(generation, 'V', 0, 0))
         // The voice is captured when speak() is called, so the saved voice can be restored now.
         if (sample != null && saved != null && saved.name != sample.name) runCatching { t.setVoice(saved) }
     }
@@ -502,7 +529,7 @@ class TtsSpeechController(
         val u = parse(id) ?: return
         val a = active ?: return
         if (u.type != 'L' || u.gen != a.gen || u.gen != generation) return
-        val tokens = a.request.lines[u.line].tokens(!a.usePlain)
+        val tokens = spoken(a.request.lines[u.line], a.usePlain)
         if (tokens.wordCount == 0) return
         val base = tokens.words[u.word.coerceIn(0, tokens.wordCount - 1)].start
         val index = tokens.wordIndexAt(base + start)
@@ -519,7 +546,7 @@ class TtsSpeechController(
         val a = active ?: return
         if (u.gen != a.gen || u.gen != generation) return
         if (u.type == 'L' && a.rangeEvents == 0 && settings.syncMode == SyncMode.AUTO) {
-            val tokens = a.request.lines[u.line].tokens(!a.usePlain)
+            val tokens = spoken(a.request.lines[u.line], a.usePlain)
             if (tokens.wordCount - u.word >= 3) {
                 // The voice did not report word positions after all: use word-by-word from now on.
                 setRange(RangeSupport.UNSUPPORTED)
@@ -552,14 +579,19 @@ class TtsSpeechController(
             return
         }
         val u = parse(id) ?: return
-        if (u.type == 'M' || u.type == 'V') return
+        if (u.type == 'V') return
+        if (u.type == 'M') {
+            // A voice that needs the internet failed: say the message again with an offline voice.
+            val m = lastMessage
+            if (m != null && m.gen == u.gen && u.gen == generation && switchToOfflineVoice()) speakMessage(m.text, m.rate)
+            return
+        }
         val a = active ?: return
         if (u.gen != a.gen || u.gen != generation) return
         active = null
-        val networkProblem = code == TextToSpeech.ERROR_NETWORK ||
-            code == TextToSpeech.ERROR_NETWORK_TIMEOUT ||
-            code == TextToSpeech.ERROR_NOT_INSTALLED_YET
-        if (networkProblem && switchToOfflineVoice()) {
+        // Any failure of a voice that needs the internet (no connection, timeout, server error):
+        // continue from the same word with a voice that works without it.
+        if (switchToOfflineVoice()) {
             speakInternal(a.request.copy(startLine = u.line, startWord = u.word), a.id)
             return
         }
@@ -590,6 +622,20 @@ class TtsSpeechController(
     private fun emit(a: Active, line: Int, word: Int) {
         _playback.value = Playback(a.id, a.request.tag, PlayStatus.SPEAKING, line, word)
     }
+
+    /** The words as sent to the engine: same number and order as on screen (see [SpokenText]). */
+    private fun spoken(line: DualText, plain: Boolean): LineTokens {
+        if (plain) return line.plainTokens
+        if (spokenCache.size > 500) spokenCache.clear()
+        return spokenCache.getOrPut(line.nikud) {
+            val fixed = SpokenText.fix(line.nikud)
+            if (fixed == line.nikud) line.nikudTokens else LineTokens.of(fixed)
+        }
+    }
+
+    /** Free text (messages, samples) as sent to the engine. */
+    private fun spokenText(text: String): String =
+        if (settings.speakNikud) SpokenText.fix(text) else HebrewText.stripNikud(text)
 
     private fun failPending(reason: String) {
         val (id, req) = pending ?: return

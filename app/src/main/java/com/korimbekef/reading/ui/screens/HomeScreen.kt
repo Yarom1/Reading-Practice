@@ -189,10 +189,10 @@ fun HomeScreen(
             }
             if (child?.gamification != false) {
                 Spacer(Modifier.height(10.dp))
-                Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                    StatPill("⭐", ui.summary.totalStars.toString(), label = T.STARS)
-                    StatPill("🔥", ui.summary.currentStreak.toString(), label = T.DAYS_IN_ROW)
-                    StatPill("🏅", ui.summary.medals.size.toString(), label = T.MEDALS)
+                Row(Modifier.widthIn(max = 640.dp).fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    StatPill("⭐", ui.summary.totalStars.toString(), Modifier.weight(1f), label = T.STARS)
+                    StatPill("🔥", ui.summary.currentStreak.toString(), Modifier.weight(1f), label = T.DAYS_IN_ROW)
+                    StatPill("🏅", ui.summary.medals.size.toString(), Modifier.weight(1f), label = T.MEDALS)
                 }
             }
             Spacer(Modifier.height(8.dp))

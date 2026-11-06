@@ -61,6 +61,10 @@ import com.korimbekef.reading.core.MemoryCard
 import com.korimbekef.reading.core.QuizQuestion
 import com.korimbekef.reading.core.VocabWord
 import com.korimbekef.reading.data.db.ChildEntity
+import com.korimbekef.reading.speech.EngineStatus
+import com.korimbekef.reading.speech.PlayStatus
+import com.korimbekef.reading.speech.Playback
+import com.korimbekef.reading.speech.SpeakRequest
 import com.korimbekef.reading.ui.T
 import com.korimbekef.reading.ui.appViewModel
 import com.korimbekef.reading.ui.components.BigButton
@@ -69,6 +73,7 @@ import com.korimbekef.reading.ui.components.EmojiTile
 import com.korimbekef.reading.ui.components.KidTopBar
 import com.korimbekef.reading.ui.components.Owl
 import com.korimbekef.reading.ui.components.OwlMood
+import com.korimbekef.reading.ui.components.FitText
 import com.korimbekef.reading.ui.components.RoundIconButton
 import com.korimbekef.reading.ui.components.SpeechBubble
 import com.korimbekef.reading.ui.components.bouncyClick
@@ -130,6 +135,8 @@ fun GamesScreen(onBack: () -> Unit, onPlay: (GameType, Boolean) -> Unit) {
 
 // ---------------------------------------------------------------- quiz games
 
+private const val TAG_GAME = "game"
+
 data class QuizUi(
     val loading: Boolean = true,
     val girl: Boolean = false,
@@ -142,6 +149,10 @@ data class QuizUi(
     val finished: Boolean = false,
     val starsAdded: Int = 0,
     val notEnough: Boolean = false,
+    /** The word is being said right now (the speaker button lights up). */
+    val speaking: Boolean = false,
+    /** The device could not say the word: the picture is shown instead, so the game can still be played. */
+    val speechFailed: Boolean = false,
 ) {
     val current: QuizQuestion? get() = questions.getOrNull(index)
 }
@@ -150,9 +161,26 @@ class QuizViewModel(private val c: AppContainer, private val type: GameType, pri
     private val _ui = MutableStateFlow(QuizUi())
     val ui: StateFlow<QuizUi> = _ui.asStateFlow()
     private var child: ChildEntity? = null
+    private var speechId = 0L
 
     init {
         viewModelScope.launch { start() }
+        viewModelScope.launch { c.speech.playback.collect { onPlayback(it) } }
+        viewModelScope.launch {
+            c.speech.state.collect { s -> if (s.status.cannotSpeak()) _ui.update { it.copy(speaking = false, speechFailed = true) } }
+        }
+    }
+
+    private fun EngineStatus.cannotSpeak() = this == EngineStatus.NO_HEBREW || this == EngineStatus.NO_ENGINE
+
+    private fun onPlayback(pb: Playback) {
+        if (speechId == 0L || pb.requestId != speechId) return
+        when (pb.status) {
+            PlayStatus.SPEAKING -> _ui.update { it.copy(speaking = true) }
+            PlayStatus.DONE -> _ui.update { it.copy(speaking = false, speechFailed = false) }
+            PlayStatus.ERROR -> _ui.update { it.copy(speaking = false, speechFailed = true) }
+            PlayStatus.IDLE, PlayStatus.PAUSED -> _ui.update { it.copy(speaking = false) }
+        }
     }
 
     private suspend fun start() {
@@ -168,6 +196,7 @@ class QuizViewModel(private val c: AppContainer, private val type: GameType, pri
             withNikud = ch.withNikud || ch.level <= 2,
             questions = questions,
             notEnough = questions.isEmpty(),
+            speechFailed = c.speech.state.value.status.cannotSpeak(),
         )
         autoSpeak()
     }
@@ -183,8 +212,24 @@ class QuizViewModel(private val c: AppContainer, private val type: GameType, pri
     }
 
     fun speak() {
-        val q = _ui.value.current ?: return
-        q.speakText?.let { c.speech.speakMessage(it, 0.85f) }
+        if (c.sounds.isMediaMuted()) _ui.update { it.copy(feedback = T.VOLUME_OFF) }
+        say(0.85f)
+    }
+
+    /** Says the word of the current question, the same way story lines are read (with the same fallbacks). */
+    private fun say(rate: Float) {
+        val text = _ui.value.current?.speakText ?: return
+        speechId = c.speech.speak(
+            SpeakRequest(
+                lines = listOf(text),
+                startLine = 0,
+                rate = rate,
+                tag = TAG_GAME,
+                singleWord = text.wordCount == 1,
+            ),
+        )
+        // the first status may arrive before the id is known
+        c.speech.playback.value.let { if (it.requestId == speechId) onPlayback(it) }
     }
 
     fun answer(option: Int) {
@@ -194,7 +239,7 @@ class QuizViewModel(private val c: AppContainer, private val type: GameType, pri
         if (option == q.correctIndex) {
             c.sounds.play(Sfx.CORRECT)
             _ui.update { it.copy(solved = true, feedback = T.pick(T.CORRECT)) }
-            q.speakText?.let { c.speech.speakMessage(it, 0.9f) }
+            say(0.9f)
             viewModelScope.launch {
                 delay(if (q.type == GameType.MISSING_WORD) 2600 else 1500)
                 next()
@@ -210,7 +255,7 @@ class QuizViewModel(private val c: AppContainer, private val type: GameType, pri
         if (st.index + 1 >= st.questions.size) {
             finish()
         } else {
-            _ui.update { it.copy(index = it.index + 1, wrong = emptySet(), solved = false, feedback = null) }
+            _ui.update { it.copy(index = it.index + 1, wrong = emptySet(), solved = false, feedback = null, speaking = false) }
             autoSpeak()
         }
     }
@@ -287,24 +332,34 @@ private fun QuestionView(q: QuizQuestion, ui: QuizUi, onSpeak: () -> Unit, onAns
             .padding(18.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(questionTitle(q.type), style = MaterialTheme.typography.titleLarge, color = KColors.Ink, textAlign = TextAlign.Center)
+        // Without a working voice the listening game shows the picture instead of the ear.
+        val noSound = q.type == GameType.LISTEN_AND_CHOOSE && ui.speechFailed && q.promptEmoji != null
+        Text(
+            if (noSound) T.Q_PICTURE_WORD else questionTitle(q.type),
+            style = MaterialTheme.typography.titleLarge,
+            color = KColors.Ink,
+            textAlign = TextAlign.Center,
+        )
         Spacer(Modifier.height(14.dp))
-        // prompt
+        // prompt (tapping the card says the word too, not only the speaker button)
+        val listenCard = q.speakText != null && (q.type == GameType.LISTEN_AND_CHOOSE || q.type == GameType.FIRST_LETTER)
         Box(
             Modifier
                 .fillMaxWidth()
                 .widthIn(max = 560.dp)
                 .shadow(4.dp, RoundedCornerShape(28.dp))
-                .background(Color.White, RoundedCornerShape(28.dp))
+                .clip(RoundedCornerShape(28.dp))
+                .background(Color.White)
+                .then(if (listenCard) Modifier.bouncyClick(onClick = onSpeak) else Modifier)
                 .padding(18.dp),
             contentAlignment = Alignment.Center,
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 when (q.type) {
-                    GameType.WORD_TO_PICTURE -> Text(q.promptText?.get(ui.withNikud).orEmpty(), style = readingTextStyle(54.sp))
+                    GameType.WORD_TO_PICTURE -> FitText(q.promptText?.get(ui.withNikud).orEmpty(), readingTextStyle(54.sp), minFontSize = 20.sp)
                     GameType.PICTURE_TO_WORD -> Text(q.promptEmoji.orEmpty(), fontSize = 96.sp)
                     GameType.FIRST_LETTER -> Text(q.promptEmoji.orEmpty(), fontSize = 96.sp)
-                    GameType.LISTEN_AND_CHOOSE -> Text("👂", fontSize = 80.sp)
+                    GameType.LISTEN_AND_CHOOSE -> if (noSound) Text(q.promptEmoji.orEmpty(), fontSize = 96.sp) else Text("👂", fontSize = 80.sp)
                     GameType.MISSING_WORD -> {
                         val line = q.promptText
                         if (line != null) {
@@ -321,9 +376,16 @@ private fun QuestionView(q: QuizQuestion, ui: QuizUi, onSpeak: () -> Unit, onAns
                     }
                     GameType.MEMORY -> Unit
                 }
-                if (q.speakText != null && (q.type == GameType.LISTEN_AND_CHOOSE || q.type == GameType.FIRST_LETTER || ui.solved)) {
+                if (q.speakText != null && (listenCard || ui.solved)) {
                     Spacer(Modifier.height(8.dp))
-                    RoundIconButton(Icons.AutoMirrored.Rounded.VolumeUp, T.HEAR_WORD, onSpeak, size = 64.dp, color = KColors.TealLight)
+                    RoundIconButton(
+                        Icons.AutoMirrored.Rounded.VolumeUp,
+                        T.HEAR_WORD,
+                        onSpeak,
+                        size = if (listenCard) 76.dp else 64.dp,
+                        color = if (ui.speaking) KColors.Teal else KColors.TealLight,
+                        tint = if (ui.speaking) Color.White else KColors.Ink,
+                    )
                 }
             }
         }
@@ -372,10 +434,12 @@ private fun QuestionView(q: QuizQuestion, ui: QuizUi, onSpeak: () -> Unit, onAns
                     when {
                         opt.emoji != null -> Text(opt.emoji, fontSize = 56.sp)
                         opt.letter != null -> Text(opt.letter.toString(), style = readingTextStyle(64.sp))
-                        opt.text != null -> Text(
+                        // one line that shrinks for long words, never broken in the middle or cut off
+                        opt.text != null -> FitText(
                             opt.text.get(ui.withNikud),
-                            style = readingTextStyle(if (q.type == GameType.MISSING_WORD) 26.sp else 30.sp).copy(textAlign = TextAlign.Center),
-                            modifier = Modifier.padding(6.dp),
+                            readingTextStyle(if (q.type == GameType.MISSING_WORD) 26.sp else 30.sp),
+                            modifier = Modifier.padding(horizontal = 6.dp),
+                            minFontSize = 12.sp,
                         )
                     }
                 }

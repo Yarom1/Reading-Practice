@@ -33,6 +33,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
+import androidx.compose.foundation.text.modifiers.TextAutoSizeLayoutScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material3.Icon
@@ -59,9 +60,11 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.TextLayoutResult
+import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.isSpecified
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.korimbekef.reading.ui.T
@@ -102,15 +105,47 @@ fun FitText(
     minFontSize: TextUnit = 9.sp,
     textAlign: TextAlign = TextAlign.Center,
 ) {
-    val max = if (style.fontSize.isSpecified) style.fontSize else 16.sp
+    val max = if (style.fontSize.isSp) style.fontSize.value else 16f
     BasicText(
         text = text,
         modifier = modifier,
         style = style.copy(color = if (color != Color.Unspecified) color else style.color, textAlign = textAlign),
         maxLines = maxLines,
         softWrap = maxLines > 1,
-        autoSize = TextAutoSize.StepBased(minFontSize = minFontSize, maxFontSize = max, stepSize = 1.sp),
+        autoSize = WholeWordsAutoSize(minSp = if (minFontSize.isSp) minFontSize.value else 9f, maxSp = max),
     )
+}
+
+/**
+ * The biggest font size (in whole sp) at which the text fits its space with every word kept whole:
+ * a long word in a narrow button gets smaller instead of being split between two lines.
+ */
+private data class WholeWordsAutoSize(val minSp: Float, val maxSp: Float) : TextAutoSize {
+    override fun TextAutoSizeLayoutScope.getFontSize(constraints: Constraints, text: AnnotatedString): TextUnit {
+        var low = minSp.toInt()
+        var high = maxSp.toInt()
+        if (high <= low) return minSp.sp
+        if (fitsWholeWords(performLayout(constraints, text, high.sp), text.text)) return high.sp
+        // low is the fallback (used even if it does not fit); high is known not to fit
+        while (high - low > 1) {
+            val mid = (low + high) / 2
+            if (fitsWholeWords(performLayout(constraints, text, mid.sp), text.text)) low = mid else high = mid
+        }
+        return low.sp
+    }
+}
+
+private fun fitsWholeWords(layout: TextLayoutResult, text: String): Boolean {
+    if (layout.didOverflowWidth || layout.didOverflowHeight) return false
+    for (line in 0 until layout.lineCount - 1) {
+        val end = layout.getLineEnd(line)
+        if (end <= 0 || end >= text.length) continue
+        val before = text[end - 1]
+        val after = text[end]
+        // a line may only end at a space (or after a dash / slash / maqaf), never inside a word
+        if (!before.isWhitespace() && !after.isWhitespace() && before !in "-/\u05BE") return false
+    }
+    return true
 }
 
 /** Large rounded "3D" button used across the child screens. */

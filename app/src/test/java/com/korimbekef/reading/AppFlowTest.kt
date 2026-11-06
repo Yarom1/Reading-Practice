@@ -2,6 +2,8 @@ package com.korimbekef.reading
 
 import android.content.Context
 import android.media.AudioManager
+import androidx.compose.ui.semantics.SemanticsActions
+import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.SemanticsNodeInteraction
 import androidx.compose.ui.test.hasContentDescription
 import androidx.compose.ui.test.hasScrollToIndexAction
@@ -14,6 +16,7 @@ import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.performTouchInput
+import androidx.compose.ui.text.TextLayoutResult
 import androidx.test.core.app.ActivityScenario
 import com.korimbekef.reading.core.DualText
 import com.korimbekef.reading.core.PinHasher
@@ -62,6 +65,7 @@ open class AppFlowTest {
     @After
     fun tearDown() {
         scenario?.close()
+        assertTrue("words split between two lines:\n" + splitWords.joinToString("\n"), splitWords.isEmpty())
     }
 
     // ------------------------------------------------------------------ helpers
@@ -90,6 +94,32 @@ open class AppFlowTest {
         var activity: android.app.Activity? = null
         scenario?.onActivity { activity = it }
         Screenshots.capture(rule, shotPrefix + name, activity)
+        splitWords += findSplitWords().map { "${shotPrefix + name}: $it" }
+    }
+
+    private val splitWords = mutableListOf<String>()
+
+    /** Texts on the screen in which a line ends inside a word (a button too narrow for its label). */
+    private fun findSplitWords(): List<String> {
+        val nodes = rule.onAllNodes(SemanticsMatcher.keyIsDefined(SemanticsActions.GetTextLayoutResult), useUnmergedTree = true)
+            .fetchSemanticsNodes()
+        val found = mutableListOf<String>()
+        for (node in nodes) {
+            val layouts = mutableListOf<TextLayoutResult>()
+            runCatching { node.config[SemanticsActions.GetTextLayoutResult].action?.invoke(layouts) }
+            for (layout in layouts) {
+                val text = layout.layoutInput.text.text
+                for (line in 0 until layout.lineCount - 1) {
+                    val end = layout.getLineEnd(line)
+                    if (end <= 0 || end >= text.length) continue
+                    val before = text[end - 1]
+                    if (!before.isWhitespace() && !text[end].isWhitespace() && before !in "-/\u05BE") {
+                        found += "\"$text\" breaks after \"${text.substring(0, end).trim()}\""
+                    }
+                }
+            }
+        }
+        return found.distinct()
     }
 
     private fun content(raw: String): String = DualText.parse(raw).nikud

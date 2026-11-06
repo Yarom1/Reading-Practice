@@ -404,7 +404,8 @@ private fun Controls(ui: ReadingUi, vm: ReadingViewModel) {
                 color = if (speaking) KColors.Orange else KColors.Violet,
                 height = 64.dp,
                 textStyle = MaterialTheme.typography.titleMedium,
-                modifier = Modifier.weight(1.9f).padding(horizontal = 4.dp),
+                // wide enough for the whole word next to the icon, also on narrow phones with a large font
+                modifier = Modifier.weight(2.4f).padding(horizontal = 4.dp),
                 enabled = ui.speechAvailable || ui.mode == ReadingMode.TOGETHER,
             )
             LabeledIconButton(Icons.Rounded.AutoStories, T.READ_ALL, vm::readAll, enabled = ui.speechAvailable, modifier = Modifier.weight(1f))

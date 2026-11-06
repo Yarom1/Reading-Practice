@@ -192,7 +192,7 @@ fun BigButton(
                 .height(height)
                 .offset(y = (6 * press).dp)
                 .background(base, shape)
-                .padding(horizontal = 12.dp),
+                .padding(horizontal = 10.dp),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically,
         ) {
@@ -209,7 +209,7 @@ fun BigButton(
                 style = textStyle,
                 color = if (enabled) contentColor else KColors.InkSoft,
                 maxLines = 2,
-                minFontSize = 12.sp,
+                minFontSize = 10.sp,
             )
         }
     }
